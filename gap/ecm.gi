@@ -353,7 +353,8 @@ function (arg)
   if ArgCorrect then
     n      := GetArg(1,"DoesNotExist",fail);
     Curves := GetArg(2,"ECMCurves",
-              n -> Maximum(3,3 * RootInt(2^(LogInt(n,10) - 24),8)));
+                     n -> Maximum(4,3 * RootInt(2^(LogInt(n,10) - 24),8)
+                                      + RootInt(2^(LogInt(n,10) - 50),4)));
     if   IsInt(Curves) 
     then NumberOfCurves := Curves; Curves := n -> NumberOfCurves; fi;
     if Curves(n) <= 0 then return [[],[n]]; fi;
