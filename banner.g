@@ -6,7 +6,7 @@
 ##
 
 if not QUIET and BANNER then
-  Print("\nLoading FactInt 1.4.2 (Routines for Integer Factorization)");
+  Print("\nLoading FactInt 1.4.3 (Routines for Integer Factorization)");
   Print("\nby Stefan Kohl, kohl@mathematik.uni-stuttgart.de\n\n");
 fi;
 
