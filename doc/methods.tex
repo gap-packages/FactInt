@@ -2,6 +2,8 @@
 %%
 %W  methods.tex             FactInt documentation             Stefan Kohl
 %%
+%H  @(#)$Id$
+%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \Chapter{The Routines for Specific Factorization Methods}
@@ -18,7 +20,7 @@ in the preface.
 \>FactorsPminus1( <n>, [ [ <a> ], <Limit1>, [ <Limit2> ] ] ) F
 
 `FactorsPminus1' tries to factor <n> using Pollard's $p-1$, with <a>
-as base for exponentiation (default : $a=2$), 
+as base for exponentiation (the default is $a=2$), 
 <Limit1> as first stage limit and <Limit2> as second stage limit.
 `FactorsPminus1' chooses defaults for all arguments not explicitly given.
 If `FactorsPminus1' is called with three arguments, these arguments
@@ -41,9 +43,9 @@ In this situation, if this is satisfied for no other
 prime factor of <n>, $p$ can be determined by 
 calculating $Gcd(a^{k!}-1,n)$.
 A prime divisor $p$ is usually found if the largest prime factor
-of $p-1$ is not larger than <Limit2>, and the second - largest one
+of $p-1$ is not larger than <Limit2>, and the second-largest one
 is not larger than <Limit1>.
-(Compare with ~"FactorsPplus1" and ~"FactorsECM")
+(Compare with ~"FactorsPplus1" and ~"FactorsECM".)
 
 \beginexample
 gap> FactorsPminus1( Factorial(158) + 1, 100000, 1000000 );
@@ -53,7 +55,7 @@ gap> FactorsPminus1( Factorial(158) + 1, 100000, 1000000 );
 806789945715570386038565256719614524924705165110048148716160964980629081176057\
 0095669 ], [  ] ]
 
-# Let's see why this works :
+# Let's see why this works:
 
 gap> List( last[ 1 ]{[ 3, 4, 5 ]}, p -> IntegerFactorization( p - 1 ) );
 [ [ 2, 2, 3, 3, 81937, 492413 ], [ 2, 3, 3, 3, 5, 7, 7, 1481, 488011 ], 
@@ -82,12 +84,12 @@ Williams' $p+1$ is very similar to Pollard's $p-1$
 used here has order $p+1$ (instead of $p-1$), and that the group
 operation takes more time.
 A prime divisor $p$ is usually found if the largest prime factor
-of $p+1$ is at most <Limit2> and the second - largest one is not
+of $p+1$ is at most <Limit2> and the second-largest one is not
 larger than <Limit1>, and if the algorithm hits a ``usable''
 residue (concerning the ``unusable'' residues, it could be stated
 that the order of the respective group is $p-1$, such that
-the method turns into a slow $p-1$ - algorithm in this case).
-(Compare also with ~"FactorsECM")
+the method turns into a slow $p-1$-algorithm in this case).
+(Compare also with ~"FactorsECM".)
 
 \beginexample
 gap> FactorsPplus1( Factorial(55) - 1, 10, 10000, 100000 );
@@ -155,13 +157,13 @@ order of the group under consideration.
 
 A prime divisor $p$ is usually found if the largest prime factor
 of the order of one of the examined elliptic curve groups $E(a,b)/p$ 
-is at most <Limit2>, and the second - largest one is at most <Limit1>,
+is at most <Limit2>, and the second-largest one is at most <Limit1>,
 so trying a larger number of curves increases the chance of
 factoring <n> as well as taking a larger value
 for <Limit1> and/or <Limit2> (it turns out to be not optimal either to
 take a large number of curves with very small <Limit1> and <Limit2> 
 or to grind on with a single curve and very large limits).
-(Compare with ~"FactorsPminus1")
+(Compare with ~"FactorsPminus1".)
 
 The elements of the group $E(a,b)/n$ are the points $(x,y)$ given by the
 solutions of $y^2 = x^3 + ax + b$ in the residue class ring (mod $n$),
@@ -171,7 +173,7 @@ To turn this set into a group, define the product
 (although elliptic curve groups are usually written additively,
 I prefer using the multiplicative notation here to retain the analogy
 to ~"FactorsPminus1" and ~"FactorsPplus1") of two points
-$p_1$ and $p_2$ as follows :
+$p_1$ and $p_2$ as follows:
 Let $l$ be the line through $p_1$ and $p_2$ if $p_1 \neq p_2$,
 otherwise let $l$ be the tangent to the curve $C$ given by the 
 above equation in the point $p_1 = p_2$.
@@ -179,7 +181,7 @@ $l$ intersects $C$ in a third point, say $p_3$
 (if $l$ does not intersect the curve in a
 third affine point, then set $p_3$ := $\infty$). 
 Set $p_1.p_2$ equal to the image of $p_3$ under
-the reflection across the $x$ - axis.
+the reflection across the $x$-axis.
 Define the product of any curve point $p$ and $\infty$ by $p$ itself.
 This (more or less obviously, checking associativity requires some
 calculation) turns the set of points on the given curve
@@ -190,7 +192,7 @@ However, the calculations are done in
 projective coordinates to have an explicit representation of the 
 identity element and to avoid calculating inverses (mod $n$)
 for the group operation, which would otherwise require using an 
-$O((log n)^3)$ - algorithm, while multiplication (mod $n$) is only 
+$O((log n)^3)$-algorithm, while multiplication (mod $n$) is only 
 $O((log n)^2)$. The respective equation in this case is given by 
 $bY^2Z = X^3 + aX^2Z + XZ^2$ (this form allows more efficient
 calculations than the
@@ -254,13 +256,13 @@ Gaussian Elimination over $GF(2)$
 is used to determine which of the congruences $x_i^2 \equiv c_i$
 (mod $n$) have to be multiplied together to get a congruence
 of the desired form  $x^2 \equiv y^2$ (mod $n$), where the involved
-matrix $M$ is given by $M_{ij} = 1$, if an odd power of the $j$ - th
-element of the factor base divides the $i$ - th usable factored
+matrix $M$ is given by $M_{ij} = 1$, if an odd power of the $j$-th
+element of the factor base divides the $i$-th usable factored
 value, and $M_{ij} = 0$ otherwise.
 For this purpose it is necessary that the number of factored 
 $c_i$ is larger than the rank of $M$, which is approximately given by
 the size of the factor base.
-(Compare with ~"FactorsMPQS")
+(Compare with ~"FactorsMPQS".)
 
 \beginexample
 gap> FactorsCFRAC( Factorial(34) - 1 );
@@ -287,12 +289,12 @@ on the options stack. When called again, it will look whether
 there is such an appropriate record on the options stack
 and get the previously computed factorization data, if so. 
 For continuing the factorization process in another 
-{\GAP} - session, you will have to write this record to a file.
+session, you will have to write this record to a file.
 This is done by the function `SaveMPQSTmp( <filename> )',
 the file written by this function is readable by the 
-standard `Read' - function of {\GAP}.
+standard `Read'-function of {\GAP}.
 
-Caution : The runtime of `FactorsMPQS' depends only on the size of <n>, 
+Caution: The runtime of `FactorsMPQS' depends only on the size of <n>, 
 not on the size of its factors, so if a small factor is not found during
 the preprocessing which is done before invoking the sieving process,
 you will have to wait as long as if <n> would have two prime factors
@@ -322,13 +324,13 @@ the advantage of having smaller $f_a(r)$ to factor over the factor base.
 Then, Gaussian Elimination over $GF(2)$ is used to determine the
 congruences which have to be multiplied together to get a congruence
 of the desired form $x^2 \equiv y^2$ (mod $n$), where the involved 
-matrix $M$ is given by $M_{ij} = 1$, if an odd power of the $j$ - th 
-element of the factor base divides the $i$ - th usable factored
+matrix $M$ is given by $M_{ij} = 1$, if an odd power of the $j$-th 
+element of the factor base divides the $i$-th usable factored
 value, and $M_{ij} = 0$ otherwise.
 For this purpose it is necessary that the number of factored 
 $f_a(r)$ is larger than the rank of $M$, which is approximately
 given by the size of the factor base.
-(Compare with ~"FactorsCFRAC")
+(Compare with ~"FactorsCFRAC".)
 
 \beginexample
 gap> FactorsMPQS( Factorial(38) + 1 );

@@ -2,6 +2,8 @@
 %%
 %W  general.tex             FactInt documentation             Stefan Kohl
 %%
+%H  @(#)$Id$
+%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \Chapter{The General Factorization Routines}
@@ -64,7 +66,7 @@ by the build-in probabilistic primality test of {\GAP}
 This also applies to all other factorization routines 
 provided by this package.
 
-`FactInt' recognizes the following options :
+`FactInt' recognizes the following options:
 
 \beginitems
    <TDHints>& specifies a list of additional trial divisors
@@ -96,7 +98,7 @@ provided by this package.
 
    <ECMCurves>& specifies the number of elliptic curves to be 
    tried by the Elliptic Curves Method (ECM) (see ~"FactorsECM"),
-   also admissible : a function that takes an argument <n>
+   also admissible: a function that takes an argument <n>
    (the number to be factored) and returns the desired number
    of curves to be tried 
 
@@ -120,10 +122,10 @@ provided by this package.
    in the preface) is returned and the factor base methods
    (MPQS and CFRAC) are not used to complete the factorization
    for numbers that exceed the bound given by <CFRACLimit> 
-   resp. <MPQSLimit>; default : false
+   resp. <MPQSLimit>; default: false
 
    <FBMethod>& specifies which of the factor base methods should be
-   used to do the ``hard work''; currently implemented : CFRAC and MPQS
+   used to do the ``hard work''; currently implemented: CFRAC and MPQS
    (see ~"FactorsCFRAC", ~"FactorsMPQS")
 
    <CFRACLimit>& specifies the maximal number of decimal digits of
@@ -164,16 +166,16 @@ trial division by the primes below 1000.
 After that, it checks whether the remaining
 part of the number to be factored already is a prime.
 If not, it does trial divisions by some already known primes, using
-the list `Primes2' (see {\GAP} - Manual).
+the list `Primes2' (see {\GAP}-Manual).
 If there is still an unfactored part <m>, then it checks whether <m>
 is a non-trivial power of an integer.
 Then, the additional list of trial divisors given
 as <TDHints> is processed, if present.
 
 After the small and other ``easy'' factors have been casted out 
-this way, `FactInt' searches for ``medium - sized'' factors using
+this way, `FactInt' searches for ``medium-sized'' factors using
 Pollard's Rho (by the library function `FactorsRho',
-see {\GAP} - Manual),
+see {\GAP}-Manual),
 Pollard's $p-1$ (see ~"FactorsPminus1"), Williams' $p+1$ 
 (see ~"FactorsPplus1") and the Elliptic Curves Method 
 (ECM, see ~"FactorsECM") in this order.
