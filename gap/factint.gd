@@ -42,7 +42,7 @@ DeclareSynonym( "FactInfo", FactIntInfo );
 ##
 #F  FetchBrentFactors( ) . . get Brent's tables of factors of numbers b^k - 1
 ##
-##  A utility to fetch the current version of
+##  A utility for fetching the current version of
 ##
 ##  ftp://ftp.comlab.ox.ac.uk/pub/Documents/techpapers/Richard.Brent/factors/
 ##  factors.gz
