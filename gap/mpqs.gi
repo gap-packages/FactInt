@@ -1,6 +1,8 @@
 #############################################################################
 ##
-#W  mpqs.gi                GAP4 Package 'FactInt'                 Stefan Kohl
+#W  mpqs.gi                GAP4 Package `FactInt'                 Stefan Kohl
+##
+#H  @(#)$Id$
 ##
 ##  This file contains functions for factorization using the
 ##  Single Large Prime Variation of the
@@ -15,6 +17,8 @@
 ##  A possible improvement would be the implementation of the
 ##  Double Large Prime Variation of the MPQS (PPMPQS).
 ##
+Revision.mpqs_gi :=
+  "@(#)$Id$";
 
 MPQSSplit := function (n)
 
@@ -201,9 +205,9 @@ MPQSSplit := function (n)
   PrettyInfo(2,["Length of sieving interval : ",[SievingIntervalLength,10]]);
   PrettyInfo(2,["Small prime limit          : ",[SmallPrimeLimit,10]]);
   PrettyInfo(2,["Large prime limit          : ",[LargePrimeLimit,10]]);
-  PrettyInfo(2,["Number of used a - factors : ",[NraFactors,10]]);
-  PrettyInfo(2,["Size of a - factors pool   : ",[aFactorsPoolsize,10]]);
-  Info(IntegerFactorizationInfo,3,"a - factors pool :\n",aFactorsPool,"\n");
+  PrettyInfo(2,["Number of used a-factors   : ",[NraFactors,10]]);
+  PrettyInfo(2,["Size of a-factors pool     : ",[aFactorsPoolsize,10]]);
+  Info(IntegerFactorizationInfo,3,"a-factors pool :\n",aFactorsPool,"\n");
 
   # Initialize the sieve
  
@@ -545,4 +549,3 @@ end);
 #############################################################################
 ##
 #E  mpqs.gi  . . . . . . . . . . . . . . . . . . . . . . . . . . .  ends here
-

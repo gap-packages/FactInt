@@ -1,9 +1,11 @@
 #############################################################################
 ##
-#W  cfrac.gi               GAP4 Package 'FactInt'                 Stefan Kohl
+#W  cfrac.gi               GAP4 Package `FactInt'                 Stefan Kohl
+##
+#H  @(#)$Id$
 ##
 ##  This file contains functions for factorization using the
-##  Continued Fraction Algorithm (Brillhard - Morrison Algorithm)
+##  Continued Fraction Algorithm (Brillhard-Morrison Algorithm)
 ##
 ##  Argument of FactorsCFRAC :
 ##
@@ -11,6 +13,8 @@
 ##
 ##  The result is returned as a list of the prime factors of <n>.
 ##
+Revision.cfrac_gi :=
+  "@(#)$Id$";
 
 CFRACSplit := function (n)
 
@@ -352,4 +356,3 @@ end);
 #############################################################################
 ##
 #E  cfrac.gi . . . . . . . . . . . . . . . . . . . . . . . . . . .  ends here
-

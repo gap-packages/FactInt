@@ -1,7 +1,8 @@
 #############################################################################
 ##
-#W  read.g                 GAP4 Package 'FactInt'                 Stefan Kohl
+#W  read.g                 GAP4 Package `FactInt'                 Stefan Kohl
 ##
+#H  @(#)$Id$
 ##
 
 ReadPkg( "factint", "gap/general.gi" );

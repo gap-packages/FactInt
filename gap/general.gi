@@ -1,6 +1,8 @@
 #############################################################################
 ##
-#W  general.gi              GAP4 Package 'FactInt'                Stefan Kohl
+#W  general.gi              GAP4 Package `FactInt'                Stefan Kohl
+##
+#H  @(#)$Id$
 ##
 ##  This file contains the general routines for integer factorization and
 ##  auxiliary functions used by them and/or more than one of the 
@@ -38,6 +40,8 @@
 ##  especially useful when factoring large integers with the MPQS or with 
 ##  CFRAC)
 ##
+Revision.general_gi :=
+  "@(#)$Id$";
 
 DeclareInfoClass("IntegerFactorizationInfo");
 
@@ -45,7 +49,7 @@ FactInfo := function(lev) SetInfoLevel(IntegerFactorizationInfo,lev); end;
 MakeReadOnlyGlobal("FactInfo");
 
 
-# For pretty - printing of the `Info' - messages
+# For pretty-printing of the `Info'-messages
 
 Blanks := [""," ","  ","   ","    ","     ","      ","       ",
            "        ","         ","          ","           "];
@@ -105,7 +109,7 @@ MakeReadOnlyGlobal("FactorizationCheck");
 
 # For writing the temporary factorization data of the MPQS
 # (relations over the factor base etc.) to a file which can
-# be read using the `Read' - function
+# be read using the `Read'-function
 
 SaveMPQSTmp := function (TempFile)
 
@@ -577,5 +581,3 @@ end);
 #############################################################################
 ##
 #E  general.gi . . . . . . . . . . . . . . . . . . . . . . . . . .  ends here
-
-
