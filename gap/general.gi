@@ -94,7 +94,7 @@ FactorizationCheck := function (n,Result)
   if not ResultCorrect
   then Error("\nInternal error, the result is incorrect !!!\n\n",
              "Please send e-mail to the author\n",
-             "(kohlsn@cip.mathematik.uni-stuttgart.de)\n",
+             "(kohl@mathematik.uni-stuttgart.de)\n",
              "and mention the number to be factored : \n",n,
              "\nas well as the options you specified, ",
              "thank you very much.\n"); 
