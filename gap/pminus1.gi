@@ -4,12 +4,12 @@
 ##
 #H  @(#)$Id$
 ##
-##  This file contains functions for factorization using Pollard's p - 1.
+##  This file contains functions for factorization using Pollard's $p-1$.
 ##
-##  Arguments of FactorsPminus1 :
+##  Arguments of FactorsPminus1:
 ##
 ##  <n>        the integer to be factored
-##  <a>        the base for exponentiation; usually, a = 2 (default)
+##  <a>        the base for exponentiation; usually, <a> = 2 (default)
 ##  <Limit1>   the limit for the first stage
 ##  <Limit2>   the limit for the second stage
 ##
@@ -90,7 +90,7 @@ MakeReadOnlyGlobal("Pminus1Split");
 ##
 #F  FactorsPminus1( <n>, [ [ <a> ], <Limit1>, [ <Limit2> ] ] )
 ##
-##  Prime factorization of the integer <n>, using Pollard's p-1 with
+##  Prime factorization of the integer <n>, using Pollard's $p-1$ with
 ##  first stage limit <Limit1>, second stage limit <Limit2> and 
 ##  exponentiation base <a> (usually, without much loss of
 ##  generality, <a> = 2, which is also the default).
@@ -98,7 +98,6 @@ MakeReadOnlyGlobal("Pminus1Split");
 ##  contains the prime factors found, and the second one contains
 ##  remaining unfactored parts of <n>, if there are any.
 ##
-
 InstallGlobalFunction(FactorsPminus1,
 function (arg)
 

@@ -7,12 +7,12 @@
 ##  This file contains functions for factorization using the
 ##  Elliptic Curves Method (ECM).
 ##
-##  Arguments of FactorsECM :  
+##  Arguments of FactorsECM:  
 ## 
 ##  <n>       the integer to be factored
 ##  <Curves>  specifies how many different curves should be examined
 ##  <Limit1>  specifies a limit for the exponentiation of a point
-##            on a given curve ("first stage limit")
+##            on a given curve (``first stage limit'')
 ##  <Limit2>  gives the second stage limit
 ##  <Delta>   the increment per curve for the first stage limit
 ##            (the second stage limit is adjusted appropriately)
@@ -22,51 +22,52 @@
 ##  remaining unfactored parts of <n>, if there are any.
 ##
 ##  The computations are done with elliptic curve points given in
-##  projective coordinates [X,Y,Z], as integer solutions of
-##  b*Y^2*Z = X^3 + a*X^2*Z + X*Z^2, where the 'point at infinity',
-##  the identity element of the group E(a,b)/n, corresponds to [0,Y,0]
-##  (with arbitrary Y).
-##  (This avoids the calculation of inverses (mod n) for the
+##  projective coordinates [$X$,$Y$,$Z$], as integer solutions of
+##  $b Y^2 Z = X^3 + a X^2 Z + X Z^2$, where the ``point at infinity'',
+##  the identity element of the group E($a$,$b$)/$n$, corresponds to
+##  [0,$Y$,0] (with arbitrary $Y$).
+##  (This avoids the calculation of inverses (mod <n>) for the
 ##  group operation and gives the advantage of having an explicit 
 ##  representation of the identity element
-##  on the one hand, but requires more multiplications (mod n)
-##  than in affine representation on the other hand; since inversion (mod n)
-##  is O((log n)^3) and multiplication (mod n) is only O((log n)^2), this
-##  is (at least) asymptotically a good choice.)
+##  on the one hand, but requires more multiplications (mod <n>)
+##  than in affine representation on the other hand; since inversion
+##  (mod <n>) is O($(\log n)^3$) and multiplication (mod <n>) is only
+##  O($(\log n)^2$), this is (at least) asymptotically a good choice.)
 ##
 ##  The algorithm only keeps track on two of the three coordinates,
-##  namely X and Z.
+##  namely $X$ and $Z$.
 ##  The choice of curves is done in a way that ensures the order of the
 ##  respective group to be divisible by 12.
 ##
 ##  The implementation follows mainly the description of R. P. Brent given in
-##  'Factorization of the Tenth and Eleventh Fermat Numbers', available under
+##  ``Factorization of the Tenth and Eleventh Fermat Numbers'', available
+##  under
 ##  ftp://ftp.comlab.ox.ac.uk/pub/Documents/techpapers/Richard.Brent/
 ##  rpb161tr.dvi.gz, p. 5-8 (in terms of this paper, for the
-##  second stage the 'improved standard continuation' is used),
-##  the group operations are performed as described in :
+##  second stage the ``improved standard continuation'' is used),
+##  the group operations are performed as described in:
 ##  P. L. Montgomery, Speeding the Pollard and elliptic curve methods of
 ##  factorization, Math. Comp. 48 (1987)  
 ##
 ##  Although elliptic curve groups are usually written additively,
 ##  I prefer using the multiplicative notation here to retain the analogy
-##  to Pollard's p-1 and Williams' p+1.
+##  to Pollard's $p-1$ and Williams' $p+1$.
 ##
-##  A word about the actual implementation :
+##  A word about the actual implementation:
 ##
-##  At first glance, it might look desirable to implement E(a,b)/n
-##  as a GAP domain here.
-##  But if you want to implement E(a,b)/n as a domain here,
+##  At first glance, it might look desirable to implement E($a$,$b$)/$n$
+##  as a {\GAP}-domain here.
+##  But if you want to implement E($a$,$b$)/$n$ as a domain here,
 ##  you would have to give up all factorization-specific optimizations
-##  such as not to keep track of the Y-coordinate and so on,
+##  such as not to keep track of the $Y$-coordinate and so on,
 ##  furthermore, you would have to cope with the situation of knowing
 ##  nearly nothing about it (for example, you do not know generators,
 ##  and calculating the order would require knowing the factorization
-##  of n in advance).
+##  of <n> in advance).
 ##
 ##  (If you want to have such a (quite simple !) implementation of the
-##  domain E(a,b)/p for small p which I have written also, then don't
-##  hesitate to contact me :
+##  domain E($a$,$b$)/$p$ for small $p$ which I have written also, then
+##  don't hesitate to contact me:
 ##
 ##  kohl@mathematik.uni-stuttgart.de)
 ##
@@ -324,14 +325,13 @@ MakeReadOnlyGlobal("ECMSplit");
 ##  increment <Delta>.
 ##  The option <ECMDeterministic> specifies, if set, that the choice 
 ##  of the curves to be tried should be deterministic, i.e. that
-##  repeated calls of 'FactorsECM' yield the same curves, and hence for the
+##  repeated calls of `FactorsECM' yield the same curves, and hence for the
 ##  same <n> the result after the same number of trials (this is of use
 ##  mainly for testing purposes).
 ##  The result is returned as a list of two lists, where the first one 
 ##  contains the prime factors found, and the second one contains
 ##  remaining unfactored parts of <n>, if there are any.
 ## 
-
 InstallGlobalFunction(FactorsECM,
 function (arg)
 

@@ -5,14 +5,14 @@
 #H  @(#)$Id$
 ##
 ##  This file contains functions for factorization using a variant of
-##  Williams' p + 1.
+##  Williams' $p+1$.
 ##
-##  Arguments of FactorsPplus1 :
+##  Arguments of FactorsPplus1:
 ##
 ##  <n>         the integer to be factored
 ##  <Residues>  the number of residues that should be examined
 ##              (the probability of hitting a usable one is
-##              approx. 1 - 1/2^Residues)
+##              approx. 1 - 1/2^<Residues>)
 ##  <Limit1>    the limit for the first stage
 ##  <Limit2>    the limit for the second stage
 ##
@@ -146,14 +146,13 @@ MakeReadOnlyGlobal("Pplus1Split");
 ##
 #F  FactorsPplus1( <n>, [ [ <Residues> ], <Limit1>, [ <Limit2> ] ] )
 ##
-##  Prime factorization of the integer <n>, using a variant of Williams' p+1 
-##  with first stage limit <Limit1> and second stage limit <Limit2>
+##  Prime factorization of the integer <n>, using a variant of Williams'
+##  $p+1$ with first stage limit <Limit1> and second stage limit <Limit2>
 ##  for <Residues> different residues.
 ##  The result is returned as a list of two lists, where the first one 
 ##  contains the prime factors found, and the second one contains
 ##  remaining unfactored parts of <n>, if there are any.
 ##
-
 InstallGlobalFunction(FactorsPplus1,
 function (arg)
 

@@ -5,9 +5,9 @@
 #H  @(#)$Id$
 ##
 ##  This file contains functions for factorization using the
-##  Continued Fraction Algorithm (Brillhard-Morrison Algorithm)
+##  Continued Fraction Algorithm (Brillhard-Morrison Algorithm).
 ##
-##  Argument of FactorsCFRAC :
+##  Argument of FactorsCFRAC:
 ##
 ##  <n>        the integer to be factored
 ##
@@ -308,7 +308,6 @@ MakeReadOnlyGlobal("CFRACSplit");
 ##  Algorithm (CFRAC).
 ##  The result is returned as a list of the prime factors of <n>.
 ##
-
 InstallGlobalFunction(FactorsCFRAC,
 function (n)
 

@@ -8,7 +8,7 @@
 ##  Single Large Prime Variation of the
 ##  Multiple Polynomial Quadratic Sieve (MPQS).
 ##
-##  Argument of FactorsMPQS :
+##  Argument of FactorsMPQS:
 ##
 ##  <n>        the integer to be factored
 ##
@@ -502,7 +502,6 @@ MakeReadOnlyGlobal("MPQSSplit");
 ##  Variation of the Multiple Polynomial Quadratic Sieve (MPQS).
 ##  The result is returned as a list of the prime factors of <n>.
 ##
-
 InstallGlobalFunction(FactorsMPQS,
 function (n)
 
