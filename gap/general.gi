@@ -243,6 +243,28 @@ InstallGlobalFunction( "FetchBrentFactors",
   end );
 
 
+# Grab factors with at least <mindigits> decimal digits from <file>.
+# Optionally exclude rightmost (largest?) factor.
+
+GrabFactors := function ( file, mindigits, excludelast )
+
+  local  nums, num, lines, line, nondigits;
+
+  lines     := SplitString(ReadAll(InputTextFile(file)),"\n","\n");
+  nondigits := Difference(List([0..255],CHAR_INT),"0123456789");
+  nums  := [];
+  for line in lines do
+    num := List(SplitString(line,nondigits,nondigits),Int);
+    if IsEmpty(num) then continue; fi;
+    if excludelast then Unbind(num[Length(num)]); fi;
+    num := Filtered(num,n->LogInt(n,10)>=mindigits-1);
+    nums := Concatenation(nums,num);
+  od;
+  return Set(nums);  
+end;
+MakeReadOnlyGlobal("GrabFactors");
+
+
 # Apply a factoring method to the composite factors of a partial
 # factorization and give information about it
 
@@ -326,6 +348,18 @@ FactorsTD := function (arg)
 end;
 MakeReadOnlyGlobal("FactorsTD");
 
+# Initialize some lists of trial divisors
+
+BindGlobal("K_FACTORIAL_M1_FACTORS",[]);
+BindGlobal("K_FACTORIAL_P1_FACTORS",[]);
+BindGlobal("FACTORS_FIB",[]);
+BindGlobal("FIB_RES", # Fib(k) mod 13, 21, 34, 55, 89, 144.
+[ [ 0, 1, 2, 3, 5, 8, 10, 11, 12 ], [ 0, 1, 2, 3, 5, 8, 13, 18, 20 ],
+  [ 0, 1, 2, 3, 5, 8, 13, 21, 26, 29, 31, 32, 33 ],
+  [ 0, 1, 2, 3, 5, 8, 13, 21, 34, 47, 52, 54 ],
+  [ 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 68, 76, 81, 84, 86, 87, 88 ],
+  [ 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 123, 136, 141, 143 ] ]);
+
 
 # Power Check
 
@@ -352,6 +386,41 @@ FactorsPowerCheck := function (n,SplittingFunction,SplittingFunctionName)
   fi;
 end;
 MakeReadOnlyGlobal("FactorsPowerCheck");
+
+
+# Check for factors VERY close to the square root of n
+
+FactorsFermat := function ( n, steps )
+
+  local  a, b, a2, b2, d,
+         steps1, steps2, result;
+
+  a := RootInt(n,2); a2 := a^2;
+  d := 2*a + 1; b := 0;
+  steps1 := 0; steps2 := 0;
+  repeat
+    if steps1 > steps then return [ [  ], [ n ] ]; fi;
+    a      := a + 1;
+    a2     := a2 + d;
+    d      := d + 2;
+    b2     := a2 - n;
+    steps1 := steps1 + 1;
+    if   not b2 mod 64 in [ 0, 1, 4, 9, 16, 17, 25, 33, 36, 41, 49, 57 ]
+      or not b2 mod 45 in [ 0, 1, 4, 9, 10, 16, 19, 25, 31, 34, 36, 40 ]
+      or not b2 mod  7 in [ 0, 1, 2, 4 ]
+      or not b2 mod 11 in [ 0, 1, 3, 4, 5, 9 ]
+    then continue; fi;
+    b      := RootInt(b2,2);
+    steps2 := steps2 + 1;
+  until b^2 = b2;
+  b := RootInt(b2,2);
+  Info(InfoFactInt,2,"FactorsFermat: #Steps = ",steps1," / ", steps2);
+  result := [];
+  result[1] := Filtered([a-b,a+b],IsProbablyPrimeInt);
+  result[2] := Difference([a-b,a+b],result[1]);
+  return result;
+end;
+MakeReadOnlyGlobal("FactorsFermat");
 
 
 # Check for n = b^k +/- 1
@@ -470,7 +539,8 @@ function (n)
          FactIntPartial,FBMethod,CFRACLimit,MPQSLimit,
          IsNonnegInt,StateInfo,LastMentioned,
          FactorizationObtainedSoFar,Result,sign,
-         CFRACBound,MPQSBound,StartingTime,UsedTime;
+         CFRACBound,MPQSBound,StartingTime,UsedTime,
+         fib_res;
 
   IsNonnegInt := n->(IsInt(n) and n >= 0);
 
@@ -547,6 +617,34 @@ function (n)
                        ["Check for n = b^k +/- 1"]);
   StateInfo();
 
+  # Special case k! +/- 1
+
+  if n mod 620448401733239439360000 in [1,620448401733239439359999] then
+    if   IsEmpty(K_FACTORIAL_M1_FACTORS)
+    then ReadPackage("factint","tables/factorial.g"); fi;
+    if n mod 6 = 1 then
+      ApplyFactoringMethod(FactorsTD,[K_FACTORIAL_P1_FACTORS],
+                           FactorizationObtainedSoFar,infinity,
+                           ["Trial division by factors of k!+1"]);
+    else
+      ApplyFactoringMethod(FactorsTD,[K_FACTORIAL_M1_FACTORS],
+                           FactorizationObtainedSoFar,infinity,
+                           ["Trial division by factors of k!-1"]);
+    fi;
+    StateInfo();
+  fi;
+
+  # Special case Fibonacci numbers
+
+  fib_res := List([13,21,34,55,89,144], m -> n mod m);
+  if ForAll([1..6],i->fib_res[i] in FIB_RES[i]) then
+    if   IsEmpty(FACTORS_FIB)
+    then ReadPackage("factint","tables/fibo.g"); fi;
+    ApplyFactoringMethod(FactorsTD,[FACTORS_FIB],
+                         FactorizationObtainedSoFar,infinity,
+                         ["Trial division by factors of Fibonacci(k)"]);
+  fi;
+
   # The 'naive' methods
 
   ApplyFactoringMethod(FactorsTD,[],
@@ -557,14 +655,29 @@ function (n)
                        FactorizationObtainedSoFar,infinity,
                        ["Trial division by some already known primes"]);
   StateInfo();
-  ApplyFactoringMethod(FactorsPowerCheck,[FactInt,"FactInt"],
-                       FactorizationObtainedSoFar,infinity,
-                       ["Check for perfect powers"]);
-  StateInfo();
   if TDHints <> [] then
   ApplyFactoringMethod(FactorsTD,[TDHints],
                        FactorizationObtainedSoFar,infinity,
                        ["Trial division by factors given as <TDHints>"]); fi;
+  StateInfo();
+  ApplyFactoringMethod(FactorsTD,
+                       [Filtered(List(Filtered(Difference(Set(IDENTS_GVAR()),
+                                               NAMES_SYSTEM_GVARS),ISB_GVAR),
+                                      ValueGlobal),
+                                 obj -> TNUM_OBJ_INT(obj)=1)],
+                       FactorizationObtainedSoFar,infinity,
+                       ["Trial division by user GVar's in workspace"]);
+  StateInfo();
+  ApplyFactoringMethod(FactorsPowerCheck,[FactInt,"FactInt"],
+                       FactorizationObtainedSoFar,infinity,
+                       ["Check for perfect powers"]);
+  StateInfo();
+
+  # Special case of two factors VERY close to the square root
+
+  ApplyFactoringMethod(FactorsFermat,[100],
+                       FactorizationObtainedSoFar,infinity,
+                       ["Fermat's method"]);
   StateInfo();
 
   # Let 'FactorsRho', 'FactorsPminus1', 'FactorsPplus1' and 'FactorsECM' 
