@@ -38,12 +38,7 @@ InstallGlobalFunction( FactIntInfo,
                        end );
 
 
-# For pretty-printing of the `Info'-messages
-
-Blanks := [""," ","  ","   ","    ","     ","      ","       ",
-           "        ","         ","          ","           "];
-MakeReadOnlyGlobal("Blanks");
-
+# For pretty-printing info messages
 
 PrettyInfo := function (lev,Args)
 
@@ -53,8 +48,7 @@ PrettyInfo := function (lev,Args)
   for Arg in Args do
     if   IsString(Arg) 
     then Append(InfoString,Arg);
-    else Append(InfoString,Blanks[Arg[2] - LogInt(Maximum(Arg[1],1),10)]);
-         Append(InfoString,String(Arg[1]));
+    else Append(InfoString,String(Arg[1],Arg[2]));
     fi;
   od;
   Info(IntegerFactorizationInfo,lev,InfoString);

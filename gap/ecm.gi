@@ -242,10 +242,10 @@ ECMTryCurve := function (n,CurveNo,X,Z,a,Limit1,Limit2,StartingTime)
   CurveTime       := Runtime() - CurveStartingTime;
   SecondStageTime := CurveTime - FirstStageTime;
   TotalTime       := Runtime() - StartingTime;
-  Fill1 := Blanks[Maximum(0,LogInt(CurveTime,10) 
-                          - Maximum(3,LogInt(FirstStageTime,10))) + 1];
-  Fill2 := Blanks[Maximum(0,LogInt(TotalTime,10) 
-                          - Maximum(3,LogInt(SecondStageTime,10))) + 1];
+  Fill1 := String("",Maximum(0,LogInt(CurveTime,10) 
+                   - Maximum(3,LogInt(FirstStageTime,10))));
+  Fill2 := String("",Maximum(0,LogInt(TotalTime,10) 
+                   - Maximum(3,LogInt(SecondStageTime,10))));
   Info(IntegerFactorizationInfo,3,
        "Timings : first stage : ",Fill1,TimeToString(FirstStageTime),
        ", second stage : ",Fill2,TimeToString(SecondStageTime));
