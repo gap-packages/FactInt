@@ -12,7 +12,7 @@ Subtitle         := "Advanced Methods for Factoring Integers",
 Version          := "1.3.1",
 Date             := "24/06/2003",
 ArchiveURL       := "http://www.cip.mathematik.uni-stuttgart.de/~kohlsn/factint/factint-1.3.1",
-ArchiveFormats   := ".zoo",
+ArchiveFormats   := ".tar.gz",
 Persons          := [
                       rec( LastName      := "Kohl",
                            FirstNames    := "Stefan",
@@ -67,6 +67,7 @@ Keywords         := [ "Integer factorization", "ECM", "Elliptic Curves Method",
 ####################################################################################################
 ##
 #E  PackageInfo.g  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ends here
+
 
 
 
