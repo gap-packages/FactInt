@@ -1,6 +1,6 @@
-########################################################################################################################################################################
+####################################################################################################
 ##
-##  PkgInfo.g                                                             GAP4 Package `FactInt'                                                             Stefan Kohl
+##  PkgInfo.g                           GAP4 Package `FactInt'                           Stefan Kohl
 ##  
 #H  @(#)$Id$
 ##
@@ -9,7 +9,7 @@ SetPackageInfo( rec(
 
 PkgName          := "FactInt",
 Version          := "1.3",
-Date             := "11/07/2002",
+Date             := "13/01/2003",
 ArchiveURL       := "http://www.cip.mathematik.uni-stuttgart.de/~kohlsn/factint/factint-1.3",
 ArchiveFormats   := ".zoo",
 Persons          := [
@@ -19,7 +19,12 @@ Persons          := [
                            IsMaintainer  := true,
                            Email         := "kohl@mathematik.uni-stuttgart.de",
                            WWWHome       := "http://www.cip.mathematik.uni-stuttgart.de/~kohlsn/",
-                           PostalAddress := "Stefan Kohl\nMathematisches Institut B, 2. Lehrstuhl\nPfaffenwaldring 57\nUniversität Stuttgart\n70550 Stuttgart\nGermany",
+                           PostalAddress := Concatenation("Stefan Kohl\n",
+                                                          "Institut für Geometrie und Topologie\n",
+                                                          "Pfaffenwaldring 57\n",
+                                                          "Universität Stuttgart\n",
+                                                          "70550 Stuttgart\n",
+                                                          "Germany"),
                            Place         := "Stuttgart / Germany",
                            Institution   := "University of Stuttgart"
                           )
@@ -33,7 +38,8 @@ AbstractHTML     := "This package provides advanced methods for integer factoriz
 PackageWWWHome   := "http://www.cip.mathematik.uni-stuttgart.de/~kohlsn/factint.html",
 PackageDoc       := rec(
                          BookName  := "FactInt",
-                         Archive   := "http://www.cip.mathematik.uni-stuttgart.de/~kohlsn/factint/factint-1.3doc-win.zip",
+                         Archive   := Concatenation("http://www.cip.mathematik.uni-stuttgart.de/",
+                                                    "~kohlsn/factint/factint-1.3doc-win.zip"),
                          HTMLStart := "htm/chapters.htm",
                          PDFFile   := "doc/manual.pdf",
                          SixFile   := "doc/manual.six",
@@ -55,6 +61,6 @@ Keywords         := [ "Integer factorization", "ECM", "Elliptic Curves Method",
 
 ) );
 
-########################################################################################################################################################################
+####################################################################################################
 ##
-#E  PkgInfo.g  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ends here
+#E  PkgInfo.g  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ends here
