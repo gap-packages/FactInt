@@ -8,9 +8,10 @@
 SetPackageInfo( rec(
 
 PackageName      := "FactInt",
-Version          := "1.3",
+Subtitle         := "Advanced Methods for Factoring Integers", 
+Version          := "1.3.1",
 Date             := "13/01/2003",
-ArchiveURL       := "http://www.cip.mathematik.uni-stuttgart.de/~kohlsn/factint/factint-1.3",
+ArchiveURL       := "http://www.cip.mathematik.uni-stuttgart.de/~kohlsn/factint/factint-1.3.1",
 ArchiveFormats   := ".zoo",
 Persons          := [
                       rec( LastName      := "Kohl",
@@ -37,14 +38,13 @@ PackageInfoURL   := "http://www.cip.mathematik.uni-stuttgart.de/~kohlsn/factint/
 AbstractHTML     := "This package provides advanced methods for integer factorization.",
 PackageWWWHome   := "http://www.cip.mathematik.uni-stuttgart.de/~kohlsn/factint.html",
 PackageDoc       := rec(
-                         BookName  := "FactInt",
-                         Archive   := Concatenation("http://www.cip.mathematik.uni-stuttgart.de/",
-                                                    "~kohlsn/factint/factint-1.3doc-win.zip"),
-                         HTMLStart := "htm/chapters.htm",
-                         PDFFile   := "doc/manual.pdf",
-                         SixFile   := "doc/manual.six",
-                         LongTitle := "A GAP4 Package for FACToring INTegers",
-                         Autoload  := true
+                         BookName         := "FactInt",
+                         ArchiveURLSubset := ["doc","htm"],
+                         HTMLStart        := "htm/chapters.htm",
+                         PDFFile          := "doc/manual.pdf",
+                         SixFile          := "doc/manual.six",
+                         LongTitle        := "A GAP4 Package for FACToring INTegers",
+                         Autoload         := true
                        ),
 Dependencies     := rec(
                          GAP                    := ">=4.1",
@@ -67,3 +67,5 @@ Keywords         := [ "Integer factorization", "ECM", "Elliptic Curves Method",
 ####################################################################################################
 ##
 #E  PackageInfo.g  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ends here
+
+
