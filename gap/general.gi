@@ -558,13 +558,14 @@ end);
 ##
 #M  Factors( Integers, <n> )  . . . . . . . . . . factorization of an integer
 ##
-InstallMethod(Factors,
-    "for integers",
-    true,
-    [IsIntegers,IsInt],1,
-    function (Integers,n)
-    return IntegerFactorization(n);
-end);
+InstallMethod( Factors,
+               "for integers", true, [ IsIntegers, IsInt ], 1,
+
+  function ( Integers, n )
+    if   IsSmallIntRep( n )
+    then return FactorsInt( n );
+    else return IntegerFactorization(n); fi;
+  end );
 
 #############################################################################
 ##
