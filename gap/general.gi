@@ -398,7 +398,7 @@ FactorsMultFunc := function ( n, f )
     if f(k) > n then k := k - step; else k := k + step; fi;
     step := step/2;
   od;
-  if not IsInt(2*step) then return [[],[n]]; fi;
+  if f(k) <> n then return [[],[n]]; fi;
   val := List(DivisorsInt(k),f);
   fact := [n];
   for fk in val do

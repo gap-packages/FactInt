@@ -35,11 +35,14 @@ Factor Tables~\cite{Brent04}, which are available at
 
 \URL{http://web.comlab.ox.ac.uk/oucl/work/richard.brent/factors.html.}
 
-Then it uses trial division and a number of cheap methods for special
-cases.
+The code for accessing these tables has been contributed by
+Frank~L\accent127ubeck.
+
+Then the method uses trial division and a number of cheap methods for
+special cases.
 
 After the small and other ``easy'' factors have been found this way,
-the method searches for ``medium-sized'' factors using Pollard's Rho
+FactInt's method searches for ``medium-sized'' factors using Pollard's Rho
 (by the library function `FactorsRho', see the {\GAP} Reference Manual),
 Pollard's $p-1$ (see ~"FactorsPminus1"), Williams' $p+1$
 (see ~"FactorsPplus1") and the Elliptic Curves Method
@@ -134,11 +137,16 @@ bound passed as option value <MPQSLimit> resp. <CFRACLimit>.
 `FactInt( n : FactIntPartial := false )[ 1 ]'.
 
 \beginexample
-gap> FactInt( Factorial(120) + 1 : FactIntPartial, ECMCurves := 15, MPQSLimit := 80 );
-[ [ 12149, 288790123, 19236668797, 258847257209 ], 
-  [ 38291073694445093874467145430046700353728550044101798147114919770210924995\
-574407684984595079371248765413916333352628430060046074131773065847748530213870\
-5552369545531 ] ]
+gap> FactInt( Factorial(300) + 1 : FactIntPartial, ECMCurves := 0, MPQSLimit := 80 );
+[ [ 461, 259856122109, 995121825812791, 3909669044842609, 4220826953750952739,
+      14841043839896940772689086214475144339 ],
+  [ 10483128823176572317398383656043859405333629662907393256352061868792876450\
+580106888272460615410656311193456740818340859600641445970372439235869682208979\
+384309498719255615067943353399357029226058930732298505581697749539842674165663\
+346174704662364145104265524709331550541782037094517458717017420005463846144727\
+565841824785318809625948572758696907279733563594352516014206081210368516157890\
+709802912711149521530885498556124466779020824562030140449992853222252458594688\
+152833725706178959319799211283640357942345263781351 ] ]
 \endexample
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
