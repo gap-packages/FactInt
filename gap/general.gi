@@ -154,12 +154,6 @@ end;
 MakeReadOnlyGlobal("InitPrimeDiffs");
 
 
-# A list indicating for which numbers of the form b^k - 1 some or all
-# factors are already known and available in the tables computed by
-# Richard Brent and many others. See
-#
-# http://web.comlab.ox.ac.uk/oucl/work/richard.brent/factors.html.
-#
 # BRENTFACTORS is a list of lists. If there is an entry in position [a][n]
 # then this is a list of primes which divide b^k - 1 but no b^l - 1 with 
 # l < k.
@@ -168,11 +162,13 @@ MakeReadOnlyGlobal("InitPrimeDiffs");
 # when there are data available for BRENTFACTORS[b]. (They are only loaded 
 # when they are needed.)
 #
-# These lists have been contributed by Frank Lübeck.
-# The same holds for the corresponding functions `WriteBrentFactorsFiles'
-# and `FetchBrentFactors', as well as for an improved version of the
-# function `FactorsAurifeuillian' which makes use of Brent's tables.
-  
+# The source for the data is
+#
+# http://web.comlab.ox.ac.uk/oucl/work/richard.brent/factors.html.
+#
+# The code for accessing these factorization tables has been contributed
+# by Frank Lübeck.
+
 BindGlobal("BRENTFACTORS", []);
 BindGlobal("BRENTFACTORSAVAILABLE", BlistStringDecode(
 "6E7EFF5EEFFF7FFEFFFF7FFFEFFFFF76FFFEFFFFFFFFFFFFEFFFFEFFFFFFDFFEFFFFFFFFFFFFF\
@@ -187,7 +183,6 @@ s04200240s0740s0980s0C02s0480s0320s0702s0C408002s0402s0320s0740s09040040s08800\
 0s0A20s0808s1008s0D20s1E80s0F20s2880s1E08s5880s1C02s0302s0D2008s4602s0902s3208\
 s1508s0208s0508s1120"
 ));
-
 
 BindGlobal( "WriteBrentFactorsFiles",
 
@@ -388,13 +383,13 @@ FactorsAurifeuillian := function ( n )
       factors := [ [  ], [  ] ];
       for j in [1..Length(FactorsOfP)] do
         a := PolyFactors[j];
-        if         b <= Length(BRENTFACTORSAVAILABLE)
-           and not IsBound(BRENTFACTORS[b]) and BRENTFACTORSAVAILABLE[b]
+        if        b <= Length(BRENTFACTORSAVAILABLE)
+          and not IsBound(BRENTFACTORS[b]) and BRENTFACTORSAVAILABLE[b]
         then
-           ReadPackage("factint",Concatenation("tables/brfac",String(b)));
+          ReadPackage("factint",Concatenation("tables/brfac",String(b)));
         fi;
-        if     IsBound(BRENTFACTORS[b])
-           and IsBound(BRENTFACTORS[b][FactorsOfP[j]])
+        if    IsBound(BRENTFACTORS[b])
+          and IsBound(BRENTFACTORS[b][FactorsOfP[j]])
         then
           for p in BRENTFACTORS[b][FactorsOfP[j]] do
             while a mod p = 0 do
