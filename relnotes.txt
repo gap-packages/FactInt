@@ -30,3 +30,7 @@ Changes between version 1.2 and version 1.3:
  - Introduced Info levels 4 and 5 for more frequent status messages during
    the sieving process of the MPQS.
 
+Changes between version 1.3 and version 1.3.1:
+
+ - Adaptation to the new package loading and updating mechanism of GAP 4.4.
+ 
