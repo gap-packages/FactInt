@@ -16,8 +16,8 @@ FactInt is completely written in the GAP language. It neither contains
 nor requires external binaries. No other packages are needed.
 It must be installed in the pkg subdirectory of the GAP distribution.
 
-By default, `FactInt' is autoloaded, otherwise you can load the package
-via LoadPackage( "factint" );
+By default, `FactInt' is autoloaded.
+You can load the package also via LoadPackage( "factint" );
 
 If you have problems with this package, wish to make comments
 or suggestions, or if you find bugs, please send e-mail to
