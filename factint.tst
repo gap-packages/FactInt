@@ -2,12 +2,12 @@
 ##
 #W  factint.tst              GAP4 Package `FactInt'               Stefan Kohl
 ##
+#H  @(#)$Id$
+##
 ##  For purposes of limiting the execution time, the testing numbers given
 ##  here are all 'easy' to factor, this does not imply that the factorization 
 ##  functions provided by this package are not capable of factoring much
 ##  'harder' numbers.
-##
-#H  @(#)$Id$
 ##
 
 gap> START_TEST("$Id$");
