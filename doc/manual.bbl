@@ -1,17 +1,21 @@
 \begin{thebibliography}{Coh93}
 
-\bibitem[Bre89]{FactorizationAndPrimalityTesting}
+\bibitem[Bre89]{Bressoud89}
 David~M. Bressoud.
 \newblock {\em Factorization and Primality Testing}.
-\newblock Springer - Verlag, 1989.
+\newblock Springer-Verlag, 1989.
 
-\bibitem[Bre96]{BrentsECM}
+\bibitem[Bre96]{Brent96}
 Richard~P. Brent.
-\newblock Factorization of the tenth and eleventh fermat numbers, 1996.
+\newblock {Factorization of the Tenth and Eleventh Fermat Numbers}, 1996.
 
-\bibitem[Coh93]{ComputationalAlgebraicNumberTheory}
+\bibitem[Bre04]{Brent04}
+Richard~P. Brent.
+\newblock {Factor Tables}, 2004.
+
+\bibitem[Coh93]{Cohen93}
 Henri Cohen.
 \newblock {\em A Course in Computational Algebraic Number Theory}.
-\newblock Springer - Verlag, 1993.
+\newblock Springer-Verlag, 1993.
 
 \end{thebibliography}

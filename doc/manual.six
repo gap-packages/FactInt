@@ -7,6 +7,7 @@ C general.tex 2. The General Factorization Routines
 S 2.1. If you do not care about the methods used
 I 2.1. factorization without parameters
 F 2.1. IntegerFactorization
+F 2.1. Factors
 I 2.1. correctness of the results
 S 2.2. Taking influence on the methods being used
 I 2.2. factorization with parameters
@@ -41,13 +42,15 @@ S 3.5. The Multiple Polynomial Quadratic Sieve (MPQS)
 I 3.5. Multiple Polynomial Quadratic Sieve (MPQS)
 F 3.5. FactorsMPQS
 I 3.5. sieving interval
-C info.tex 4. Getting Information about the Factoring Process
-I 4.0. information about factoring process
-F 4.0. IntegerFactorizationInfo
-F 4.0. InfoFactInt
-F 4.0. FactIntInfo
-F 4.0. FactInfo
-C timings.tex 5. How much Time does a Factorization take ?
-S 5.1. The General Factorization Routine
-S 5.2. Timings for ECM
-S 5.3. Timings for the MPQS
+C tables.tex 4. Factorizations of Cyclotomic Numbers
+F 4.0. FetchBrentFactors
+C info.tex 5. Getting Information about the Factoring Process
+I 5.0. information about factoring process
+F 5.0. IntegerFactorizationInfo
+F 5.0. InfoFactInt
+F 5.0. FactIntInfo
+F 5.0. FactInfo
+C timings.tex 6. How much Time does a Factorization take ?
+S 6.1. The General Factorization Routine
+S 6.2. Timings for ECM
+S 6.3. Timings for the MPQS
