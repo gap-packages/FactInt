@@ -1,13 +1,13 @@
 ####################################################################################################
 ##
-##  PkgInfo.g                           GAP4 Package `FactInt'                           Stefan Kohl
+##  PackageInfo.g                         GAP4 Package `FactInt'                         Stefan Kohl
 ##  
 #H  @(#)$Id$
 ##
 
 SetPackageInfo( rec(
 
-PkgName          := "FactInt",
+PackageName      := "FactInt",
 Version          := "1.3",
 Date             := "13/01/2003",
 ArchiveURL       := "http://www.cip.mathematik.uni-stuttgart.de/~kohlsn/factint/factint-1.3",
@@ -33,7 +33,7 @@ Status           := "accepted",
 CommunicatedBy   := "Mike Atkinson (St. Andrews)",
 AcceptDate       := "07/1999",
 README_URL       := "http://www.cip.mathematik.uni-stuttgart.de/~kohlsn/factint/README.factint",
-PkgInfoURL       := "http://www.cip.mathematik.uni-stuttgart.de/~kohlsn/factint/PkgInfo.g",
+PackageInfoURL   := "http://www.cip.mathematik.uni-stuttgart.de/~kohlsn/factint/PackageInfo.g",
 AbstractHTML     := "This package provides advanced methods for integer factorization.",
 PackageWWWHome   := "http://www.cip.mathematik.uni-stuttgart.de/~kohlsn/factint.html",
 PackageDoc       := rec(
@@ -66,4 +66,4 @@ Keywords         := [ "Integer factorization", "ECM", "Elliptic Curves Method",
 
 ####################################################################################################
 ##
-#E  PkgInfo.g  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ends here
+#E  PackageInfo.g  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ends here
