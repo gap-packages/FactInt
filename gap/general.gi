@@ -239,7 +239,7 @@ InstallGlobalFunction( "FetchBrentFactors",
       fi;
     od;
     dir := GAPInfo.PackagesInfo.("factint")[1].InstallationPath;
-    WriteBrentFactorsFiles(Concatenation(dir,"/tables/"));
+    WriteBrentFactorsFiles(Concatenation(dir,"/tables/brent/"));
   end );
 
 
@@ -521,7 +521,8 @@ FactorsAurifeuillian := function ( n )
         if b <= Length(BRENTFACTORSAVAILABLE)
           and not IsBound(BRENTFACTORS[b]) and BRENTFACTORSAVAILABLE[b]
         then
-          ReadPackage("factint",Concatenation("tables/brfac",String(b)));
+          ReadPackage("factint",
+                      Concatenation("tables/brent/brfac",String(b)));
         fi;
         if b <= Length(BRENTFACTORSAVAILABLE)
           and IsBound(BRENTFACTORS[b])
@@ -555,6 +556,16 @@ MakeReadOnlyGlobal("FactorsAurifeuillian");
 ##
 ##  Recognized options are:
 ##
+##  <cheap>            if true, the partial factorization obtained by
+##                     applying the cheap factoring methods is returned
+##  <FactIntPartial>   if true, the partial factorization obtained by
+##                     applying the factoring methods whose time complexity 
+##                     depends mainly on the size of the factors to be found
+##                     and less on the size of <n> (see manual) is returned
+##                     and the factor base methods (MPQS and CFRAC) are not
+##                     used to complete the factorization for numbers that
+##                     exceed the bound given by <CFRACLimit> resp.
+##                     <MPQSLimit>; default: false
 ##  <TDHints>          a list of additional trial divisors
 ##  <RhoSteps>         number of steps for Pollard's Rho
 ##  <RhoCluster>       interval for Gcd computation in Pollard's Rho
@@ -574,14 +585,6 @@ MakeReadOnlyGlobal("FactorsAurifeuillian");
 ##                     appropriately)
 ##  <ECMDeterministic> if true, the choice of curves in ECM is deterministic,
 ##                     i.e. repeatable 
-##  <FactIntPartial>   if true, the partial factorization obtained by
-##                     applying the factoring methods whose time complexity 
-##                     depends mainly on the size of the factors to be found
-##                     and less on the size of <n> (see manual) is returned
-##                     and the factor base methods (MPQS and CFRAC) are not
-##                     used to complete the factorization for numbers that
-##                     exceed the bound given by <CFRACLimit> resp.
-##                     <MPQSLimit>; default: false
 ##  <FBMethod>         specifies which of the factor base methods should be
 ##                     used to do the ``hard work''; currently implemented:
 ##                     `"CFRAC"' and `"MPQS"'
@@ -757,6 +760,16 @@ function ( n )
                          FactorizationObtainedSoFar,infinity,
                          ["Trial division by factors of 3^k-2^k"]);
     StateInfo();
+  fi;
+
+  # Special case `11111111 ...'
+
+  if n mod 10000 in [1111,2222,3333,4444,5555,6666,7777,8888] then
+    if SmallestRootInt(9*n/(n mod 10) + 1) = 10 then
+      ApplyFactoringMethod(FactorsTD,[Factors(9*n/(n mod 10))],
+                           FactorizationObtainedSoFar,infinity,
+                           ["RepUnits case ..."]);
+    fi;
   fi;
 
   # The 'naive' methods
