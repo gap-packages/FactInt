@@ -7,46 +7,35 @@
 ##  This file contains the general routines for integer factorization and
 ##  auxiliary functions used by them and/or more than one of the 
 ##  functions for the specific factorization methods implemented in
-##  pminus1.gi (Pollard's p-1), pplus1.gi (Williams' p+1), ecm.gi (Elliptic
-##  Curves Method, ECM), cfrac.gi (Continued Fraction Algorithm, CFRAC)
-##  and mpqs.gi (Multiple Polynomial Quadratic Sieve, MPQS).
+##  pminus1.gi (Pollard's $p-1$), pplus1.gi (Williams' $p+1$), ecm.gi 
+##  (Elliptic Curves Method, ECM), cfrac.gi (Continued Fraction Algorithm,
+##  CFRAC) and mpqs.gi (Multiple Polynomial Quadratic Sieve, MPQS).
 ##
-##  In each algorithm, n is the number to be factored.
+##  In each algorithm, <n> is the number to be factored.
 ## 
 ##  Descriptions of the algorithms can be found in
 ##
-##  David M. Bressoud : Factorization and Primality Testing, Springer 1989
+##  David M. Bressoud: Factorization and Primality Testing, Springer 1989
 ##
 ##  A (brief) description of the factoring algorithms can also be found in
 ##
-##  Henri Cohen : A Course in Computational Algebraic Number Theory,
+##  Henri Cohen: A Course in Computational Algebraic Number Theory,
 ##  Springer 1993
 ##
 ##  In the last book, there is also a (very short) description of the
 ##  Generalized Number Field Sieve (GNFS), which is the most efficient
 ##  factoring method known today, but is not implemented here, because
-##  the MPQS is usually faster for numbers less than 10^100, say,
-##  and factoring "difficult" numbers of this order of magnitude 
+##  the MPQS is usually faster for numbers less than $10^{100}$, say,
+##  and factoring ``difficult'' numbers of this order of magnitude 
 ##  is far beyond the scope in this context.
-##
-##
-##  How to see what's going on during the factoring process :
-##
-##  If InfoLevel(IntegerFactorizationInfo) = 1, then basic information about
-##  the factoring techniques used is displayed. If this InfoLevel has 
-##  value 2, then additionally all 'relevant' steps in the factoring 
-##  algorithms are mentioned, and if it is set to 3, then large amounts 
-##  of details of the progress of the factoring process are shown (this is 
-##  especially useful when factoring large integers with the MPQS or with 
-##  CFRAC)
 ##
 Revision.general_gi :=
   "@(#)$Id$";
 
-DeclareInfoClass("IntegerFactorizationInfo");
-
-FactInfo := function(lev) SetInfoLevel(IntegerFactorizationInfo,lev); end;
-MakeReadOnlyGlobal("FactInfo");
+InstallGlobalFunction( FactInfo,
+                       function( lev ) 
+                         SetInfoLevel(IntegerFactorizationInfo,lev); 
+                       end );
 
 
 # For pretty-printing of the `Info'-messages
@@ -54,6 +43,7 @@ MakeReadOnlyGlobal("FactInfo");
 Blanks := [""," ","  ","   ","    ","     ","      ","       ",
            "        ","         ","          ","           "];
 MakeReadOnlyGlobal("Blanks");
+
 
 PrettyInfo := function (lev,Args)
 
@@ -81,6 +71,7 @@ TimeToString := function (Time)
                        String(Time mod 1000 + 1000){[2..4]}," sec.");
 end;
 MakeReadOnlyGlobal("TimeToString");
+
 
 # For checking the results of all the factorization routines
 
@@ -123,7 +114,7 @@ MakeReadOnlyGlobal("SaveMPQSTmp");
 
 
 # Initialize the prime differences list
-# (used by ECM, Pollard's p-1 and Williams' p+1 for second stages)
+# (used by ECM, Pollard's $p-1$ and Williams' $p+1$ for second stages)
 
 BindGlobal("PrimeDiffs",[]);
 BindGlobal("PrimeDiffLimit",1000000);
@@ -325,19 +316,19 @@ MakeReadOnlyGlobal("FactorsAurifeuillian");
 #F  FactInt( <n> ) . . . . . . . . . . prime factorization of the integer <n>
 #F                                                      (partial or complete)
 ##
-##  Recognized options are :
+##  Recognized options are:
 ##
 ##  <TDHints>          a list of additional trial divisors
 ##  <RhoSteps>         number of steps for Pollard's Rho
 ##  <RhoCluster>       interval for Gcd computation in Pollard's Rho
-##  <Pminus1Limit1>    first stage limit for Pollard's p-1
-##  <Pminus1Limit2>    second stage limit for Pollard's p-1 
-##  <Pplus1Residues>   number of residues to be tried in William's p+1
-##  <Pplus1Limit1>     first stage limit for William's p+1
-##  <Pplus1Limit2>     second stage limit for William's p+1
+##  <Pminus1Limit1>    first stage limit for Pollard's $p-1$
+##  <Pminus1Limit2>    second stage limit for Pollard's $p-1$ 
+##  <Pplus1Residues>   number of residues to be tried in William's $p+1$
+##  <Pplus1Limit1>     first stage limit for William's $p+1$
+##  <Pplus1Limit2>     second stage limit for William's $p+1$
 ##  <ECMCurves>        number of elliptic curves to be tried by 
 ##                     the Elliptic Curves Method (ECM),
-##                     also admissible : a function that takes the number to
+##                     also admissible: a function that takes the number to
 ##                     be factored and returns the desired number of curves 
 ##  <ECMLimit1>        initial first stage limit for ECM
 ##  <ECMLimit2>        initial second stage limit for ECM
@@ -353,10 +344,10 @@ MakeReadOnlyGlobal("FactorsAurifeuillian");
 ##                     and the factor base methods (MPQS and CFRAC) are not
 ##                     used to complete the factorization for numbers that
 ##                     exceed the bound given by <CFRACLimit> resp.
-##                     <MPQSLimit>; default : false
+##                     <MPQSLimit>; default: false
 ##  <FBMethod>         specifies which of the factor base methods should be
-##                     used to do the 'hard work'; currently implemented :
-##                     "CFRAC" and "MPQS"
+##                     used to do the ``hard work''; currently implemented:
+##                     `"CFRAC"' and `"MPQS"'
 ##  <CFRACLimit>       specifies the maximal number of decimal digits of an
 ##                     integer to which the Continued Fraction Algorithm
 ##                     (CFRAC) should be applied (only used when 
@@ -364,11 +355,10 @@ MakeReadOnlyGlobal("FactorsAurifeuillian");
 ##  <MPQSLimit>        as above, for the Multiple Polynomial Quadratic
 ##                     Sieve (MPQS)
 ##
-##  FactInt returns a list of two lists, where the first list contains the
+##  `FactInt' returns a list of two lists, where the first list contains the
 ##  prime factors of <n> which have been found, and the second one contains
-##  the remaining unfactored part(s), if there are any
+##  the remaining unfactored part(s), if there are any.
 ##
-
 InstallGlobalFunction(FactInt,
 function (n)
 
@@ -553,9 +543,8 @@ end);
 ##
 #F  IntegerFactorization( <n> ) . . . . . .  prime factors of the integer <n>
 ## 
-##  Returns the list of prime factors of the integer <n>
+##  Returns the list of prime factors of the integer <n>.
 ##
-
 InstallGlobalFunction(IntegerFactorization,
 function (n)
   if   not IsInt(n) 
@@ -569,7 +558,6 @@ end);
 ##
 #M  Factors( Integers, <n> )  . . . . . . . . . . factorization of an integer
 ##
-
 InstallMethod(Factors,
     "for integers",
     true,
