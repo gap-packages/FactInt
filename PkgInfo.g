@@ -53,7 +53,9 @@ Dependencies     := rec(
                          ExternalConditions     := [ ]
                        ),
 AvailabilityTest := ReturnTrue,
-Autoload         := true,
+BannerString     := Concatenation( "\nLoading FactInt 1.3 (Routines for Integer Factorization )",
+                                   "\nby Stefan Kohl, kohl@mathematik.uni-stuttgart.de\n\n" ),
+AutoLoad         := true,
 TestFile         := "factint.tst",
 Keywords         := [ "Integer factorization", "ECM", "Elliptic Curves Method",
                       "MPQS", "Multiple Polynomial Quadratic Sieve", "CFRAC",
