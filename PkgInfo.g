@@ -44,7 +44,7 @@ PackageDoc       := rec(
                          PDFFile   := "doc/manual.pdf",
                          SixFile   := "doc/manual.six",
                          LongTitle := "A GAP4 Package for FACToring INTegers",
-                         AutoLoad  := true
+                         Autoload  := true
                        ),
 Dependencies     := rec(
                          GAP                    := ">=4.1",
@@ -53,9 +53,10 @@ Dependencies     := rec(
                          ExternalConditions     := [ ]
                        ),
 AvailabilityTest := ReturnTrue,
-BannerString     := Concatenation( "\nLoading FactInt 1.3 (Routines for Integer Factorization )",
+BannerString     := Concatenation( "\nLoading FactInt ", ~.Version,
+                                   " (Routines for Integer Factorization )",
                                    "\nby Stefan Kohl, kohl@mathematik.uni-stuttgart.de\n\n" ),
-AutoLoad         := true,
+Autoload         := true,
 TestFile         := "factint.tst",
 Keywords         := [ "Integer factorization", "ECM", "Elliptic Curves Method",
                       "MPQS", "Multiple Polynomial Quadratic Sieve", "CFRAC",
