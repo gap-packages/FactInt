@@ -1,0 +1,57 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%W  tables.tex             FactInt documentation              Stefan Kohl
+%%
+%H  @(#)$Id$
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Chapter{Getting Factorizations from Precomputed Tables}
+
+How to get factorizations of integers of the form $b^k \pm 1$ quickly
+if $b$ is ``small'' and $k$ is rather ``large''?
+
+Many of these numbers have already been factored by various people
+using lots of CPU time on fast computers.
+
+Factorizations of integers of this form are frequently needed for
+example for computing orders of matrices over finite fields or orders of
+elements in huge finite fields. For this reason, this package provides
+access to the corresponding tables which have been collected by
+Richard~P.~Brent~\cite{Brent04}.
+
+The code for accessing these tables has been written by Frank~L\accent127ubeck.
+
+To make the general factorization routine silently make use of Brent's
+tables, you need to download them using the following function:
+
+\>FetchBrentFactors( ) F
+
+This function fetches the current version of the file
+
+\URL{ftp.comlab.ox.ac.uk/pub/Documents/techpapers/Richard.Brent/factors/factors.gz}
+
+and stores the data in various small files in the directory `pkg/factint/tables'.
+
+When `Factors' is called afterwards for an integer of the form
+$b^k \pm 1$ for ``small'' $b$, it silently loads the needed part of
+the data and uses it for obtaining the requested factorization.
+
+\beginexample
+gap> FetchBrentFactors();
+gap> Factors(2^997-1);
+[ 167560816514084819488737767976263150405095191554732902607,
+  7993430605360222292860936960123884061988016846627213757686887976005930025638\
+602973712891518592878944687759622084106508783413855778177367022158878920741413\
+700868182301410439178049533828082651513160945607018874830040978453228378816647\
+358334681553 ]
+\endexample
+
+The function `FetchBrentFactors' needs Unix-specific system commands.
+Hence it will usually only work under Unix. The reason for not including
+the tables in the distribution file is that they would increase its size
+by a factor of about~10.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%E  tables.tex . . . . . . . . . . . . . . . . . . . . . . . .  ends here

@@ -36,6 +36,9 @@ Changes between version 1.3 and version 1.3.1:
  
 Changes between version 1.3.1 and version 1.4:
 
- - Improved the performance of the factoring routine for numbers of the
+ - Improved the performance of the factoring routine for integers of the
    form b^k +/- 1.
+
+ - Access to Richard P. Brent's tables of factors of integers of the
+   form b^k +/- 1. (Only under Unix.)
 

@@ -1,6 +1,7 @@
 #############################################################################
 ##
 #W  general.gi              GAP4 Package `FactInt'                Stefan Kohl
+##                                                               Frank Lübeck
 ##
 #H  @(#)$Id$
 ##
@@ -153,6 +154,100 @@ end;
 MakeReadOnlyGlobal("InitPrimeDiffs");
 
 
+# A list indicating for which numbers of the form b^k - 1 some or all
+# factors are already known and available in the tables computed by
+# Richard Brent and many others. See
+#
+# http://web.comlab.ox.ac.uk/oucl/work/richard.brent/factors.html.
+#
+# BRENTFACTORS is a list of lists. If there is an entry in position [a][n]
+# then this is a list of primes which divide b^k - 1 but no b^l - 1 with 
+# l < k.
+#  
+# BRENTFACTORSAVAILABLE is a binary list (blist) whose entry [b] is 'true'
+# when there are data available for BRENTFACTORS[b]. (They are only loaded 
+# when they are needed.)
+#
+# These lists have been contributed by Frank Lübeck.
+# The same holds for the corresponding functions `WriteBrentFactorsFiles'
+# and `FetchBrentFactors', as well as for an improved version of the
+# function `FactorsAurifeuillian' which makes use of Brent's tables.
+  
+BindGlobal("BRENTFACTORS", []);
+BindGlobal("BRENTFACTORSAVAILABLE", BlistStringDecode(
+"6E7EFF5EEFFF7FFEFFFF7FFFEFFFFF76FFFEFFFFFFFFFFFFEFFFFEFFFFFFDFFEFFFFFFFFFFFFF\
+FFFFFFFFDFFFFFFFFFFFFFFFFFFFFFFFF7FFFFFFFFFFFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFFFFF\
+F7FFFFFFFFFFFFFFFFFFFFFFFFF7FFFFFFFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFFFF\
+FFFFFFF7FFFFFFFFE0084042408s0202s02032800101A60s02020020s03080881s03010D820022\
+200014s0210000100A0200008s032004s033024s0202s04280240s0301s05080402s0280s03088\
+0s0220s0302s020210s080822s0701s0210s0780s0980s0320s02A0s0708000210s02200002s02\
+02s03082000080002s0A20s07040082s078080s0B1040s07020080s0520s2208s02040080s0518\
+s04200240s0740s0980s0C02s0480s0320s0702s0C408002s0402s0320s0740s09040040s08800\
+020s0240s0C02s0308s1680s110201s0620s0320s050840s1708s0A02s0B82s0D0280s0B02s0A2\
+0s0A20s0808s1008s0D20s1E80s0F20s2880s1E08s5880s1C02s0302s0D2008s4602s0902s3208\
+s1508s0208s0508s1120"
+));
+
+
+BindGlobal( "WriteBrentFactorsFiles",
+
+  function ( dir )
+
+    local  bf, i;
+
+    if not IsDirectory(dir) then dir := Directory(dir); fi;
+    bf := BRENTFACTORS;
+    for i in [1..Length(bf)] do 
+      if IsBound(bf[i]) then 
+        PrintTo(Filename(dir, Concatenation("brfac", String(i))),
+                "BRENTFACTORS[",i,"]:=", bf[i], ";\n"); 
+      fi;
+    od;
+  end );
+
+#############################################################################
+##
+#F  FetchBrentFactors( ) . . get Brent's tables of factors of numbers b^k - 1
+##
+InstallGlobalFunction( "FetchBrentFactors",
+
+  function ( )
+
+    local  str, get, comm, rows, b, k, a, dir;
+
+    # fetch the file from R. Brents ftp site and gunzip it into 'str'
+
+    str := "";
+    get := OutputTextString(str, false);
+    comm := Concatenation("wget -q ftp://ftp.comlab.ox.ac.uk/pub/",
+                          "Documents/techpapers/Richard.Brent/factors/",
+                          "factors.gz -O - | gzip -dc ");
+    Process(DirectoryCurrent(), Filename(DirectoriesSystemPrograms(),"sh"),
+            InputTextUser(), get, ["-c", comm]);
+  
+    rows := SplitString(str, "", "\n");
+    str := 0;
+    for a in rows do 
+      b := List(SplitString(a, "", "+- \n"), Int);
+      if not IsBound(BRENTFACTORS[b[1]]) then
+        BRENTFACTORS[b[1]] := [];
+      fi;
+      if '-' in a then
+        k := b[2];
+      else
+        k := 2*b[2];
+      fi;
+      if not IsBound(BRENTFACTORS[b[1]][k]) then
+        BRENTFACTORS[b[1]][k] := [b[3]];
+      else
+        Add(BRENTFACTORS[b[1]][k], b[3]);
+      fi;
+    od;
+    dir := GAPInfo.PackagesInfo.("factint")[1].InstallationPath;
+    WriteBrentFactorsFiles(Concatenation(dir,"/tables/"));
+  end );
+
+
 # Apply a factoring method to the composite factors of a partial
 # factorization and give information about it
 
@@ -268,7 +363,7 @@ MakeReadOnlyGlobal("FactorsPowerCheck");
 
 FactorsAurifeuillian := function ( n )
 
-  local  b, k, c, x, P, FactorsOfP, FactCoeffs, PolyFactors, factors, m, s;
+  local b, k, s, FactorsOfP, PolyFactors, factors, c, m, j, p, a;
 
   for c  in [ -1, 1 ]  do
     b := SmallestRootInt( n - c );
@@ -279,29 +374,42 @@ FactorsAurifeuillian := function ( n )
       else
         s := " + 1";
       fi;
-      Info( IntegerFactorizationInfo, 1, n, " = ", b, "^", k, s );
+      Info( IntegerFactorizationInfo, 1, n, " = ", b, "^", k, s);
       if c = -1 then
         FactorsOfP := DivisorsInt(k);
       else
         FactorsOfP := Difference(DivisorsInt(2*k), DivisorsInt(k));
       fi;
-      if Length( FactorsOfP ) > 1  then
-        PolyFactors := List(FactorsOfP, i-> ValuePol(CyclotomicPol(i), b));
-        Info( IntegerFactorizationInfo, 1, "The factors corresponding to ",
-              "polynomial factors are\n", PolyFactors );
-        factors := [ [  ], [  ] ];
-        for m  in PolyFactors  do
-          if IsProbablyPrimeInt( m ) then
-            Add( factors[1], m );
-          elif m > 1  then
-            Add( factors[2], m );
-          fi;
-        od;
-        return factors;
-      else
-        Info( IntegerFactorizationInfo, 1,
-              "There are no polynomial factors." );
-      fi;
+      PolyFactors := List(FactorsOfP,
+                          i -> ValuePol(CyclotomicPol(i), b));
+      Info( IntegerFactorizationInfo, 1,
+            "The factors corresponding to ", "polynomial factors are\n",
+            PolyFactors );
+      factors := [ [  ], [  ] ];
+      for j in [1..Length(FactorsOfP)] do
+        a := PolyFactors[j];
+        if         b <= Length(BRENTFACTORSAVAILABLE)
+           and not IsBound(BRENTFACTORS[b]) and BRENTFACTORSAVAILABLE[b]
+        then
+           ReadPackage("factint",Concatenation("tables/brfac",String(b)));
+        fi;
+        if     IsBound(BRENTFACTORS[b])
+           and IsBound(BRENTFACTORS[b][FactorsOfP[j]])
+        then
+          for p in BRENTFACTORS[b][FactorsOfP[j]] do
+            while a mod p = 0 do
+              Add(factors[1],p);
+              a := a/p;
+            od;
+          od;
+        fi;
+        if IsProbablyPrimeInt(a) then
+          Add(factors[1], a);
+        else
+          Add(factors[2], a);
+        fi;
+      od;
+      return factors;
     fi;
   od;
   return [ [  ], [ n ] ];
