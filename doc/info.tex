@@ -6,23 +6,31 @@
 
 \Chapter{Getting Information about the Factoring Process}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\Section{The Info Class 'IntegerFactorizationInfo'}
-
 \index{information about factoring process}
-\atindex{IntegerFactorizationInfo}{@IntegerFactorizationInfo}
+\>`IntegerFactorizationInfo' V
 
-To see what's going on during the factoring process, there is an 
-Info Class `IntegerFactorizationInfo'.
-(For the description of the Info mechanism, see the {\GAP} Reference
-Manual).
+is an Info class (see~"ref:Info Functions" in the {\GAP} Reference Manual
+for a description of the Info mechanism) that provides a way of seeing
+what's going on during the factoring process.
 
 If `InfoLevel(IntegerFactorizationInfo) = 1', then basic information
 about the factoring techniques used is displayed. If this InfoLevel has
 value 2, then additionally all ``relevant'' steps in the factoring
 algorithms are mentioned, and if it is set to 3, then large amounts of
-details of the progress of the factoring process are shown.
-For setting this InfoLevel, there is a shorthand `FactInfo( <level> )'.
+details of the progress of the factoring process are shown. 
+
+For convenience,
+
+\>FactInfo( <level> ) F
+
+sets the `InfoLevel' of `IntegerFactorizationInfo' to the positive integer
+<level>. In other words,
+
+\){\kernttindent}FactInfo( <level> );
+
+is equivalent to:
+
+\){\kernttindent}SetInfoLevel(IntegerFactorizationInfo, <level>);
 
 The informational output is not guaranteed to be literally the same in
 each factorization attempt to a given integer with given parameters.
