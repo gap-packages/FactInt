@@ -2,7 +2,7 @@
                      Version history of the FactInt package
                      ======================================
 
-Initial Version: 1.0 (July 1999)
+Initial version: 1.0 (July 1999)
 
 Changes between version 1.0 and version 1.1:
 
@@ -12,8 +12,8 @@ Changes between version 1.0 and version 1.1:
 
 Changes between version 1.1 and version 1.2:
 
- - The documentation has been cleaned up typographically.
  - The manual is now also available in PDF and Postscript format.
+ - The documentation has been cleaned up typographically.
  - Info messages for factorizations of small integers are now given only
    if InfoLevel(IntegerFactorizationInfo) = 3 to avoid the user to be swamped with
    messages for factorizations of numbers like 4 or so if he does not want to.
