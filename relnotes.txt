@@ -64,5 +64,6 @@ Changes between version 1.4.6 and version 1.4.7:
    and similar fine-tuning.
  - Further reduced the overhead for small / easy numbers.
  - Documented `FactorsTD'.
-
+ - Added Synonyms `ECM', `MPQS' and `CFRAC' for `FactorsECM', `FactorsMPQS'
+   resp. `FactorsCFRAC'.
 
