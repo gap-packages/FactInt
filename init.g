@@ -1,7 +1,8 @@
 #############################################################################
 ##
-#W  init.g                 GAP4 Package 'FactInt'                 Stefan Kohl
+#W  init.g                 GAP4 Package `FactInt'                 Stefan Kohl
 ##
+#H  @(#)$Id$
 ##
 
 DeclareAutoPackage( "factint", "1.1", ReturnTrue );
@@ -12,4 +13,3 @@ ReadPkg( "factint", "gap/factint.gd" );
 #############################################################################
 ##
 #E  init.g . . . . . . . . . . . . . . . . . . . . . . . . . . . .  ends here
-

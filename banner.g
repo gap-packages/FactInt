@@ -1,7 +1,8 @@
 #############################################################################
 ##
-#W  banner.g                GAP4 Package 'FactInt'                Stefan Kohl
+#W  banner.g                GAP4 Package `FactInt'                Stefan Kohl
 ##
+#H  @(#)$Id$
 ##
 
 if not QUIET and BANNER then
@@ -12,5 +13,3 @@ fi;
 #############################################################################
 ##
 #E  banner.g . . . . . . . . . . . . . . . . . . . . . . . . . . .  ends here
-
-
