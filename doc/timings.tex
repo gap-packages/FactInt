@@ -14,31 +14,26 @@
 A few words in advance: In general, it is not possible to give a precise
 prediction for the CPU time needed for factoring a given integer.
 This time depends heavily on the sizes of the factors of the given number
-and some other properties which could not be tested before actually
+and on some other properties which cannot be tested before actually
 doing the factorization.
-But nevertheless, it is possible to give rough runtime estimates for
-numbers with given ``digit partition'' (this means: factors of given
-sizes).
+But nevertheless, rough runtime estimates can be given for numbers
+with factors of given orders of magnitude.
 
-By default, after casting out the small and other ``easy'' factors
-(which should not take more than at most a few minutes for numbers of
-``reasonable'' size) the general factorization routine 
-(see ~"Factors", ~"FactInt") uses first ECM (see ~"FactorsECM") for
-finding factors very roughly up to the third root of the remaining
-composite and then the MPQS (see ~"FactorsMPQS") for doing the ``rest''
-of the work (which will often be the most time-consuming part).
+After casting out the small and other ``easy'' factors -- which should
+not take more than at most a few minutes for numbers of
+``reasonable'' size -- the general factorization routine uses first ECM
+(see~"FactorsECM") for finding factors very roughly up to the third root
+of the remaining composite and then the MPQS (see~"FactorsMPQS") for
+doing the ``rest'' of the work. The latter is often the most
+time-consuming part.
 
-Below I will give some timings for ECM and for the MPQS because
-these methods are by far the most important ones with respect to
-runtime statistics (the $p \pm 1$-methods (see ~"FactorsPminus1",
-~"FactorsPplus1") are only suitable for finding factors with certain
-special properties and CFRAC (see ~"FactorsCFRAC") is just a slower
+In the sequel, some timings for ECM and for the MPQS are given.
+These methods are by far the most important ones with respect to
+runtime statistics (the $p \pm 1$-methods (see~"FactorsPminus1",
+"FactorsPplus1") are only suitable for finding factors with certain
+properties and CFRAC (see~"FactorsCFRAC") is just a slower
 predecessor of the MPQS). All absolute timings are given for a
-Pentium 200 under Windows.
-
-Logfiles for some examples together with their approximate runtimes
-can be found on my homepage 
-\URL{http://www.cip.mathematik.uni-stuttgart.de/~kohlsn/FactInt/Examples.htm}
+Pentium 200 under Windows as a reference machine.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{Timings for ECM}
@@ -46,81 +41,75 @@ can be found on my homepage
 The runtime of `FactorsECM' depends mainly on the size of the factors
 of the input number.
 On average, finding a 12-digit factor of a 100-digit number
-takes about 1 min 40 s, finding a 15-digit factor of a 100-digit
-number takes about 10 min and finding an 18-digit factor of a 100-digit
-number takes about 50 min.
-As a general rule of thumb: one digit more increases the run-time
-by somewhat less than a factor of two.
-These timings are very rough, and they may vary by a factor of 10 or more
-(You can compare trying an elliptic curve with throwing a couple of dice,
+takes about 1~min~40~s, finding a 15-digit factor of a 100-digit
+number takes about 10~min and finding an 18-digit factor of a 100-digit
+number takes about 50~min.
+A~general rule of thumb is the following: one digit more increases the
+runtime by a bit less than a factor of two.
+These timings are very rough, and they may vary by a factor of 10 or more.
+You can compare trying an elliptic curve with throwing a couple of dice,
 where a success corresponds to the case where all of them show the same
 side -- it is possible to be successful with the first trial, but it is
 also possible that this takes much longer. In particular, all trials are
-independent of one another).
+independent of one another.
 In general, ECM is superior to Pollard's Rho for finding factors with at
-least 10 decimal digits and in the same time needed by Pollard's Rho for
-finding a 13-digit factor one can reasonably expect to find a
-17-digit factor when using ECM, for which Pollard's Rho would need 
-about 100 times as long as ECM. For larger factors this difference
-grows rapidly.
-From theoretical calculations it can be stated that finding a
-20-digit factor requires about 500 times as much work as finding a
-10-digit factor, finding a 30-digit factor requires about 160 times
-as much work as finding a 20-digit factor and finding a 40-digit
-factor requires about 80 times as much work as finding a 30-digit
-factor.
+least 10 decimal digits. In the same time needed by Pollard's Rho
+for finding a 13-digit factor one can reasonably expect to find a
+17-digit factor when using ECM, for which Pollard's Rho in turn would
+need  about 100 times as long as ECM.
+For larger factors this difference grows rapidly.
+From theory it can be said that finding a 20-digit factor requires
+about 500 times as much work as finding a 10-digit factor,
+finding a 30-digit factor requires about 160 times as much work as
+finding a 20-digit factor and finding a 40-digit factor requires
+about 80 times as much work as finding a 30-digit factor.
 
 The default parameters are optimized for finding factors with about
-15 -- 35 digits. This seems to be a sensible choice since this is the
-most important range for the application of ECM and for factors
-having some digits more or less this should be also not too bad.
-(finding a factor with 30 digits or even more requires a lot of
-patience -- more than I had until now (a 27-digit factor is the largest
-one I have found so far).
-ECM usually gives up when the input number <n> has two factors where 
-both of them are larger than the third root of <n> (this is certainly
-only a rough ``probabilistic'' statement; in general, sometimes 
--- but seldom -- the remaining composite has 3 factors, 4 factors
-should occur (hardly) never). 
-Certainly, the user could specify other parameters than 
-the default ones -- but giving timings for all possible cases here is
-obviously impossible. The interested reader should follow the references
-given in the bibliography at the end of this manual for getting
-information on how much curves with which parameters are usually 
-needed for finding factors of a given size. This depends mainly on the
-distribution of primes, resp. numbers with prime factors not exceeding a
+15 -- 35 digits. This seems to be a sensible choice, since this is the
+most important range for the application of ECM. The function
+`FactorsECM' usually gives up when the input number~<n> has two factors
+which are both larger than its third root. This is of course only a
+``probabilistic'' statement. Sometimes -- but seldom -- the remaining
+composite has 3 factors, 4 factors should occur (almost) never.
+
+The user can of course specify other parameters than the default ones,
+but giving timings for all possible choices is obviously impossible.
+The interested reader should follow the references given in the
+bibliography at the end of this manual for getting information on how
+many curves with which parameters are usually needed for finding
+factors of a given size. This depends mainly on the distribution of
+primes, respectively of numbers with prime factors not exceeding a
 certain bound.
-About the time needed for trying a single curve with given smoothness
-bounds for a number of given size (which gives probably the best estimate
-for precise runtime comparisons with other implementations) I want to
-mention a typical example: one curve with (<Limit1>,<Limit2>) =
+
+For benchmarking purposes, the amount of time needed for trying
+a single curve with given smoothness bounds for a number of given size
+is suited best.
+A typical example is the following: one curve with (<Limit1>,<Limit2>) =
 (100000,10000000) applied to a 100-digit integer requires a total of
-10 min 20 s, where 6 min 45 s are spent for the first stage
+10~min~20~s, where 6~min~45~s are spent for the first stage
 and 3 min 35 s are spent for the second stage.
 The time needed for the first stage is approximately linear in <Limit1>
-and the time needed for the second stage is somewhat less than linear
+and the time needed for the second stage is a bit less than linear
 in <Limit2>.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{Timings for the MPQS}
 
 The runtime of `FactorsMPQS' depends only on the size of the input
-number, not on the size of its factors.
-Rough timings are as follows: 90 s for a 40-digit number, 10 min for a
-50-digit number, 2 h for a 60-digit number, 20 h for a 70-digit
-number and 100 h for a 75-digit number (this is the size of the
-largest number I factored by the MPQS until now).
-These timings are much more precise
-than those given for ECM, but they may also vary by a factor of about 2
-depending on whether a good factor base could be found without using
-a large multiplier or not.
-As a general rule of thumb: 10 digits more gives 10 times as much
-work. 
-For benchmarking purposes, I give the precise timings for some integers
-that I have observed: $38! + 1$ (45 digits, good factor base with
-multiplier 1): 2 min 22 s, $40! - 1$ (48 digits, not so good factor
-base even with multiplier 7): 8 min 58 s, cofactor of $1093^{33}+1$
-(61 digits, good factor base with multiplier 1): 1 h 12 min.
+number, and not on the size of its factors.
+Rough timings are as follows: 90~s for a 40-digit number, 10~min for a
+50-digit number, 2~h for a 60-digit number, 20~h for a 70-digit
+number and 100~h for a 75-digit number.
+These timings are much more precise than those given for ECM, but they
+may also vary by a factor of 2 or 3 depending on whether a good factor
+base can be found without using a large multiplier or not.
+A general rule of thumb is the following: 10 digits more cause 10 times
+as much work. 
+For benchmarking purposes, precise timings for some integers are given:
+$38!+1$ (45~digits, good factor base with
+multiplier~1): 2~min~22~s, $40!-1$ (48~digits, not so good factor
+base even with multiplier~7): 8~min~58~s, cofactor of $1093^{33}+1$
+(61~digits, good factor base with multiplier~1): 1~h~12~min.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
