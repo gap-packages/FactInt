@@ -60,7 +60,8 @@ Autoload         := true,
 TestFile         := "factint.tst",
 Keywords         := [ "Integer factorization", "ECM", "Elliptic Curves Method",
                       "MPQS", "Multiple Polynomial Quadratic Sieve", "CFRAC",
-                      "Continued Fraction Algorithm", "Pollard's p-1", "Williams' p+1" ]
+                      "Continued Fraction Algorithm", "Pollard's p-1", "Williams' p+1",
+                      "Cunningham Tables", "Richard P. Brent's Factor Tables" ]
 
 ) );
 
