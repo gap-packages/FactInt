@@ -3,16 +3,21 @@
 \makelabel{factint:Factors}{2}
 \makelabel{factint:FactInt}{2}
 \makelabel{factint:The Routines for Specific Factorization Methods}{3}
-\makelabel{factint:Pollard's p-1}{3.1}
-\makelabel{factint:FactorsPminus1}{3.1.1}
-\makelabel{factint:Williams' p+1}{3.2}
-\makelabel{factint:FactorsPplus1}{3.2.1}
-\makelabel{factint:The Elliptic Curves Method (ECM)}{3.3}
-\makelabel{factint:FactorsECM}{3.3.1}
-\makelabel{factint:The Continued Fraction Algorithm (CFRAC)}{3.4}
-\makelabel{factint:FactorsCFRAC}{3.4.1}
-\makelabel{factint:The Multiple Polynomial Quadratic Sieve (MPQS)}{3.5}
-\makelabel{factint:FactorsMPQS}{3.5.1}
+\makelabel{factint:Trial Division}{3.1}
+\makelabel{factint:FactorsTD}{3.1.1}
+\makelabel{factint:Pollard's p-1}{3.2}
+\makelabel{factint:FactorsPminus1}{3.2.1}
+\makelabel{factint:Williams' p+1}{3.3}
+\makelabel{factint:FactorsPplus1}{3.3.1}
+\makelabel{factint:The Elliptic Curves Method (ECM)}{3.4}
+\makelabel{factint:FactorsECM}{3.4.1}
+\makelabel{factint:ECM}{3.4.1}
+\makelabel{factint:The Continued Fraction Algorithm (CFRAC)}{3.5}
+\makelabel{factint:FactorsCFRAC}{3.5.1}
+\makelabel{factint:CFRAC}{3.5.1}
+\makelabel{factint:The Multiple Polynomial Quadratic Sieve (MPQS)}{3.6}
+\makelabel{factint:FactorsMPQS}{3.6.1}
+\makelabel{factint:MPQS}{3.6.1}
 \makelabel{factint:Getting Information about the Factoring Process}{4}
 \makelabel{factint:IntegerFactorizationInfo}{4}
 \makelabel{factint:InfoFactInt}{4}

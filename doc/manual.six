@@ -2,40 +2,44 @@ C preface.tex 1. Preface
 I 1.0. prime ideals
 I 1.0. Generalized Number Field Sieve
 I 1.0. Pollard's Rho
-I 1.0. RSA Laboratories
+I 1.0. RSA Factoring Challenge
 C general.tex 2. The General Factorization Routine
 F 2.0. Factors
 I 2.0. correctness of the results
-I 2.0. trial division
 I 2.0. partial factorization
 F 2.0. FactInt
 C methods.tex 3. The Routines for Specific Factorization Methods
-S 3.1. Pollard's p-1
-F 3.1. FactorsPminus1
-I 3.1. Lagrange's Theorem
-S 3.2. Williams' p+1
-F 3.2. FactorsPplus1
-S 3.3. The Elliptic Curves Method (ECM)
-I 3.3. Elliptic Curves Method (ECM)
-F 3.3. FactorsECM
-I 3.3. first stage limit
-I 3.3. second stage limit
-I 3.3. elliptic curve groups
-I 3.3. E(a,b)/n
-I 3.3. elliptic curve point
-I 3.3. projective coordinates
-I 3.3. Weierstrass model
-S 3.4. The Continued Fraction Algorithm (CFRAC)
-I 3.4. Continued Fraction Algorithm (CFRAC)
-F 3.4. FactorsCFRAC
-I 3.4. continued fraction approximation
-I 3.4. factor base
-I 3.4. large factors (factor base)
-I 3.4. Gaussian Elimination
-S 3.5. The Multiple Polynomial Quadratic Sieve (MPQS)
-I 3.5. Multiple Polynomial Quadratic Sieve (MPQS)
-F 3.5. FactorsMPQS
-I 3.5. sieving interval
+S 3.1. Trial Division
+F 3.1. FactorsTD
+S 3.2. Pollard's p-1
+F 3.2. FactorsPminus1
+I 3.2. Lagrange's Theorem
+S 3.3. Williams' p+1
+F 3.3. FactorsPplus1
+S 3.4. The Elliptic Curves Method (ECM)
+I 3.4. Elliptic Curves Method (ECM)
+F 3.4. FactorsECM
+F 3.4. ECM
+I 3.4. first stage limit
+I 3.4. second stage limit
+I 3.4. elliptic curve groups
+I 3.4. E(a,b)/n
+I 3.4. elliptic curve point
+I 3.4. projective coordinates
+I 3.4. Weierstrass model
+S 3.5. The Continued Fraction Algorithm (CFRAC)
+I 3.5. Continued Fraction Algorithm (CFRAC)
+F 3.5. FactorsCFRAC
+F 3.5. CFRAC
+I 3.5. continued fraction approximation
+I 3.5. factor base
+I 3.5. large factors (factor base)
+I 3.5. Gaussian Elimination
+S 3.6. The Multiple Polynomial Quadratic Sieve (MPQS)
+I 3.6. Multiple Polynomial Quadratic Sieve (MPQS)
+F 3.6. FactorsMPQS
+F 3.6. MPQS
+I 3.6. sieving interval
 C info.tex 4. Getting Information about the Factoring Process
 I 4.0. information about factoring process
 F 4.0. IntegerFactorizationInfo

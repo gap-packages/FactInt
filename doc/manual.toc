@@ -1,11 +1,12 @@
 \chapcontents {1}{Preface}{5}
 \chapcontents {2}{The General Factorization Routine}{6}
 \chapcontents {3}{The Routines for Specific Factorization Methods}{8}
-\seccontents {3.1}{Pollard's p-1} {8}
-\seccontents {3.2}{Williams' p+1} {9}
-\seccontents {3.3}{The Elliptic Curves Method (ECM)} {9}
-\seccontents {3.4}{The Continued Fraction Algorithm (CFRAC)} {10}
-\seccontents {3.5}{The Multiple Polynomial Quadratic Sieve (MPQS)} {11}
+\seccontents {3.1}{Trial Division} {8}
+\seccontents {3.2}{Pollard's p-1} {8}
+\seccontents {3.3}{Williams' p+1} {9}
+\seccontents {3.4}{The Elliptic Curves Method (ECM)} {9}
+\seccontents {3.5}{The Continued Fraction Algorithm (CFRAC)} {10}
+\seccontents {3.6}{The Multiple Polynomial Quadratic Sieve (MPQS)} {11}
 \chapcontents {4}{Getting Information about the Factoring Process}{12}
 \chapcontents {5}{How much Time does a Factorization take ?}{17}
 \seccontents {5.1}{The General Factorization Routine} {17}

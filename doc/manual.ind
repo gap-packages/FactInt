@@ -1,9 +1,11 @@
 \letter C
+  `CFRAC', 10
   Continued Fraction Algorithm (CFRAC), 10
   continued fraction approximation, 10
   correctness of the results, 6
 \letter E
   E(a,b)/n, 9
+  `ECM', 9
   elliptic curve groups, 9
   elliptic curve point, 9
   Elliptic Curves Method (ECM), 9
@@ -18,6 +20,7 @@
   `FactorsMPQS', 10
   `FactorsPminus1', 8
   `FactorsPplus1', 8
+  `FactorsTD', 8
   first stage limit, 9
 \letter G
   Gaussian Elimination, 10
@@ -30,6 +33,7 @@
   Lagrange's Theorem, 8
   large factors (factor base), 10
 \letter M
+  `MPQS', 10
   Multiple Polynomial Quadratic Sieve (MPQS), 10
 \letter P
   partial factorization, 7
@@ -38,7 +42,7 @@
   prime ideals, 5
   projective coordinates, 10
 \letter R
-  RSA Laboratories, 5
+  RSA Factoring Challenge, 5
 \letter S
   second stage limit, 9
   sieving interval, 11
@@ -49,7 +53,7 @@
   The Multiple Polynomial Quadratic Sieve (MPQS), \indexit{10}
   Timings for ECM, \indexit{17}
   Timings for the MPQS, \indexit{18}
-  trial division, 6
+  Trial Division, \indexit{8}
 \letter W
   Weierstrass model, 10
   Williams' p+1, \indexit{8}
