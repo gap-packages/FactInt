@@ -265,6 +265,24 @@ GrabFactors := function ( file, mindigits, excludelast )
 end;
 MakeReadOnlyGlobal("GrabFactors");
 
+# Remove redundancies from a list <facts> of factors of numbers <f>(k)
+# for 1 <= k <= <max_k>, under the assumption that a|b implies f(a)|f(b).
+
+CleanedFactorsList := function ( facts, f, max_k )
+
+  local  result, smldivpos, val, i;
+
+  val := List([1..max_k],f);
+  smldivpos := List(facts,p->First([1..max_k],k->val[k] mod p = 0));
+  result := List([1..max_k],k->facts{Filtered([1..Length(smldivpos)],
+                                              i->smldivpos[i]=k)});;
+  for i in [1..Length(result)] do
+    if result[i] <> [] then Unbind(result[i][Length(result[i])]); fi;
+  od;
+  return Set(Flat(result));
+end;
+MakeReadOnlyGlobal("CleanedFactorsList");
+
 
 # Apply a factoring method to the composite factors of a partial
 # factorization and give information about it
@@ -380,7 +398,7 @@ FactorsMultFunc := function ( n, f )
     if f(k) > n then k := k - step; else k := k + step; fi;
     step := step/2;
   od;
-  if not IsInt(step) then return [[],[n]]; fi;
+  if not IsInt(2*step) then return [[],[n]]; fi;
   val := List(DivisorsInt(k),f);
   fact := [n];
   for fk in val do
