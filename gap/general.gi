@@ -480,7 +480,6 @@ FactorsFermat := function ( n, maxmult, steps )
   facts := List([a-b,a+b],m->m/Gcd(m,mult));
   result[1] := Filtered(facts,IsProbablyPrimeInt);
   result[2] := Difference(facts,result[1]);
-  result[2] := List(result[2],m->m/Gcd(m,mult));
   if Product(Flat(result)) <> n then
     result[1] := AsSortedList(Concatenation(result[1],
                               Factors(n/Product(Flat(result)))));
@@ -788,9 +787,10 @@ function ( n )
                        ["Check for perfect powers"]);
   StateInfo();
 
-  # Special case of two factors VERY close to the square root
+  # Special case of two factors p, q such that p/q is close to a fraction
+  # with small numerator and denominator
 
-  ApplyFactoringMethod(FactorsFermat,[1000,1],
+  ApplyFactoringMethod(FactorsFermat,[10,1],
                        FactorizationObtainedSoFar,infinity,
                        ["Fermat's method"]);
   StateInfo();
@@ -804,6 +804,11 @@ function ( n )
                        ["Pollard's Rho\nSteps = ",RhoSteps,
                         ", Cluster = ",RhoCluster,
                         "\nNumber to be factored : ","n"]); fi;
+  StateInfo();
+
+  ApplyFactoringMethod(FactorsFermat,[1000,1], # Once again, try harder
+                       FactorizationObtainedSoFar,infinity,
+                       ["Fermat's method"]);
   StateInfo();
 
   if Pminus1Limit1 > 0 then
@@ -833,6 +838,13 @@ function ( n )
                         ", Delta = ",ECMDelta,
                         "\nNumber to be factored : ","n"]); fi;
   StateInfo();
+
+  if ForAny(FactorizationObtainedSoFar[2],comp->LogInt(comp,10)>50) then
+    ApplyFactoringMethod(FactorsFermat,[10000,1],
+                         FactorizationObtainedSoFar,infinity,
+                         ["Fermat's method"]);
+    StateInfo();
+  fi;
 
   # Let FactorsMPQS or FactorsCFRAC
   # do the really hard work, if <FactIntPartial> is false
