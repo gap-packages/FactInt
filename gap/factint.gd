@@ -14,6 +14,7 @@ Revision.factint_gd :=
 #############################################################################
 ##
 #V  IntegerFactorizationInfo . . . . . . .  Info class of the FactInt package
+#V  InfoFactInt
 ##
 ##  If InfoLevel(IntegerFactorizationInfo) = 1, then basic information about
 ##  the factoring techniques used is displayed. If this InfoLevel has 
@@ -24,6 +25,7 @@ Revision.factint_gd :=
 ##  CFRAC).
 ##
 DeclareInfoClass( "IntegerFactorizationInfo" );
+DeclareSynonym( "InfoFactInt", IntegerFactorizationInfo );
 
 #############################################################################
 ##
@@ -33,7 +35,8 @@ DeclareInfoClass( "IntegerFactorizationInfo" );
 ##  integer <level>. In other words, `FactInfo( <level> )' is equivalent to
 ##  `SetInfoLevel( IntegerFactorizationInfo, <level> )'.
 ##
-DeclareGlobalFunction( "FactInfo" );
+DeclareGlobalFunction( "FactIntInfo" );
+DeclareSynonym( "FactInfo", FactIntInfo );
 
 #############################################################################
 ##

@@ -32,7 +32,7 @@
 Revision.general_gi :=
   "@(#)$Id$";
 
-InstallGlobalFunction( FactInfo,
+InstallGlobalFunction( FactIntInfo,
                        function( lev ) 
                          SetInfoLevel(IntegerFactorizationInfo,lev); 
                        end );

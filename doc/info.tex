@@ -10,6 +10,7 @@
 
 \index{information about factoring process}
 \>`IntegerFactorizationInfo' V
+\>`InfoFactInt' V
 
 is an Info class (see~"ref:Info Functions" in the {\GAP} Reference Manual
 for a description of the Info mechanism) that provides a way of seeing
@@ -23,12 +24,13 @@ details of the progress of the factoring process are shown.
 
 For convenience,
 
+\>FactIntInfo( <level> ) F
 \>FactInfo( <level> ) F
 
 sets the `InfoLevel' of `IntegerFactorizationInfo' to the positive integer
 <level>. In other words,
 
-\){\kernttindent}FactInfo( <level> );
+\){\kernttindent}FactIntInfo( <level> );
 
 is equivalent to:
 
@@ -40,7 +42,7 @@ each factorization attempt to a given integer with given parameters.
 The timings in the example are given for a Pentium 200.
 
 \begintt
-gap> FactInfo(2);
+gap> FactIntInfo(2);
 gap> Factors(1459^60-1);
 #I  
 #I  Check for n = b^k +/- 1
