@@ -1,63 +1,55 @@
 \letter C
-  Continued Fraction Algorithm (CFRAC), 11
-  continued fraction approximation, 11
+  Continued Fraction Algorithm (CFRAC), 10
+  continued fraction approximation, 10
   correctness of the results, 6
 \letter E
-  E(a,b)/n, 10
-  elliptic curve groups, 10
-  elliptic curve point, 10
-  Elliptic Curves Method (ECM), 10
+  E(a,b)/n, 9
+  elliptic curve groups, 9
+  elliptic curve point, 9
+  Elliptic Curves Method (ECM), 9
 \letter F
-  `FactInfo', 14
-  `FactInt', 6
-  `FactIntInfo', 14
-  factor base, 11
-  factorization with parameters, 6
-  factorization without parameters, 6
+  `FactInfo', 12
+  `FactInt', 7
+  `FactIntInfo', 12
+  factor base, 10
   `Factors', 6
-  `FactorsCFRAC', 11
-  `FactorsECM', 10
-  `FactorsMPQS', 11
-  `FactorsPminus1', 9
-  `FactorsPplus1', 9
-  `FetchBrentFactors', 13
-  first stage limit, 10
+  `FactorsCFRAC', 10
+  `FactorsECM', 9
+  `FactorsMPQS', 10
+  `FactorsPminus1', 8
+  `FactorsPplus1', 8
+  first stage limit, 9
 \letter G
-  Gaussian Elimination, 11
+  Gaussian Elimination, 10
   Generalized Number Field Sieve, 5
 \letter I
-  If you do not care about the methods used, \indexit{6}
-  `InfoFactInt', 14
-  information about factoring process, 14
-  `IntegerFactorization', 6
-  `IntegerFactorizationInfo', 14
+  `InfoFactInt', 12
+  information about factoring process, 12
+  `IntegerFactorizationInfo', 12
 \letter L
-  Lagrange's Theorem, 9
-  large factors (factor base), 11
+  Lagrange's Theorem, 8
+  large factors (factor base), 10
 \letter M
-  Multiple Polynomial Quadratic Sieve (MPQS), 11
+  Multiple Polynomial Quadratic Sieve (MPQS), 10
 \letter P
-  partial factorization, 6
-  Pollard's p-1, \indexit{9}
+  partial factorization, 7
+  Pollard's p-1, \indexit{8}
   Pollard's Rho, 5
   prime ideals, 5
-  projective coordinates, 11
+  projective coordinates, 10
 \letter R
   RSA Laboratories, 5
 \letter S
-  second stage limit, 10
-  sieving interval, 12
+  second stage limit, 9
+  sieving interval, 11
 \letter T
-  Taking influence on the methods being used, \indexit{6}
-  The Continued Fraction Algorithm (CFRAC), \indexit{11}
-  The Elliptic Curves Method (ECM), \indexit{10}
-  The General Factorization Routine, \indexit{19}
-  The Multiple Polynomial Quadratic Sieve (MPQS), \indexit{11}
-  Timings for ECM, \indexit{19}
-  Timings for the MPQS, \indexit{20}
-  trial division, 7
-\letter U
-  unfactored parts, 6
+  The Continued Fraction Algorithm (CFRAC), \indexit{10}
+  The Elliptic Curves Method (ECM), \indexit{9}
+  The General Factorization Routine, \indexit{17}
+  The Multiple Polynomial Quadratic Sieve (MPQS), \indexit{10}
+  Timings for ECM, \indexit{17}
+  Timings for the MPQS, \indexit{18}
+  trial division, 6
 \letter W
-  Weierstrass model, 11
-  Williams' p+1, \indexit{9}
+  Weierstrass model, 10
+  Williams' p+1, \indexit{8}

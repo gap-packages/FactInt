@@ -3,18 +3,12 @@ I 1.0. prime ideals
 I 1.0. Generalized Number Field Sieve
 I 1.0. Pollard's Rho
 I 1.0. RSA Laboratories
-C general.tex 2. The General Factorization Routines
-S 2.1. If you do not care about the methods used
-I 2.1. factorization without parameters
-F 2.1. IntegerFactorization
-F 2.1. Factors
-I 2.1. correctness of the results
-S 2.2. Taking influence on the methods being used
-I 2.2. factorization with parameters
-I 2.2. partial factorization
-F 2.2. FactInt
-I 2.2. unfactored parts
-I 2.2. trial division
+C general.tex 2. The General Factorization Routine
+F 2.0. Factors
+I 2.0. correctness of the results
+I 2.0. trial division
+I 2.0. partial factorization
+F 2.0. FactInt
 C methods.tex 3. The Routines for Specific Factorization Methods
 S 3.1. Pollard's p-1
 F 3.1. FactorsPminus1
@@ -42,15 +36,13 @@ S 3.5. The Multiple Polynomial Quadratic Sieve (MPQS)
 I 3.5. Multiple Polynomial Quadratic Sieve (MPQS)
 F 3.5. FactorsMPQS
 I 3.5. sieving interval
-C tables.tex 4. Factorizations of Cyclotomic Numbers
-F 4.0. FetchBrentFactors
-C info.tex 5. Getting Information about the Factoring Process
-I 5.0. information about factoring process
-F 5.0. IntegerFactorizationInfo
-F 5.0. InfoFactInt
-F 5.0. FactIntInfo
-F 5.0. FactInfo
-C timings.tex 6. How much Time does a Factorization take ?
-S 6.1. The General Factorization Routine
-S 6.2. Timings for ECM
-S 6.3. Timings for the MPQS
+C info.tex 4. Getting Information about the Factoring Process
+I 4.0. information about factoring process
+F 4.0. IntegerFactorizationInfo
+F 4.0. InfoFactInt
+F 4.0. FactIntInfo
+F 4.0. FactInfo
+C timings.tex 5. How much Time does a Factorization take ?
+S 5.1. The General Factorization Routine
+S 5.2. Timings for ECM
+S 5.3. Timings for the MPQS
