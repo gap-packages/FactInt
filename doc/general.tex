@@ -27,24 +27,16 @@ package.
 
 It follows a rough description how FactInt's method for `Factors' works:
 
-If $|n| \< 10^{12}$, the method simply calls the library function
-`FactorsInt', which is guaranteed to return the correct result for
-numbers in this range.
-
-If <n> is not in this range, it checks whether $n = b^k \pm 1$ for 
-some $b$, $k$ and looks for factors corresponding to polynomial factors
-of $x^k \pm 1$. Provided that $b$ and $k$ are sufficiently small,
-factors that do not correspond to polynomial factors are taken from
-Richard~P.~Brent's Factor Tables~\cite{Brent04}, which are available at
+First of all it checks whether $n = b^k \pm 1$ for some $b$, $k$ and
+looks for factors corresponding to polynomial factors of $x^k \pm 1$.
+Provided that $b$ and $k$ are sufficiently small, factors that do not
+correspond to polynomial factors are taken from Richard~P.~Brent's
+Factor Tables~\cite{Brent04}, which are available at
 
 \URL{http://web.comlab.ox.ac.uk/oucl/work/richard.brent/factors.html.}
 
-As the first general factorization step, the method does 
-\index{trial division}
-trial division by the primes $p \< 1000$, the primes in the list
-`Primes2' and optionally some additional trial divisors specified by the
-user (see below). Then it checks whether the remaining unfactored part
-can be written as a non-trivial power of an integer.
+Then it uses trial division and a number of cheap methods for special
+cases.
 
 After the small and other ``easy'' factors have been found this way,
 the method searches for ``medium-sized'' factors using Pollard's Rho
