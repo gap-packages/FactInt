@@ -441,18 +441,25 @@ end;
 MakeReadOnlyGlobal("FactorsPowerCheck");
 
 
-# Check for factors VERY close to the square root of n
+# Check for a decomposition n = p*q such that p/q is close
+# to a fraction with small numerator and denominator.
 
-FactorsFermat := function ( n, steps )
+FactorsFermat := function ( n, maxmult, steps )
 
-  local  a, b, a2, b2, d,
-         steps1, steps2, result;
+  local  a, b, a2, b2, d, mult,
+         steps1, steps2, facts, result;
 
   a := RootInt(n,2); a2 := a^2;
-  d := 2*a + 1; b := 0;
-  steps1 := 0; steps2 := 0;
+  d := 2*a + 1; b := 0; mult := 0;
+  steps1 := steps + 1;
   repeat
-    if steps1 > steps then return [ [  ], [ n ] ]; fi;
+    if steps1 > steps then
+      if mult > 0 then n := n/mult; fi;
+      mult := mult + 1; steps1 := 0; steps2 := 0;
+      if mult > maxmult then return [ [  ], [ n ] ]; fi;
+      n := n * mult;
+      a := RootInt(n,2); a2 := a^2; d := 2*a + 1; b := 0;
+    fi;
     a      := a + 1;
     a2     := a2 + d;
     d      := d + 2;
@@ -467,10 +474,17 @@ FactorsFermat := function ( n, steps )
     steps2 := steps2 + 1;
   until b^2 = b2;
   b := RootInt(b2,2);
-  Info(InfoFactInt,2,"FactorsFermat: #Steps = ",steps1," / ", steps2);
-  result := [];
-  result[1] := Filtered([a-b,a+b],IsProbablyPrimeInt);
-  result[2] := Difference([a-b,a+b],result[1]);
+  Info(InfoFactInt,2,"FactorsFermat: Multiplier = ",mult,
+                     ", #Steps = ",steps1," / ", steps2);
+  result := []; n := n/mult;
+  facts := List([a-b,a+b],m->m/Gcd(m,mult));
+  result[1] := Filtered(facts,IsProbablyPrimeInt);
+  result[2] := Difference(facts,result[1]);
+  result[2] := List(result[2],m->m/Gcd(m,mult));
+  if Product(Flat(result)) <> n then
+    result[1] := AsSortedList(Concatenation(result[1],
+                              Factors(n/Product(Flat(result)))));
+  fi;
   return result;
 end;
 MakeReadOnlyGlobal("FactorsFermat");
@@ -776,7 +790,7 @@ function ( n )
 
   # Special case of two factors VERY close to the square root
 
-  ApplyFactoringMethod(FactorsFermat,[100],
+  ApplyFactoringMethod(FactorsFermat,[1000,1],
                        FactorizationObtainedSoFar,infinity,
                        ["Fermat's method"]);
   StateInfo();
