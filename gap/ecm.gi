@@ -1,6 +1,8 @@
 #############################################################################
 ##
-#W  ecm.gi                GAP4 Package 'FactInt'                  Stefan Kohl
+#W  ecm.gi                GAP4 Package `FactInt'                  Stefan Kohl
+##
+#H  @(#)$Id$
 ##
 ##  This file contains functions for factorization using the
 ##  Elliptic Curves Method (ECM).
@@ -55,8 +57,8 @@
 ##  At first glance, it might look desirable to implement E(a,b)/n
 ##  as a GAP domain here.
 ##  But if you want to implement E(a,b)/n as a domain here,
-##  you would have to give up all factorization - specific optimizations
-##  such as not to keep track of the Y - coordinate and so on,
+##  you would have to give up all factorization-specific optimizations
+##  such as not to keep track of the Y-coordinate and so on,
 ##  furthermore, you would have to cope with the situation of knowing
 ##  nearly nothing about it (for example, you do not know generators,
 ##  and calculating the order would require knowing the factorization
@@ -66,8 +68,10 @@
 ##  domain E(a,b)/p for small p which I have written also, then don't
 ##  hesitate to contact me :
 ##
-##  Stefan.Kohl@cip.mathematik.uni-stuttgart.de)
+##  kohl@mathematik.uni-stuttgart.de)
 ##
+Revision.ecm_gi :=
+  "@(#)$Id$";
 
 ECMProduct := function (Quot,P1,P2,n)
 
@@ -297,7 +301,7 @@ ECMSplit := function (n,Curve,Curves,Limit1,Limit2,Delta,deterministic,
 
     if not p in [1,n] 
     then Info(IntegerFactorizationInfo,1,LogInt(p,10) + 1,
-         " - digit factor ",p," was found in ",Result.Stage); fi;
+         "-digit factor ",p," was found in ",Result.Stage); fi;
 
     Curve  := Curve + 1;
     Limit1 := Limit1 + Delta;
