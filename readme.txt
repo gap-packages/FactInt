@@ -12,7 +12,7 @@ in particular:
 It also provides access to Richard P. Brent's tables of factors of
 integers of the form b^k +/- 1.
 
-FactInt is completely written in the GAP language and neither contains
+FactInt is completely written in the GAP language. It neither contains
 nor requires external binaries. No other packages are needed.
 It must be installed in the pkg subdirectory of the GAP distribution.
 
