@@ -258,6 +258,7 @@ GrabFactors := function ( file, mindigits, excludelast )
     if IsEmpty(num) then continue; fi;
     if excludelast then Unbind(num[Length(num)]); fi;
     num := Filtered(num,n->LogInt(n,10)>=mindigits-1);
+    num := Filtered(num,IsProbablyPrimeInt);
     nums := Concatenation(nums,num);
   od;
   return Set(nums);  
@@ -352,6 +353,8 @@ MakeReadOnlyGlobal("FactorsTD");
 
 BindGlobal("K_FACTORIAL_M1_FACTORS",[]);
 BindGlobal("K_FACTORIAL_P1_FACTORS",[]);
+BindGlobal("K_PRIMORIAL_M1_FACTORS",[]);
+BindGlobal("K_PRIMORIAL_P1_FACTORS",[]);
 BindGlobal("FACTORS_FIB",[]);
 BindGlobal("FIB_RES", # Fib(k) mod 13, 21, 34, 55, 89, 144.
 [ [ 0, 1, 2, 3, 5, 8, 10, 11, 12 ], [ 0, 1, 2, 3, 5, 8, 13, 18, 20 ],
@@ -630,6 +633,23 @@ function (n)
       ApplyFactoringMethod(FactorsTD,[K_FACTORIAL_M1_FACTORS],
                            FactorizationObtainedSoFar,infinity,
                            ["Trial division by factors of k!-1"]);
+    fi;
+    StateInfo();
+  fi;
+
+  # Special case Primorial(k) +/- 1
+
+  if n mod 32589158477190044730 in [1,32589158477190044729] then
+    if   IsEmpty(K_PRIMORIAL_M1_FACTORS)
+    then ReadPackage("factint","tables/primorial.g"); fi;
+    if n mod 6 = 1 then
+      ApplyFactoringMethod(FactorsTD,[K_PRIMORIAL_P1_FACTORS],
+                           FactorizationObtainedSoFar,infinity,
+                           ["Trial division by factors of Primorial(k)+1"]);
+    else
+      ApplyFactoringMethod(FactorsTD,[K_PRIMORIAL_M1_FACTORS],
+                           FactorizationObtainedSoFar,infinity,
+                           ["Trial division by factors of Primorial(k)-1"]);
     fi;
     StateInfo();
   fi;
