@@ -12,7 +12,7 @@
 ##  (Elliptic Curves Method, ECM), cfrac.gi (Continued Fraction Algorithm,
 ##  CFRAC) and mpqs.gi (Multiple Polynomial Quadratic Sieve, MPQS).
 ##
-##  In each algorithm, <n> is the number to be factored.
+##  The argument <n> is always the number to be factored.
 ## 
 ##  Descriptions of the algorithms can be found in
 ##
@@ -24,11 +24,12 @@
 ##  Springer 1993
 ##
 ##  In the last book, there is also a (very short) description of the
-##  Generalized Number Field Sieve (GNFS), which is the most efficient
-##  factoring method known today, but is not implemented here, because
-##  the MPQS is usually faster for numbers less than $10^{100}$, say,
-##  and factoring ``difficult'' numbers of this order of magnitude 
-##  is far beyond the scope in this context.
+##  Generalized Number Field Sieve (GNFS), which is the asymptotically
+##  most efficient factoring method known today. The GNFS is not
+##  implemented in this package, because the MPQS is usually faster for
+##  numbers less than about $10^{100}$.
+##  Factoring ``difficult'' numbers of this order of magnitude is far
+##  beyond the scope in this context.
 ##
 Revision.general_gi :=
   "@(#)$Id$";
@@ -93,6 +94,12 @@ end;
 MakeReadOnlyGlobal("FactorizationCheck");
 
 
+# Initialize the factorization cache
+
+BindGlobal("FACTINT_CACHE",[]);
+BindGlobal("FACTINT_FACTORS_CACHE",[]);
+
+
 # For writing the temporary factorization data of the MPQS
 # (relations over the factor base etc.) to a file which can
 # be read using the `Read'-function
@@ -114,21 +121,28 @@ MakeReadOnlyGlobal("SaveMPQSTmp");
 BindGlobal("PrimeDiffs",[]);
 BindGlobal("PrimeDiffLimit",1000000);
 
-InitPrimeDiffs := function (Limit)
+InitPrimeDiffs := function ( Limit )
 
-  local  Sieve,p,Maxp,pos,incr,zero,one;
+  local  Sieve, SieveSegment, ChunkSize, p, Maxp, pos, incr,
+         zero, one;
 
   if Limit <= PrimeDiffLimit and PrimeDiffs <> [] 
   then return; fi;
   Limit := Maximum(Limit,PrimeDiffLimit);
+  ChunkSize := 100000;
+  if   Limit mod ChunkSize <> 0
+  then Limit := Limit + ChunkSize - Limit mod ChunkSize; fi;
   Info(IntegerFactorizationInfo,2,
        "Initializing prime differences list, ",
        "PrimeDiffLimit = ",Limit);
   MakeReadWriteGlobal("PrimeDiffLimit");
   PrimeDiffLimit := Limit;
-  MakeReadOnlyGlobal("PrimeDiffLimit"); 
+  MakeReadOnlyGlobal("PrimeDiffLimit");
+
   zero := Zero(GF(2)); one := One(GF(2));
-  Sieve := ListWithIdenticalEntries(PrimeDiffLimit,zero);
+  SieveSegment := ListWithIdenticalEntries(ChunkSize,zero);
+  ConvertToGF2VectorRep(SieveSegment);
+  Sieve := Concatenation(List([1..Limit/ChunkSize],i->SieveSegment));
   Sieve[1] := one;
   Maxp := RootInt(PrimeDiffLimit); p := 2;
   while p <= Maxp do
@@ -342,30 +356,66 @@ end;
 MakeReadOnlyGlobal("ApplyFactoringMethod");
 
 
-# Trial Division
+#############################################################################
+##
+#F  FactorsTD( <n> [, <Divisors> ] ) . . . . . . . . . . . . . Trial Division
+##
+InstallGlobalFunction( FactorsTD,
 
-FactorsTD := function (arg)
+function ( arg )
 
-  local n,p,Result,DivisorsList;
+  local n, p, Result, DivisorsList;
 
-  n := arg[1];
+  if arg[1] =  1 then return [[  ],[]]; fi;
+  if arg[1] = -1 then return [[-1],[]]; fi;
+
+  n := AbsInt(arg[1]);
   if IsBound(arg[2]) then DivisorsList := arg[2];
                      else DivisorsList := Primes; fi;
   Result := [[],[]];
   for p in DivisorsList do
     while n mod p = 0 do 
       if IsProbablyPrimeInt(p) then Add(Result[1],p); 
-                       else Add(Result[2],p); fi;
+                               else Add(Result[2],p); fi;
       n := n/p;
       if IsProbablyPrimeInt(n) then Add(Result[1],n); n := 1; fi;
     od;
-    if n = 1 then return Result; fi;
+    if n = 1 then break; fi;
   od;
-  if IsProbablyPrimeInt(n) then Add(Result[1],n);
-                           else Add(Result[2],n); fi;   
+  if   IsProbablyPrimeInt(n) then Add(Result[1],n);
+  elif n > 1                 then Add(Result[2],n); fi;
+
+  if   Length(Result[1]) >= 1
+  then Result[1][1] := Result[1][1]*SignInt(arg[1]);
+  else Result[2][1] := Result[2][1]*SignInt(arg[1]); fi;
+
+  return Result;
+end );
+
+FactorsTDNC := function ( n )
+
+  local  Result, p;
+
+  if n > 0 then
+    Result := [[],[]];
+    for p in Primes do
+      while n mod p = 0 do 
+        Add(Result[1],p); 
+        n := n/p;
+      od;
+      if n = 1 then return Result; fi;
+    od;
+    if n < 1000000 then Add(Result[1],n);
+                   else Add(Result[2],n); fi;   
+  else
+    Result := FactorsTDNC(-n);
+    if   Result[1] <> []
+    then Result[1][1] := -Result[1][1];
+    else Result[2][1] := -Result[2][1]; fi;
+  fi;
   return Result;
 end;
-MakeReadOnlyGlobal("FactorsTD");
+MakeReadOnlyGlobal("FactorsTDNC");
 
 # Initialize some lists of trial divisors
 
@@ -554,63 +604,18 @@ MakeReadOnlyGlobal("FactorsAurifeuillian");
 #F  FactInt( <n> ) . . . . . . . . . . prime factorization of the integer <n>
 #F                                                      (partial or complete)
 ##
-##  Recognized options are:
-##
-##  <cheap>            if true, the partial factorization obtained by
-##                     applying the cheap factoring methods is returned
-##  <FactIntPartial>   if true, the partial factorization obtained by
-##                     applying the factoring methods whose time complexity 
-##                     depends mainly on the size of the factors to be found
-##                     and less on the size of <n> (see manual) is returned
-##                     and the factor base methods (MPQS and CFRAC) are not
-##                     used to complete the factorization for numbers that
-##                     exceed the bound given by <CFRACLimit> resp.
-##                     <MPQSLimit>; default: false
-##  <TDHints>          a list of additional trial divisors
-##  <RhoSteps>         number of steps for Pollard's Rho
-##  <RhoCluster>       interval for Gcd computation in Pollard's Rho
-##  <Pminus1Limit1>    first stage limit for Pollard's $p-1$
-##  <Pminus1Limit2>    second stage limit for Pollard's $p-1$ 
-##  <Pplus1Residues>   number of residues to be tried in William's $p+1$
-##  <Pplus1Limit1>     first stage limit for William's $p+1$
-##  <Pplus1Limit2>     second stage limit for William's $p+1$
-##  <ECMCurves>        number of elliptic curves to be tried by 
-##                     the Elliptic Curves Method (ECM),
-##                     also admissible: a function that takes the number to
-##                     be factored and returns the desired number of curves 
-##  <ECMLimit1>        initial first stage limit for ECM
-##  <ECMLimit2>        initial second stage limit for ECM
-##  <ECMDelta>         increment for first stage limit in ECM
-##                     (the second stage limit is also incremented 
-##                     appropriately)
-##  <ECMDeterministic> if true, the choice of curves in ECM is deterministic,
-##                     i.e. repeatable 
-##  <FBMethod>         specifies which of the factor base methods should be
-##                     used to do the ``hard work''; currently implemented:
-##                     `"CFRAC"' and `"MPQS"'
-##  <CFRACLimit>       specifies the maximal number of decimal digits of an
-##                     integer to which the Continued Fraction Algorithm
-##                     (CFRAC) should be applied (only used when 
-##                     <FactIntPartial> is true)
-##  <MPQSLimit>        as above, for the Multiple Polynomial Quadratic
-##                     Sieve (MPQS)
-##
-##  `FactInt' returns a list of two lists, where the first list contains the
-##  prime factors of <n> which have been found, and the second one contains
-##  the remaining unfactored part(s), if there are any.
-##
-InstallGlobalFunction(FactInt,
+InstallGlobalFunction( FactInt,
 
 function ( n )
 
-  local  TDHints,RhoSteps,RhoCluster,
-         Pminus1Limit1,Pminus1Limit2,
-         Pplus1Residues,Pplus1Limit1,Pplus1Limit2,
-         ECMCurves,ECMLimit1,ECMLimit2,ECMDelta,
-         Cheap,FactIntPartial,FBMethod,CFRACLimit,MPQSLimit,
-         IsNonnegInt,StateInfo,LastMentioned,
-         FactorizationObtainedSoFar,Result,sign,
-         CFRACBound,MPQSBound,StartingTime,UsedTime,
+  local  TDHints, RhoSteps, RhoCluster,
+         Pminus1Limit1, Pminus1Limit2,
+         Pplus1Residues, Pplus1Limit1, Pplus1Limit2,
+         ECMCurves, ECMLimit1, ECMLimit2, ECMDelta,
+         Cheap, FactIntPartial, FBMethod, CFRACLimit, MPQSLimit,
+         IsNonnegInt, StateInfo, LastMentioned,
+         FactorizationObtainedSoFar, Result, sign,
+         CFRACBound, MPQSBound, StartingTime, UsedTime,
          fib_res;
 
   IsNonnegInt := n->(IsInt(n) and n >= 0);
@@ -778,9 +783,9 @@ function ( n )
                        FactorizationObtainedSoFar,infinity,
                        ["Trial division by all primes p < 1000"]);
   StateInfo();
-  ApplyFactoringMethod(FactorsTD,[Primes2],
+  ApplyFactoringMethod(FactorsTD,[FACTINT_FACTORS_CACHE],
                        FactorizationObtainedSoFar,infinity,
-                       ["Trial division by some already known primes"]);
+                       ["Trial division by some cached factors"]);
   StateInfo();
   if TDHints <> [] then
   ApplyFactoringMethod(FactorsTD,[TDHints],
@@ -819,40 +824,45 @@ function ( n )
                         "\nNumber to be factored : ","n"]); fi;
   StateInfo();
 
-  ApplyFactoringMethod(FactorsFermat,[1000,1], # Once again, try harder
-                       FactorizationObtainedSoFar,infinity,
-                       ["Fermat's method"]);
-  StateInfo();
-
-  if Pminus1Limit1 > 0 then
-  ApplyFactoringMethod(FactorsPminus1,[2,Pminus1Limit1,Pminus1Limit2],
-                       FactorizationObtainedSoFar,infinity,
-                       ["Pollard's p - 1\nLimit1 = ",
-                        Pminus1Limit1,", Limit2 = ",Pminus1Limit2,
+  if ForAny(FactorizationObtainedSoFar[2],comp->comp>10^40) then
+    ApplyFactoringMethod(FactorsFermat,[1000,1], # Once again, try harder
+                         FactorizationObtainedSoFar,infinity,
+                         ["Fermat's method"]);
+    StateInfo();
+    if Pminus1Limit1 > 0 then
+    ApplyFactoringMethod(FactorsPminus1,[2,Pminus1Limit1,Pminus1Limit2],
+                         FactorizationObtainedSoFar,infinity,
+                         ["Pollard's p - 1\nLimit1 = ",
+                          Pminus1Limit1,", Limit2 = ",Pminus1Limit2,
                         "\nNumber to be factored : ","n"]); fi;
-  StateInfo();
-  
-  if Pplus1Residues > 0 and Pplus1Limit1 > 0 then
-  ApplyFactoringMethod(FactorsPplus1,
-                       [Pplus1Residues,Pplus1Limit1,Pplus1Limit2],
-                       FactorizationObtainedSoFar,infinity,
-                       ["Williams' p + 1\nResidues = ",Pplus1Residues,
-                        ", Limit1 = ",Pplus1Limit1,", Limit2 = ",
-                        Pplus1Limit2,
-                        "\nNumber to be factored : ","n"]); fi;
-  StateInfo();
+    StateInfo();
+  fi;
 
-  if ECMLimit1 > 0 and ECMCurves <> 0 then
-  ApplyFactoringMethod(FactorsECM,[ECMCurves,ECMLimit1,ECMLimit2,ECMDelta],
-                       FactorizationObtainedSoFar,infinity,
-                       ["Elliptic Curves Method (ECM)\n",
-                        "Curves = ",ECMCurves,"\nInit. Limit1 = ",
-                        ECMLimit1,", Init. Limit2 = ",ECMLimit2,
-                        ", Delta = ",ECMDelta,
-                        "\nNumber to be factored : ","n"]); fi;
-  StateInfo();
+  if ForAny(FactorizationObtainedSoFar[2],comp->comp>10^50) then
+    if Pplus1Residues > 0 and Pplus1Limit1 > 0 then
+    ApplyFactoringMethod(FactorsPplus1,
+                         [Pplus1Residues,Pplus1Limit1,Pplus1Limit2],
+                         FactorizationObtainedSoFar,infinity,
+                         ["Williams' p + 1\nResidues = ",Pplus1Residues,
+                          ", Limit1 = ",Pplus1Limit1,", Limit2 = ",
+                          Pplus1Limit2,
+                          "\nNumber to be factored : ","n"]); fi;
+    StateInfo();
+  fi;
 
-  if ForAny(FactorizationObtainedSoFar[2],comp->LogInt(comp,10)>50) then
+  if ForAny(FactorizationObtainedSoFar[2],comp->comp>10^30) then
+    if ECMLimit1 > 0 and ECMCurves <> 0 then
+    ApplyFactoringMethod(FactorsECM,[ECMCurves,ECMLimit1,ECMLimit2,ECMDelta],
+                         FactorizationObtainedSoFar,infinity,
+                         ["Elliptic Curves Method (ECM)\n",
+                          "Curves = ",ECMCurves,"\nInit. Limit1 = ",
+                          ECMLimit1,", Init. Limit2 = ",ECMLimit2,
+                          ", Delta = ",ECMDelta,
+                          "\nNumber to be factored : ","n"]); fi;
+    StateInfo();
+  fi;
+
+  if ForAny(FactorizationObtainedSoFar[2],comp->comp>10^50) then
     ApplyFactoringMethod(FactorsFermat,[10000,1],
                          FactorizationObtainedSoFar,infinity,
                          ["Fermat's method"]);
@@ -899,13 +909,54 @@ end);
 ## 
 ##  Returns the list of prime factors of the integer <n>.
 ##
-InstallGlobalFunction(IntegerFactorization,
-function (n)
+InstallGlobalFunction( IntegerFactorization,
+
+function ( n )
+
+  local  result, new, pos, i;
+
   if   not IsInt(n) 
   then Error("Usage: IntegerFactorization( <n> ), ",
              "where n has to be an integer"); fi;
+  pos := Position(List(FACTINT_CACHE,t->t[1]),n);
+  if IsInt(pos) then
+    MakeReadWriteGlobal("FACTINT_CACHE");
+    FACTINT_CACHE[pos][2] := 0;
+    for i in [1..Length(FACTINT_CACHE)] do
+      FACTINT_CACHE[i][2] := FACTINT_CACHE[i][2] + 1;
+    od;
+    MakeReadOnlyGlobal("FACTINT_CACHE");
+    return FACTINT_CACHE[pos][3];
+  fi;
 
-  return FactInt( n : FactIntPartial := false, cheap := false )[1];
+  result := FactorsTDNC(AbsInt(n));
+  if result[2] = [] then
+    result[1][1] := result[1][1] * SignInt(n);
+    return result[1];
+  fi;
+
+  result := FactInt( n : FactIntPartial := false, cheap := false )[1];
+
+  if ForAny(result,p->p>1000000) or Number(result,p->p>10000) >= 2 then
+    MakeReadWriteGlobal("FACTINT_CACHE");
+    Add(FACTINT_CACHE,[n,0,result]);
+    for i in [1..Length(FACTINT_CACHE)] do
+      FACTINT_CACHE[i][2] := FACTINT_CACHE[i][2] + 1;
+    od;
+    Sort(FACTINT_CACHE,function(t1,t2) return t1[2] < t2[2]; end);
+    if   Length(FACTINT_CACHE) > 20
+    then FACTINT_CACHE := FACTINT_CACHE{[1..20]}; fi;
+    MakeReadOnlyGlobal("FACTINT_CACHE");
+    MakeReadWriteGlobal("FACTINT_FACTORS_CACHE");
+    new := Filtered(Set(result),
+                    p -> p > 1000000000 and not p in FACTINT_FACTORS_CACHE);
+    FACTINT_FACTORS_CACHE := Concatenation(new,FACTINT_FACTORS_CACHE);
+    if   Length(FACTINT_FACTORS_CACHE) > 200
+    then FACTINT_FACTORS_CACHE := FACTINT_FACTORS_CACHE{[1..200]}; fi;
+    MakeReadOnlyGlobal("FACTINT_FACTORS_CACHE");
+  fi;
+
+  return result;
 end);
 
 #############################################################################
@@ -916,9 +967,12 @@ InstallMethod( Factors,
                "FactInt: for integers", true, [ IsIntegers, IsInt ], 1,
 
   function ( Integers, n )
-    if   IsSmallIntRep( n )
-    then return FactorsInt( n );
-    else return IntegerFactorization(n); fi;
+
+    if IsSmallIntRep( n ) then
+      return FactorsInt( n );
+    else
+      return IntegerFactorization(n);
+    fi;
   end );
 
 #############################################################################
