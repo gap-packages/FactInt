@@ -23,11 +23,10 @@ sizes).
 By default, after casting out the small and other ``easy'' factors
 (which should not take more than at most a few minutes for numbers of
 ``reasonable'' size) the general factorization routine 
-(see ~"IntegerFactorization", ~"FactInt") uses first ECM
-(see ~"FactorsECM") for finding factors very roughly up to the third root
-of the remaining composite and then the MPQS (see ~"FactorsMPQS")
-for doing the ``rest'' of the work (which will often be the most
-time-consuming part).
+(see ~"Factors", ~"FactInt") uses first ECM (see ~"FactorsECM") for
+finding factors very roughly up to the third root of the remaining
+composite and then the MPQS (see ~"FactorsMPQS") for doing the ``rest''
+of the work (which will often be the most time-consuming part).
 
 Below I will give some timings for ECM and for the MPQS because
 these methods are by far the most important ones with respect to

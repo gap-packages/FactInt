@@ -12,15 +12,15 @@
 \>`IntegerFactorizationInfo' V
 \>`InfoFactInt' V
 
-is an Info class (see~"ref:Info Functions" in the {\GAP} Reference Manual
-for a description of the Info mechanism) that provides a way of seeing
-what's going on during the factoring process.
+This Info class allows to monitor what happens during the factoring
+process. For a description of the Info mechanism, see
+Section~"ref:Info Functions" in the {\GAP} Reference Manual.
 
 If `InfoLevel(IntegerFactorizationInfo) = 1', then basic information
 about the factoring techniques used is displayed. If this InfoLevel has
 value 2, then additionally all ``relevant'' steps in the factoring
-algorithms are mentioned, and if it is set to 3, then large amounts of
-details of the progress of the factoring process are shown. 
+algorithms are mentioned. If it is set equal to 3, then large amounts
+of details of the progress of the factoring process are shown. 
 
 For convenience,
 
@@ -32,7 +32,7 @@ sets the `InfoLevel' of `IntegerFactorizationInfo' to the positive integer
 
 \){\kernttindent}FactIntInfo( <level> );
 
-is equivalent to:
+is equivalent to
 
 \){\kernttindent}SetInfoLevel( IntegerFactorizationInfo, <level> );
 
