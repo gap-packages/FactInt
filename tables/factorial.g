@@ -1,3 +1,13 @@
+#############################################################################
+##
+#W  factorial.g              GAP4 Package `FactInt'               Stefan Kohl
+##
+#H  @(#)$Id$
+##
+##  This file contains a database of factors of numbers of the form k! +/- 1.
+##
+Revision.factorial_g :=
+  "@(#)$Id$";
 
 MakeReadWriteGlobal( "K_FACTORIAL_M1_FACTORS" );
 K_FACTORIAL_M1_FACTORS :=
@@ -496,3 +506,7 @@ K_FACTORIAL_P1_FACTORS :=
   10647562554019124667478091293300587259958291268234001823,
   229758023927584562777368125832724248866067995638905559798117 ];
 MakeReadOnlyGlobal( "K_FACTORIAL_P1_FACTORS" );
+
+#############################################################################
+##
+#E  factorial.g . . . . . . . . . . . . . . . . . . . . . . . . . . ends here

@@ -1,3 +1,13 @@
+#############################################################################
+##
+#W  3k2k.g                 GAP4 Package `FactInt'                 Stefan Kohl
+##
+#H  @(#)$Id$
+##
+##  This file contains a database of factors of numbers of the form 3^k-2^k.
+##
+Revision.("3k2k_g") :=
+  "@(#)$Id$";
 
 MakeReadWriteGlobal( "POW3_M_POW2_FACTORS" );
 POW3_M_POW2_FACTORS :=
@@ -77,3 +87,7 @@ POW3_M_POW2_FACTORS :=
   65110052388500902759897072711414286887,
   35826894687127246804985548437808941002293995812091691 ];
 MakeReadOnlyGlobal( "POW3_M_POW2_FACTORS" );
+
+#############################################################################
+##
+#E  3k2k.g . . . . . . . . . . . . . . . . . . . . . . . . . . . .  ends here
