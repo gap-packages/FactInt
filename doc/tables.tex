@@ -18,27 +18,17 @@ Factorizations of integers of this form are frequently needed for
 example for computing orders of matrices over finite fields or orders of
 elements in huge finite fields. For this reason, this package provides
 access to the corresponding tables which have been collected by
-Richard~P.~Brent~\cite{Brent04}.
+Richard~P.~Brent~\cite{Brent04}. These tables are available on the web at
 
-The code for accessing these tables has been written by Frank~L\accent127ubeck.
+\URL{http://web.comlab.ox.ac.uk/oucl/work/richard.brent/factors.html}.
 
-To make the general factorization routine silently make use of Brent's
-tables, you need to download them using the following function:
+The factors listed there are silently used by the general factorization
+routine.
 
-\>FetchBrentFactors( ) F
-
-This function fetches the current version of the file
-
-\URL{ftp.comlab.ox.ac.uk/pub/Documents/techpapers/Richard.Brent/factors/factors.gz}
-
-and stores the data in various small files in the directory `pkg/factint/tables'.
-
-When `Factors' is called afterwards for an integer of the form
-$b^k \pm 1$ for ``small'' $b$, it silently loads the needed part of
-the data and uses it for obtaining the requested factorization.
+The code for converting Brent's tables into \GAP - readable form has been
+written by Frank~L\accent127ubeck.
 
 \beginexample
-gap> FetchBrentFactors();
 gap> Factors(2^997-1);
 [ 167560816514084819488737767976263150405095191554732902607,
   7993430605360222292860936960123884061988016846627213757686887976005930025638\
@@ -46,11 +36,6 @@ gap> Factors(2^997-1);
 700868182301410439178049533828082651513160945607018874830040978453228378816647\
 358334681553 ]
 \endexample
-
-The function `FetchBrentFactors' needs UNIX-specific system commands.
-Hence it will usually only work under UNIX. The reason for not including
-the tables in the distribution file is that they would increase its size
-by a factor of about~10.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
