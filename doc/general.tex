@@ -127,17 +127,19 @@ contains the prime factors found, and the second list contains remaining
 unfactored parts of~<n>, if there are any.
 
 `FactInt' interprets all options which are interpreted by the method
-for `Factors' described above. In addition, it interprets the option
-<FactIntPartial>. If this option is set, the factorization process is
-stopped before invoking the (usually time-consuming) MPQS or CFRAC,
-if the number of digits of the remaining unfactored part exceeds the
-bound passed as option value <MPQSLimit> resp. <CFRACLimit>.
+for `Factors' described above. In addition, it interprets the options
+<cheap> and <FactIntPartial>. If the option <cheap> is set, only usually
+cheap factorization attempts are made. If the option <FactIntPartial>
+is set, the factorization process is stopped before invoking the
+(usually time-consuming) MPQS or CFRAC, if the number of digits of the
+remaining unfactored part exceeds the bound passed as option value
+<MPQSLimit> resp. <CFRACLimit>.
 
 `Factors( n )' is equivalent to
-`FactInt( n : FactIntPartial := false )[ 1 ]'.
+`FactInt( n : FactIntPartial := false, cheap := false )[ 1 ]'.
 
 \beginexample
-gap> FactInt( Factorial(300) + 1 : FactIntPartial, ECMCurves := 0, MPQSLimit := 80 );
+gap> FactInt( Factorial(300) + 1 : cheap );
 [ [ 461, 259856122109, 995121825812791, 3909669044842609, 4220826953750952739,
       14841043839896940772689086214475144339 ],
   [ 10483128823176572317398383656043859405333629662907393256352061868792876450\

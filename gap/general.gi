@@ -591,7 +591,7 @@ function ( n )
          Pminus1Limit1,Pminus1Limit2,
          Pplus1Residues,Pplus1Limit1,Pplus1Limit2,
          ECMCurves,ECMLimit1,ECMLimit2,ECMDelta,
-         FactIntPartial,FBMethod,CFRACLimit,MPQSLimit,
+         Cheap,FactIntPartial,FBMethod,CFRACLimit,MPQSLimit,
          IsNonnegInt,StateInfo,LastMentioned,
          FactorizationObtainedSoFar,Result,sign,
          CFRACBound,MPQSBound,StartingTime,UsedTime,
@@ -661,9 +661,20 @@ function ( n )
   MPQSLimit := ValueOption("MPQSLimit");
   if not IsPosInt(MPQSLimit) then MPQSLimit := 40; fi;
 
-  if n < 0  then sign := -1; else sign := 1; fi;    
+  Cheap := ValueOption("cheap");
+  if Cheap = true then
+    Pminus1Limit1  := 0;
+    Pplus1Limit1   := 0;
+    ECMCurves      := 0;
+    CFRACLimit     := 0;
+    MPQSLimit      := 0;
+    FactIntPartial := true;
+  else Cheap := false; fi;
 
-  FactorizationObtainedSoFar := [[],[AbsInt(n)]];
+  if n < 0  then sign := -1; else sign := 1; fi;    
+  n := AbsInt(n);
+
+  FactorizationObtainedSoFar := [[],[n]];
 
   # First of all, check whether n = b^k +- 1 for some b, k
 
@@ -814,7 +825,7 @@ function ( n )
   # or the remaining composite factors are smaller than
   # the upper bounds given by CFRACLimit and MPQSLimit 
 
-  if not FactIntPartial 
+  if not Cheap and not FactIntPartial 
   then CFRACBound := infinity;      MPQSBound := infinity;
   else CFRACBound := 10^CFRACLimit; MPQSBound := 10^MPQSLimit; fi;
 
@@ -839,7 +850,7 @@ function ( n )
   UsedTime := Runtime() - StartingTime;
   Info(IntegerFactorizationInfo,2,"The total runtime was ",
                                    TimeToString(UsedTime),"\n");
-  FactorizationCheck(n,Result);
+  FactorizationCheck(n*sign,Result);
   return Result;
 end);
 
@@ -852,10 +863,10 @@ end);
 InstallGlobalFunction(IntegerFactorization,
 function (n)
   if   not IsInt(n) 
-  then Error("Usage : IntegerFactorization( <n> ), ",
+  then Error("Usage: IntegerFactorization( <n> ), ",
              "where n has to be an integer"); fi;
 
-  return FactInt(n:FactIntPartial:=false)[1];
+  return FactInt( n : FactIntPartial := false, cheap := false )[1];
 end);
 
 #############################################################################
