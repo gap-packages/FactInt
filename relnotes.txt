@@ -40,5 +40,6 @@ Changes between version 1.3.1 and version 1.4:
    form b^k +/- 1.
 
  - Access to Richard P. Brent's tables of factors of integers of the
-   form b^k +/- 1. (Only under Unix.)
+   form b^k +/- 1. (Only under UNIX.)
 
+ The corresponding code has been contributed by Frank Lübeck.
