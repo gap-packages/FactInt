@@ -266,41 +266,45 @@ MakeReadOnlyGlobal("FactorsPowerCheck");
 
 # Check for n = b^k +/- 1
 
-FactorsAurifeuillian := function (n)
+FactorsAurifeuillian := function ( n )
 
-  local  b,k,c,x,P,FactorsOfP,FactCoeffs,PolyFactors,factors,m,s;
+  local  b, k, c, x, P, FactorsOfP, FactCoeffs, PolyFactors, factors, m, s;
 
-  for c in [-1,1] do
-    b := SmallestRootInt(n-c);
-    if b < n-c then
-      k := LogInt(n-c,b);
-      if c = -1 then s := " - 1"; else s := " + 1"; fi;
-      Info(IntegerFactorizationInfo,1,n," = ",b,"^",k,s);
-      x := Indeterminate(Rationals);
-      P := x^k+c;
-      FactorsOfP := Factors(P);
-      if Length(FactorsOfP) > 1 
-      then
-        FactCoeffs  := List(FactorsOfP,
-                            Q->CoefficientsOfLaurentPolynomial(Q)[1]);
-        PolyFactors := List(FactCoeffs,
-                            C->C*List([1..Length(C)],i->b^(i-1)));
-        Info(IntegerFactorizationInfo,1,"The factors corresponding to ",
-             "polynomial factors are\n",PolyFactors);
-        factors := [[],[]];
-        for m in PolyFactors do 
-          if IsProbablyPrimeInt(m) 
-          then Add(factors[1],m);
-          elif m > 1 then Add(factors[2],m);
-          fi;                
+  for c  in [ -1, 1 ]  do
+    b := SmallestRootInt( n - c );
+    if b < n - c  then
+      k := LogInt( n - c, b );
+      if c = -1  then
+        s := " - 1";
+      else
+        s := " + 1";
+      fi;
+      Info( IntegerFactorizationInfo, 1, n, " = ", b, "^", k, s );
+      if c = -1 then
+        FactorsOfP := DivisorsInt(k);
+      else
+        FactorsOfP := Difference(DivisorsInt(2*k), DivisorsInt(k));
+      fi;
+      if Length( FactorsOfP ) > 1  then
+        PolyFactors := List(FactorsOfP, i-> ValuePol(CyclotomicPol(i), b));
+        Info( IntegerFactorizationInfo, 1, "The factors corresponding to ",
+              "polynomial factors are\n", PolyFactors );
+        factors := [ [  ], [  ] ];
+        for m  in PolyFactors  do
+          if IsProbablyPrimeInt( m ) then
+            Add( factors[1], m );
+          elif m > 1  then
+            Add( factors[2], m );
+          fi;
         od;
         return factors;
-      else Info(IntegerFactorizationInfo,1,
-                "There are no polynomial factors.");
+      else
+        Info( IntegerFactorizationInfo, 1,
+              "There are no polynomial factors." );
       fi;
     fi;
   od;
-  return [[],[n]];
+  return [ [  ], [ n ] ];
 end;
 MakeReadOnlyGlobal("FactorsAurifeuillian");
 
@@ -564,4 +568,3 @@ InstallMethod( Factors,
 #############################################################################
 ##
 #E  general.gi . . . . . . . . . . . . . . . . . . . . . . . . . .  ends here
-
