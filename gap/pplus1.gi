@@ -1,6 +1,8 @@
 #############################################################################
 ##
-#W  pplus1.gi               GAP4 Package 'FactInt'                Stefan Kohl
+#W  pplus1.gi               GAP4 Package `FactInt'                Stefan Kohl
+##
+#H  @(#)$Id$
 ##
 ##  This file contains functions for factorization using a variant of
 ##  Williams' p + 1.
@@ -18,6 +20,8 @@
 ##  contains the prime factors found, and the second one contains
 ##  remaining unfactored parts of <n>, if there are any.
 ##
+Revision.pplus1_gi :=
+  "@(#)$Id$";
 
 Pplus1Product := function (a,b,n)
 
@@ -75,7 +79,7 @@ Pplus1Split := function (n,Residues,Limit1,Limit2)
     Result := Gcd(PowerProd,n);
     if not Result in [1,n] then
       Info(IntegerFactorizationInfo,1,LogInt(Result,10) + 1,
-           " - digit factor ",Result," was found");
+           "-digit factor ",Result," was found");
       Add(FactorsFound,Result); n := n/Result;
       if IsProbablyPrimeInt(n) then Add(FactorsFound,n); return true; fi;
       if IsBound(DiffPowers) then 
