@@ -15,16 +15,16 @@ This time depends heavily on the sizes of the factors of the given number
 and some other properties which could not be tested before actually
 doing the factorization.
 But nevertheless, it is possible to give rough runtime estimates for
-numbers with given \lq digit partition' (this means : factors of given
+numbers with given ``digit partition'' (this means : factors of given
 sizes).
 
-By default, after casting out the small and other \lq easy' factors
+By default, after casting out the small and other ``easy'' factors
 (which should not take more than at most a few minutes for numbers of
-\lq reasonable' size) the general factorization routine 
+``reasonable'' size) the general factorization routine 
 (see ~"IntegerFactorization", ~"FactInt") uses first ECM
 (see ~"FactorsECM") for finding factors very roughly up to the third root
 of the remaining composite and then the MPQS (see ~"FactorsMPQS")
-for doing the \lq rest' of the work (which will often be the most
+for doing the ``rest'' of the work (which will often be the most
 time-consuming part).
 
 Below I will give some timings for ECM and for the MPQS because
@@ -37,7 +37,7 @@ Pentium 200 under Windows.
 
 Logfiles for some examples together with their approximate runtimes
 can be found on my homepage 
-(`http://www.cip.mathematik.uni-stuttgart.de/~kohlsn/FactInt/Examples.htm').
+\URL{http://www.cip.mathematik.uni-stuttgart.de/~kohlsn/FactInt/Examples.htm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{Timings for ECM}
@@ -78,7 +78,7 @@ patience - more than I had until now (beginning of May 1999,
 a 27 - digit factor is the largest one I have found so far).
 ECM usually gives up when the input number <n> has two factors where 
 both of them are larger than the third root of <n> (this is certainly
-only a rough \lq probabilistic' statement; in general, sometimes 
+only a rough ``probabilistic'' statement; in general, sometimes 
 - but seldom - the remaining composite has 3 factors, 4 factors should
 occur (hardly) never). 
 Certainly, the user could specify other parameters than 

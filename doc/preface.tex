@@ -8,7 +8,7 @@
 
 Factoring large integers is a computationally very difficult problem,
 and there is no general factorization algorithm that is capable of
-factoring arbitrary integers with more than about 130 - 150 decimal
+factoring arbitrary integers with more than about 130 -- 150 decimal
 digits on currently existing computers, but however, there are
 methods (not algorithms in the sense that it is guaranteed that
 they will give the desired result after a finite number of steps) for 
@@ -16,11 +16,11 @@ factoring integers with prime factors being far beyond the range where
 trial division is feasible.
 
 One important class of such methods is based on exponentiation in
-suitably chosen groups acting on subsets of the $k$ - fold cartesian
+suitably chosen groups acting on subsets of the $k$-fold cartesian
 product of the set of residue classes (mod $n$), where $n$ denotes the
 number to be factored.
 Representatives of this class are the Elliptic Curves Method (ECM),
-Pollard's p-1 and Williams' p+1.
+Pollard's $p-1$ and Williams' $p+1$.
 These methods have the important property that they find smaller
 factors usually considerably faster than larger ones
 (but with the drawback of being slower for large factors).
@@ -28,8 +28,11 @@ factors usually considerably faster than larger ones
 The other important class consists of the so-called factor base methods.
 These methods compute factorizations of perfect squares (mod $n$) over
 an appropriately chosen factor base (a set of small prime numbers, or
-of \index{prime ideals}prime ideals in the case of the 
-\index{Generalized Number Field Sieve}Generalized Number Field Sieve)
+of 
+\index{prime ideals}
+prime ideals in the case of the 
+\atindex{Generalized Number Field Sieve}{@Generalized Number Field Sieve}
+Generalized Number Field Sieve)
 and use them to determine a pair of integers $(x,y)$, such that
 $x^2$ and $y^2$ are congruent (mod $n$), but $\pm x$ and $\pm y$ are not.
 In this situation, taking Gcd($n$,$x-y$) will yield a non-trivial
@@ -38,29 +41,32 @@ Representatives of this class are the Continued Fraction Algorithm
 (CFRAC), the Multiple Polynomial Quadratic Sieve (MPQS) and the
 already mentioned Generalized Number Field Sieve (GNFS), which has got
 the asymptotically lowest complexity of all factoring methods known today
-(in respect to \lq difficult' numbers, of course), with the drawback
+(in respect to ``difficult'' numbers, of course), with the drawback
 of being superior to the MPQS only for numbers with more than 100
 decimal digits, say, which is probably not within the feasible range
 of such a function implemented in {\GAP}.
 The first two methods are implemented in this package.
 
-The only method which I am aware of (except of the \lq naive' ones like
-trial division and some \lq historical' methods) 
-that does not fit into one of the two above - mentioned
-classes is \index{Pollard's Rho}Pollard's Rho, 
-which is already implemented in the {\GAP} - Library.
+The only method which I am aware of (except of the ``naive'' ones like
+trial division and some ``historical'' methods) 
+that does not fit into one of the two above-mentioned
+classes is 
+\atindex{Pollard's Rho}{@Pollard's Rho}
+Pollard's Rho, 
+which is already implemented in the {\GAP}  Library.
 
-In respect to the current state-of-the-art in integer factorization,
+In respect of the current state-of-the-art in integer factorization,
 see for example the respective web pages of the 
-\index{RSA Laboratories}RSA Laboratories
-(e.g. http://www.rsa.com/rsalabs/html/status.html).
+\atindex{RSA Laboratories}{@RSA Laboratories}
+RSA Laboratories, e.g. 
+\URL{http://www.rsa.com/rsalabs/challenges/factoring/numbers.html}
 
 I would like to thank Bettina Eick and Steve Linton for their support
 and many interesting discussions.
 
 I would be grateful for any bug reports, comments or suggestions,
 
-\vfill
+\vfill%
 
 \hfill                 Stefan Kohl
 

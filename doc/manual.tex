@@ -49,8 +49,7 @@
 %F  FrontMatter . . . . . . . . . . . . . . . . . . . . . .  front matter
 %%
 \FrontMatter
-\immediate\write\citeout{\bs bibdata{./manual}}                    
-\input preface
+\immediate\write\citeout{\bs bibdata{factint}}                    
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -58,6 +57,7 @@
 %F  Chapters . . . . . . . . . . . . . . . . . . . . . . list of chapters
 %%
 \Chapters
+\Input{preface}
 \Input{general}
 \Input{methods}
 \Input{info}
@@ -83,6 +83,4 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 %E  manual.tex	. . . . . . . . . . . . . . . . . . . . . . . . ends here
-
-
 

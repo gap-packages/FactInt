@@ -9,7 +9,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{If you do not care about the methods used}
 
-\index{Factorization without parameters}
+\index{factorization without parameters}
 
 \>IntegerFactorization( <n> ) F
 
@@ -17,7 +17,7 @@
 integer <n>. The result is returned as a list of the prime factors.
 In case of failure an error is signalled.
 
-\index{Correctness of the results}
+\index{correctness of the results}
 The returned factors are considered to be prime by the built-in
 probabilistic primality test of {\GAP} 
 (`IsProbablyPrimeInt', see the Reference Manual),
@@ -43,7 +43,7 @@ gap> Factors( 1459^24 - 1 );
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{Taking influence on the methods being used}
 
-\index{Factorization with parameters}
+\index{factorization with parameters}
 \index{partial factorization}
 
 \>FactInt( <n> ) F
@@ -51,7 +51,9 @@ gap> Factors( 1459^24 - 1 );
 `FactInt' computes the prime factorization of the integer <n>.
 The result is returned as a list of two lists, where the first one 
 contains the prime factors found, and the second one contains
-remaining \index{unfactored parts}unfactored parts of <n>,
+remaining 
+\index{unfactored parts}
+unfactored parts of <n>,
 if there are any (if <FactIntPartial> not set,
 this should never happen, because in this case the
 function does not return before <n> is factored completely).
@@ -66,7 +68,7 @@ provided by this package.
 
 \beginitems
    <TDHints>& specifies a list of additional trial divisors
-   (when factoring \lq random' numbers, giving a large list
+   (when factoring ``random'' numbers, giving a large list
    of trial divisors here is certainly not a sensible approach,
    <TDHints> is useful only if certain primes $p$ are expected to
    divide <n> with probability significantly larger than 
@@ -121,7 +123,7 @@ provided by this package.
    resp. <MPQSLimit>; default : false
 
    <FBMethod>& specifies which of the factor base methods should be
-   used to do the \lq hard work'; currently implemented : CFRAC and MPQS
+   used to do the ``hard work''; currently implemented : CFRAC and MPQS
    (see ~"FactorsCFRAC", ~"FactorsMPQS")
 
    <CFRACLimit>& specifies the maximal number of decimal digits of
@@ -157,7 +159,8 @@ it is necessary to give a list of the prime factors of numbers
 of this form as <TDHints>).  
 
 As the first general factorization step, `FactInt' does 
-\index{trial division}trial division by the primes below 1000. 
+\index{trial division}
+trial division by the primes below 1000. 
 After that, it checks whether the remaining
 part of the number to be factored already is a prime.
 If not, it does trial divisions by some already known primes, using
@@ -167,8 +170,8 @@ is a non-trivial power of an integer.
 Then, the additional list of trial divisors given
 as <TDHints> is processed, if present.
 
-After the small and other \lq easy' factors have been casted out 
-this way, `FactInt' searches for \lq medium - sized' factors using
+After the small and other ``easy'' factors have been casted out 
+this way, `FactInt' searches for ``medium - sized'' factors using
 Pollard's Rho (by the library function `FactorsRho',
 see {\GAP} - Manual),
 Pollard's p-1 (see ~"FactorsPminus1"), Williams' p+1 
@@ -178,7 +181,7 @@ After that, if there is still an unfactored part remaining and
 <FactIntPartial> = false (or the remaining composites do not
 exceed the bound given by <CFRACLimit> resp. <MPQSLimit>), 
 one of the factor base methods (CFRAC, see ~"FactorsCFRAC" or 
-MPQS, see ~"FactorsMPQS") is used to do the \lq hard work', depending
+MPQS, see ~"FactorsMPQS") is used to do the ``hard work'', depending
 on the value of <FBMethod>, which could be `"MPQS"' or `"CFRAC"'.
 
 Finally, it is checked whether the product of all factors
