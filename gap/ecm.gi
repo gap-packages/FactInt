@@ -17,8 +17,8 @@
 ##  <Delta>   the increment per curve for the first stage limit
 ##            (the second stage limit is adjusted appropriately)
 ##
-##  The result is returned as a list of two lists, where the first one 
-##  contains the prime factors found, and the second one contains
+##  The result is returned as a list of two lists. The first list
+##  contains the prime factors found, and the second list contains
 ##  remaining unfactored parts of <n>, if there are any.
 ##
 ##  The computations are done with elliptic curve points given in
@@ -26,50 +26,29 @@
 ##  $b Y^2 Z = X^3 + a X^2 Z + X Z^2$, where the ``point at infinity'',
 ##  the identity element of the group E($a$,$b$)/$n$, corresponds to
 ##  [0,$Y$,0] (with arbitrary $Y$).
-##  (This avoids the calculation of inverses (mod <n>) for the
+##  This avoids the calculation of inverses (mod <n>) for the
 ##  group operation and gives the advantage of having an explicit 
 ##  representation of the identity element
 ##  on the one hand, but requires more multiplications (mod <n>)
 ##  than in affine representation on the other hand; since inversion
 ##  (mod <n>) is O($(\log n)^3$) and multiplication (mod <n>) is only
-##  O($(\log n)^2$), this is (at least) asymptotically a good choice.)
+##  O($(\log n)^2$), this is at least asymptotically a good choice.
 ##
 ##  The algorithm only keeps track on two of the three coordinates,
 ##  namely $X$ and $Z$.
 ##  The choice of curves is done in a way that ensures the order of the
 ##  respective group to be divisible by 12.
 ##
-##  The implementation follows mainly the description of R. P. Brent given in
-##  ``Factorization of the Tenth and Eleventh Fermat Numbers'', available
+##  The implementation follows mainly the description of R. P. Brent given
+##  in ``Factorization of the Tenth and Eleventh Fermat Numbers'', available
 ##  under
 ##  ftp://ftp.comlab.ox.ac.uk/pub/Documents/techpapers/Richard.Brent/
 ##  rpb161tr.dvi.gz, pp. 5 -- 8 (in terms of this paper, for the
 ##  second stage the ``improved standard continuation'' is used),
 ##  the group operations are performed as described in:
+##
 ##  P. L. Montgomery, Speeding the Pollard and elliptic curve methods of
 ##  factorization, Math. Comp. 48 (1987)  
-##
-##  Although elliptic curve groups are usually written additively,
-##  I prefer using the multiplicative notation here to retain the analogy
-##  to Pollard's $p-1$ and Williams' $p+1$.
-##
-##  A word about the actual implementation:
-##
-##  At first glance, it might look desirable to implement E($a$,$b$)/$n$
-##  as a {\GAP}-domain here.
-##  But if you want to implement E($a$,$b$)/$n$ as a domain here,
-##  you would have to give up all factorization-specific optimizations
-##  such as not to keep track of the $Y$-coordinate and so on,
-##  furthermore, you would have to cope with the situation of knowing
-##  nearly nothing about it (for example, you do not know generators,
-##  and calculating the order would require knowing the factorization
-##  of <n> in advance).
-##
-##  (If you want to have such a (quite simple !) implementation of the
-##  domain E($a$,$b$)/$p$ for small $p$ which I have written also, then
-##  don't hesitate to contact me:
-##
-##  kohl@mathematik.uni-stuttgart.de)
 ##
 Revision.ecm_gi :=
   "@(#)$Id$";
@@ -311,33 +290,21 @@ ECMSplit := function (n,Curve,Curves,Limit1,Limit2,Delta,deterministic,
   until (Curve > Curves) or not (p in [1,n]);
 
   if not p in [1,n] then return rec(Curves := Curve - 1, Result := [p,n/p]);
-                    else return rec(Curves := Curve - 1, Result := [n]); fi;   
+                    else return rec(Curves := Curve - 1, Result := [n]); fi;
 end;
 MakeReadOnlyGlobal("ECMSplit");
 
 #############################################################################
 ##
 #F  FactorsECM( <n>, [ <Curves>, [ <Limit1>, [ <Limit2>, [ <Delta> ] ] ] ] )
-##
-##  Prime factorization of the integer <n>, using the Elliptic Curves Method
-##  (ECM) for <Curves> different elliptic curve groups with first stage
-##  limit <Limit1>, second stage limit <Limit2> and first stage limit
-##  increment <Delta>.
-##  The option <ECMDeterministic> specifies, if set, that the choice 
-##  of the curves to be tried should be deterministic, i.e. that
-##  repeated calls of `FactorsECM' yield the same curves, and hence for the
-##  same <n> the result after the same number of trials (this is of use
-##  mainly for testing purposes).
-##  The result is returned as a list of two lists, where the first one 
-##  contains the prime factors found, and the second one contains
-##  remaining unfactored parts of <n>, if there are any.
 ## 
-InstallGlobalFunction(FactorsECM,
-function (arg)
+InstallGlobalFunction( FactorsECM,
 
-  local  n,Curves,Limit1,Limit2,Delta,deterministic,GetArg,ArgCorrect,
-         FactorsList,FactorsPool,FailedHere,m,Split,q,
-         NumberOfCurves,CurvesTried,i,StartingTime;
+function ( arg )
+
+  local  n, Curves, Limit1, Limit2, Delta, deterministic, GetArg, ArgCorrect,
+         FactorsList, FactorsPool, FailedHere, m, Split, q,
+         NumberOfCurves, CurvesTried, i, StartingTime;
 
   GetArg := function (ArgPos,ArgName,ArgDefault)
     if IsBound(arg[ArgPos]) then 

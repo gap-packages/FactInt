@@ -304,15 +304,12 @@ MakeReadOnlyGlobal("CFRACSplit");
 ##
 #F  FactorsCFRAC( <n>, [ <ContinueFromFile>, <PagingDir> ] )
 ##
-##  Prime factorization of the integer <n>, using the Continued Fraction
-##  Algorithm (CFRAC).
-##  The result is returned as a list of the prime factors of <n>.
-##
-InstallGlobalFunction(FactorsCFRAC,
-function (n)
+InstallGlobalFunction( FactorsCFRAC,
 
-  local  FactorsList,StandardFactorsList,m,
-         Ready,Pos,Passno;
+function ( n )
+
+  local  FactorsList, StandardFactorsList, m,
+         Ready, Pos, Passno;
 
   if   not (IsInt(n) and n > 1)
   then Error("Usage : FactorsCFRAC( <n> ), ",

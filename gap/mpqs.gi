@@ -501,14 +501,11 @@ MakeReadOnlyGlobal("MPQSSplit");
 ##
 #F  FactorsMPQS( <n> )
 ##
-##  Prime factorization of the integer <n>, using the Single Large Prime
-##  Variation of the Multiple Polynomial Quadratic Sieve (MPQS).
-##  The result is returned as a list of the prime factors of <n>.
-##
-InstallGlobalFunction(FactorsMPQS,
-function (n)
+InstallGlobalFunction( FactorsMPQS,
 
-  local  FactorsList,StandardFactorsList,m,Ready,Pos,Passno;
+function ( n )
+
+  local  FactorsList, StandardFactorsList, m, Ready, Pos, Passno;
 
   if   not (IsInt(n) and n > 1)
   then Error("Usage : FactorsMPQS( <n> ), ",
