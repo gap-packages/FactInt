@@ -1,4 +1,4 @@
-README file for 'factint' package.
+README file for `FactInt' package.
 
 This package for GAP 4 provides routines for 
 integer factorization, in particular:
@@ -15,9 +15,8 @@ No other packages are needed.
 It must be installed in the pkg subdirectory of the 
 GAP distribution.
 
-Just extract the distribution file in the root directory
-of your GAP distribution, and then load the package via
-RequirePackage( "factint" );
+Just extract the distribution file in the proper place
+and then load the package via RequirePackage( "factint" );
 
 If you have problems with this package, wish to make comments
 or suggestions, or if you find bugs, please send e-mail to
