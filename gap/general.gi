@@ -362,6 +362,7 @@ BindGlobal("FIB_RES", # Fib(k) mod 13, 21, 34, 55, 89, 144.
   [ 0, 1, 2, 3, 5, 8, 13, 21, 34, 47, 52, 54 ],
   [ 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 68, 76, 81, 84, 86, 87, 88 ],
   [ 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 123, 136, 141, 143 ] ]);
+BindGlobal("POW3_M_POW2_FACTORS",[]);
 
 
 # Power Check
@@ -663,6 +664,18 @@ function (n)
     ApplyFactoringMethod(FactorsTD,[FACTORS_FIB],
                          FactorizationObtainedSoFar,infinity,
                          ["Trial division by factors of Fibonacci(k)"]);
+    StateInfo();
+  fi;
+
+  # Special case 3^k - 2^k
+
+  if n mod 2520 in [1,5,19,65,211,665,1051,1219,1265,1531,2059] then
+    if   IsEmpty(POW3_M_POW2_FACTORS)
+    then ReadPackage("factint","tables/3k2k.g"); fi;
+    ApplyFactoringMethod(FactorsTD,[POW3_M_POW2_FACTORS],
+                         FactorizationObtainedSoFar,infinity,
+                         ["Trial division by factors of 3^k-2^k"]);
+    StateInfo();
   fi;
 
   # The 'naive' methods
