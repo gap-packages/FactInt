@@ -225,6 +225,9 @@ MPQSSplit := function (n)
   elif FactorBaseSize <  500 then CollectingInterval :=  20;
   elif FactorBaseSize < 2000 then CollectingInterval :=  50;
                              else CollectingInterval := 100; fi;
+  if   InfoLevel(IntegerFactorizationInfo) = 4 then CollectingInterval := 5;
+  elif InfoLevel(IntegerFactorizationInfo) = 5 then CollectingInterval := 1;
+  fi;
   NextCollectionAt := CollectingInterval;
 
   UsedTime := Int((Runtime() - StartingTime)/1000);
