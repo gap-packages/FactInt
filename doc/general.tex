@@ -79,20 +79,20 @@ provided by this package.
    <RhoCluster>&specifies the number of steps between two
    Gcd computations in Pollard's Rho
 
-   <Pminus1Limit1>& specifies the first stage limit for Pollard's p-1
+   <Pminus1Limit1>& specifies the first stage limit for Pollard's $p-1$
    (see ~"FactorsPminus1")
 
-   <Pminus1Limit2>& specifies the second stage limit for Pollard's p-1
+   <Pminus1Limit2>& specifies the second stage limit for Pollard's $p-1$
    (see ~"FactorsPminus1")
 
    <Pplus1Residues>& specifies the number of residues
-   to be tried by Williams' p+1 (see ~"FactorsPplus1")
+   to be tried by Williams' $p+1$ (see ~"FactorsPplus1")
 
    <Pplus1Limit1>& specifies the first stage limit
-   for Williams' p+1 (see ~"FactorsPplus1")
+   for Williams' $p+1$ (see ~"FactorsPplus1")
 
    <Pplus1Limit2>& specifies the second stage limit
-   for Williams' p+1 (see ~"FactorsPplus1")
+   for Williams' $p+1$ (see ~"FactorsPplus1")
 
    <ECMCurves>& specifies the number of elliptic curves to be 
    tried by the Elliptic Curves Method (ECM) (see ~"FactorsECM"),
@@ -174,7 +174,7 @@ After the small and other ``easy'' factors have been casted out
 this way, `FactInt' searches for ``medium - sized'' factors using
 Pollard's Rho (by the library function `FactorsRho',
 see {\GAP} - Manual),
-Pollard's p-1 (see ~"FactorsPminus1"), Williams' p+1 
+Pollard's $p-1$ (see ~"FactorsPminus1"), Williams' $p+1$ 
 (see ~"FactorsPplus1") and the Elliptic Curves Method 
 (ECM, see ~"FactorsECM") in this order.
 After that, if there is still an unfactored part remaining and
