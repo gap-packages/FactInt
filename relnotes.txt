@@ -57,7 +57,7 @@ Changes between version 1.3.1 and version 1.4.6:
  - Added option `cheap' for restricting factorization attempts
    to cheap methods.
 
-Changes between version 1.4.6 and version 1.4.7:
+Changes between version 1.4.6 and version 1.4.8:
 
  - Added caching of whole factorizations and single factors.
  - Use p +/- 1 - routines by default only for sufficiently large composites,
@@ -66,4 +66,6 @@ Changes between version 1.4.6 and version 1.4.7:
  - Documented `FactorsTD'.
  - Added Synonyms `ECM', `MPQS' and `CFRAC' for `FactorsECM', `FactorsMPQS'
    resp. `FactorsCFRAC'.
+ - Added treatment of special case a^k +/- b^k.
+
 

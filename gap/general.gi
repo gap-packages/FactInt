@@ -431,6 +431,7 @@ BindGlobal("FIB_RES", # Fib(k) mod 13, 21, 34, 55, 89, 144.
   [ 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 68, 76, 81, 84, 86, 87, 88 ],
   [ 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 123, 136, 141, 143 ] ]);
 BindGlobal("POW3_M_POW2_FACTORS",[]);
+BindGlobal("AK_PM_BK_MOD_2520",[]);
 
 
 # Treat values of functions f such that a|b implies f(a)|f(b)
@@ -616,7 +617,7 @@ function ( n )
          IsNonnegInt, StateInfo, LastMentioned,
          FactorizationObtainedSoFar, Result, sign,
          CFRACBound, MPQSBound, StartingTime, UsedTime,
-         fib_res;
+         fib_res, a, b, nmod2520;
 
   IsNonnegInt := n->(IsInt(n) and n >= 0);
 
@@ -697,7 +698,7 @@ function ( n )
 
   FactorizationObtainedSoFar := [[],[n]];
 
-  # First of all, check whether n = b^k +- 1 for some b, k
+  # First of all, check whether n = b^k +/- 1 for some b, k
 
   ApplyFactoringMethod(FactorsAurifeuillian,[],
                        FactorizationObtainedSoFar,infinity,
@@ -766,6 +767,27 @@ function ( n )
                          ["Trial division by factors of 3^k-2^k"]);
     StateInfo();
   fi;
+
+  # Special case a^k +/- b^k
+
+  if   IsEmpty(AK_PM_BK_MOD_2520)
+  then ReadPackage("factint","tables/akbk.g"); fi;
+  nmod2520 := n mod 2520;
+  for a in [3..Length(AK_PM_BK_MOD_2520[1])] do
+    for b in [2..a-1] do
+      if   nmod2520 in AK_PM_BK_MOD_2520[1][a][b] then
+        ApplyFactoringMethod(FactorsMultFunc,[k->a^k-b^k],
+          FactorizationObtainedSoFar,infinity,
+          [Concatenation("Factors of ",String(a),"^k-",String(b),
+                         "^k by divisors of k")]);
+      elif nmod2520 in AK_PM_BK_MOD_2520[2][a][b] then
+        ApplyFactoringMethod(FactorsMultFunc,[k->a^k+b^k],
+          FactorizationObtainedSoFar,infinity,
+          [Concatenation("Factors of ",String(a),"^k+",String(b),
+                         "^k by divisors of k")]);
+      fi;
+    od;
+  od;
 
   # Special case `11111111 ...'
 
