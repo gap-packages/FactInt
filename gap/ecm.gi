@@ -43,7 +43,7 @@
 ##  ``Factorization of the Tenth and Eleventh Fermat Numbers'', available
 ##  under
 ##  ftp://ftp.comlab.ox.ac.uk/pub/Documents/techpapers/Richard.Brent/
-##  rpb161tr.dvi.gz, p. 5-8 (in terms of this paper, for the
+##  rpb161tr.dvi.gz, pp. 5 -- 8 (in terms of this paper, for the
 ##  second stage the ``improved standard continuation'' is used),
 ##  the group operations are performed as described in:
 ##  P. L. Montgomery, Speeding the Pollard and elliptic curve methods of
