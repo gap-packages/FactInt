@@ -1,0 +1,18 @@
+\chapcontents {\tocstrut }{Preface}{5}
+\chapcontents {1}{The General Factorization Routines}{6}
+\seccontents {1.1}{If you do not care about the methods used} {6}
+\seccontents {1.2}{Taking influence on the methods being used} {6}
+\chapcontents {2}{The Routines for Specific Factorization Methods}{9}
+\seccontents {2.1}{Pollard's p-1} {9}
+\seccontents {2.2}{Williams' p+1} {10}
+\seccontents {2.3}{The Elliptic Curves Method (ECM)} {10}
+\seccontents {2.4}{The Continued Fraction Algorithm (CFRAC)} {11}
+\seccontents {2.5}{The Multiple Polynomial Quadratic Sieve (MPQS)} {12}
+\chapcontents {3}{Getting Information about the Factoring Process}{13}
+\seccontents {3.1}{The Info Class 'IntegerFactorizationInfo'} {13}
+\chapcontents {4}{How much Time does a Factorization take ?}{18}
+\seccontents {4.1}{The General Factorization Routine} {18}
+\seccontents {4.2}{Timings for ECM} {18}
+\seccontents {4.3}{Timings for the MPQS} {19}
+\chapcontents {}{Bibliography}{20}
+\chapcontents {}{Index}{21}

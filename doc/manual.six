@@ -1,0 +1,46 @@
+C general.tex 1. The General Factorization Routines
+S 1.1. If you do not care about the methods used
+I 1.1. Factorization without parameters
+F 1.1. IntegerFactorization
+I 1.1. Correctness of the results
+S 1.2. Taking influence on the methods being used
+I 1.2. Factorization with parameters
+I 1.2. partial factorization
+F 1.2. FactInt
+I 1.2. unfactored parts
+I 1.2. trial division
+C methods.tex 2. The Routines for Specific Factorization Methods
+S 2.1. Pollard's p-1
+F 2.1. FactorsPminus1
+I 2.1. Lagranges' Theorem
+S 2.2. Williams' p+1
+F 2.2. FactorsPplus1
+S 2.3. The Elliptic Curves Method (ECM)
+I 2.3. Elliptic Curves Method (ECM)
+F 2.3. FactorsECM
+I 2.3. first stage limit
+I 2.3. second stage limit
+I 2.3. elliptic curve groups
+I 2.3. E(a,b)/n
+I 2.3. elliptic curve point
+I 2.3. projective coordinates
+I 2.3. Weierstrass model
+S 2.4. The Continued Fraction Algorithm (CFRAC)
+I 2.4. Continued Fraction Algorithm (CFRAC)
+F 2.4. FactorsCFRAC
+I 2.4. continued fraction approximation
+I 2.4. factor base
+I 2.4. large factors (factor base)
+I 2.4. Gaussian Elimination
+S 2.5. The Multiple Polynomial Quadratic Sieve (MPQS)
+I 2.5. Multiple Polynomial Quadratic Sieve (MPQS)
+F 2.5. FactorsMPQS
+I 2.5. sieving interval
+C info.tex 3. Getting Information about the Factoring Process
+S 3.1. The Info Class 'IntegerFactorizationInfo'
+I 3.1. Information about factoring process
+I 3.1. IntegerFactorizationInfo
+C timings.tex 4. How much Time does a Factorization take ?
+S 4.1. The General Factorization Routine
+S 4.2. Timings for ECM
+S 4.3. Timings for the MPQS

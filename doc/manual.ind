@@ -1,0 +1,59 @@
+\letter C
+  continued fraction algorithm (cfrac), 11
+  continued fraction approximation, 11
+  correctness of the results, 6
+\letter E
+  e(a,b)/n, 10
+  elliptic curve groups, 10
+  elliptic curve point, 10
+  elliptic curves method (ecm), 10
+\letter F
+  `FactInt', 6
+  factor base, 11
+  factorization without parameters, 6
+  factorization with parameters, 6
+  `FactorsCFRAC', 11
+  `FactorsECM', 10
+  `FactorsMPQS', 12
+  `FactorsPminus1', 9
+  `FactorsPplus1', 10
+  first stage limit, 10
+\letter G
+  gaussian elimination, 11
+  generalized number field sieve, 5
+\letter I
+  If you do not care about the methods used, \indexit{6}
+  information about factoring process, 13
+  `IntegerFactorization', 6
+  integerfactorizationinfo, 13
+\letter L
+  lagranges' theorem, 9
+  large factors (factor base), 11
+\letter M
+  multiple polynomial quadratic sieve (mpqs), 12
+\letter P
+  partial factorization, 6
+  Pollard's p-1, \indexit{9}
+  pollard's rho, 5
+  prime ideals, 5
+  projective coordinates, 11
+\letter R
+  rsa laboratories, 5
+\letter S
+  second stage limit, 10
+  sieving interval, 12
+\letter T
+  Taking influence on the methods being used, \indexit{6}
+  The Continued Fraction Algorithm (CFRAC), \indexit{11}
+  The Elliptic Curves Method (ECM), \indexit{10}
+  The General Factorization Routine, \indexit{17}
+  The Info Class 'IntegerFactorizationInfo', \indexit{13}
+  The Multiple Polynomial Quadratic Sieve (MPQS), \indexit{12}
+  Timings for ECM, \indexit{17}
+  Timings for the MPQS, \indexit{18}
+  trial division, 7
+\letter U
+  unfactored parts, 6
+\letter W
+  weierstrass model, 11
+  Williams' p+1, \indexit{10}

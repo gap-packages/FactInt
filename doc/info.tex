@@ -1,0 +1,232 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%W  info.tex              GAP4 Package 'FactInt'              Stefan Kohl
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Chapter{Getting Information about the Factoring Process}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Section{The Info Class 'IntegerFactorizationInfo'}
+
+\index{Information about factoring process}
+\index{IntegerFactorizationInfo}
+
+To see what's going on during the factoring process, there is an 
+Info Class `IntegerFactorizationInfo'.
+(For the description of the Info mechanism, see the {\GAP} Reference
+Manual).
+
+If `InfoLevel(IntegerFactorizationInfo) = 1', then basic information
+about the factoring techniques used is displayed. If this InfoLevel has
+value 2, then additionally all \lq relevant' steps in the factoring
+algorithms are mentioned, and if it is set to 3, then large amounts of
+details of the progress of the factoring process are shown.
+For setting this InfoLevel, there is a shorthand `FactInfo( <level> )'.
+
+The informational output is not guaranteed to be literally the same in
+each factorization attempt to a given integer with given parameters.
+
+The timings in the example are given for a Pentium 200.
+
+\begintt
+gap> FactInfo(2);
+gap> Factors(1459^60-1);
+#I  
+#I  Check for n = b^k +/- 1
+#I  
+697136005439518321339364341462731479643931164718338822169985761598533184155968\
+687683267309071831767783053294661533309653344501590527857911683460652704454392\
+2114173712945384179913214273324400 = 1459^60 - 1
+#I  The factors corresponding to polynomial factors are
+[ 1458, 1460, 2127223, 2128682, 2130141, 4528179181405, 4531280671081, 
+  4534390675481, 20518450806493943781446161, 20532514165758816624282961, 
+  20546596816316767296268561, 
+  421584732115767299535558510031830342788459718258721 ]
+#I  Intermediate result : [ [ 4531280671081, 20546596816316767296268561 ], 
+  [ 1458, 1460, 2127223, 2128682, 2130141, 4528179181405, 4534390675481, 
+      20518450806493943781446161, 20532514165758816624282961, 
+      421584732115767299535558510031830342788459718258721 ] ]
+#I  
+#I  Factors already found : [ 4531280671081, 20546596816316767296268561 ]
+#I  
+#I  Trial division by all primes p < 1000
+#I  Intermediate result : [ [ 2, 3, 3, 3, 3, 3, 3 ], [  ] ]
+#I  Intermediate result : [ [ 2, 2, 5, 73 ], [  ] ]
+#I  Intermediate result : [ [ 7, 303889 ], [  ] ]
+#I  Intermediate result : [ [ 2, 1064341 ], [  ] ]
+#I  Intermediate result : [ [ 3, 13, 193, 283 ], [  ] ]
+#I  Intermediate result : [ [ 5, 11, 521, 158024051 ], [  ] ]
+#I  Intermediate result : [ [ 31, 146270666951 ], [  ] ]
+#I  Intermediate result : [ [ 61 ], [ 336368046008097439040101 ] ]
+#I  
+#I  Factors already found : [ 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 5, 5, 7, 11, 
+  13, 31, 61, 73, 193, 283, 521, 303889, 1064341, 158024051, 146270666951, 
+  4531280671081, 20546596816316767296268561 ]
+#I  
+#I  Trial division by some already known primes
+#I  
+#I  Check for perfect powers
+#I  
+#I  Pollard's Rho
+Steps = 16384, Cluster = 1638
+Number to be factored : 
+336368046008097439040101
+#I  Intermediate result : [ [ 2251, 149430495783250750351 ], [  ] ]
+#I  
+#I  Pollard's Rho
+Steps = 16384, Cluster = 1638
+Number to be factored : 
+20532514165758816624282961
+#I  
+#I  Pollard's Rho
+Steps = 16384, Cluster = 1638
+Number to be factored : 
+421584732115767299535558510031830342788459718258721
+#I  
+#I  Factors already found : [ 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 5, 5, 7, 11, 
+  13, 31, 61, 73, 193, 283, 521, 2251, 303889, 1064341, 158024051, 
+  146270666951, 4531280671081, 149430495783250750351, 
+  20546596816316767296268561 ]
+#I  
+#I  Pollard's p - 1
+Limit1 = 10000, Limit2 = 400000
+Number to be factored : 
+20532514165758816624282961
+#I  Initializing prime differences list, PrimeDiffLimit = 1000000
+#I  p-1 for n = 20532514165758816624282961
+a : 2, Limit1 : 10000, Limit2 : 400000
+#I  First stage
+#I  Second stage
+#I  
+#I  Pollard's p - 1
+Limit1 = 10000, Limit2 = 400000
+Number to be factored : 
+421584732115767299535558510031830342788459718258721
+#I  p-1 for n = 421584732115767299535558510031830342788459718258721
+a : 2, Limit1 : 10000, Limit2 : 400000
+#I  First stage
+#I  Second stage
+#I  
+#I  Williams' p + 1
+Residues = 2, Limit1 = 2000, Limit2 = 80000
+Number to be factored : 
+20532514165758816624282961
+#I  p+1 for n = 20532514165758816624282961
+Residues : 2, Limit1 : 2000, Limit2 : 80000
+#I  Residue no. 1
+#I  Residue no. 2
+#I  
+#I  Williams' p + 1
+Residues = 2, Limit1 = 2000, Limit2 = 80000
+Number to be factored : 
+421584732115767299535558510031830342788459718258721
+#I  p+1 for n = 421584732115767299535558510031830342788459718258721
+Residues : 2, Limit1 : 2000, Limit2 : 80000
+#I  Residue no. 1
+#I  Residue no. 2
+#I  
+#I  Elliptic Curves Method (ECM)
+Curves = <func.>
+Init. Limit1 = <func.>, Init. Limit2 = <func.>, Delta = <func.>
+Number to be factored : 
+20532514165758816624282961
+#I  ECM for n = 20532514165758816624282961
+#I  Digits : 26, Curves : 3
+#I  Initial Limit1 : 200, Initial Limit2 : 20000, Delta : 200
+#I  Curve no.      1 (     3), Limit1 :     200, Limit2 :    20000
+#I  Curve no.      2 (     3), Limit1 :     400, Limit2 :    40000
+#I  11 - digit factor 12077430061 was found in second stage
+#I  Intermediate result : [ [ 12077430061, 1700073116718901 ], [  ] ]
+#I  
+#I  Elliptic Curves Method (ECM)
+Curves = <func.>
+Init. Limit1 = <func.>, Init. Limit2 = <func.>, Delta = <func.>
+Number to be factored : 
+421584732115767299535558510031830342788459718258721
+#I  ECM for n = 421584732115767299535558510031830342788459718258721
+#I  Digits : 51, Curves : 27
+#I  Initial Limit1 : 200, Initial Limit2 : 20000, Delta : 200
+#I  Curve no.      1 (    27), Limit1 :     200, Limit2 :    20000
+#I  Curve no.      2 (    27), Limit1 :     400, Limit2 :    40000
+#I  Curve no.      3 (    27), Limit1 :     600, Limit2 :    60000
+                             [ ... ]
+#I  Curve no.     25 (    27), Limit1 :    5000, Limit2 :   500000
+#I  Curve no.     26 (    27), Limit1 :    5200, Limit2 :   520000
+#I  Curve no.     27 (    27), Limit1 :    5400, Limit2 :   540000
+#I  
+#I  Factors already found : [ 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 5, 5, 7, 11, 
+  13, 31, 61, 73, 193, 283, 521, 2251, 303889, 1064341, 158024051, 
+  12077430061, 146270666951, 4531280671081, 1700073116718901, 
+  149430495783250750351, 20546596816316767296268561 ]
+#I  
+#I  Multiple Polynomial Quadratic Sieve (MPQS)
+Number to be factored : 
+421584732115767299535558510031830342788459718258721
+#I  MPQS for n = 421584732115767299535558510031830342788459718258721
+#I  Digits                     :         51
+#I  Multiplier                 :          1
+#I  Size of factor base        :       1326
+#I  Prime powers to be sieved  :       1349
+#I  Length of sieving interval :     131072
+#I  Small prime limit          :        117
+#I  Large prime limit          :    3500186
+#I  Number of used a - factors :          4
+#I  Size of a - factors pool   :         52
+#I  Initialization time        :         11 sec.
+#I  
+#I  Sieving
+#I  
+#I  Complete factorizations over the factor base   :       50
+#I  Relations with a large prime factor            :        5
+#I  Relations remaining to be found                :     1343
+#I  Total factorizations with a large prime factor :      614
+#I  Used polynomials                               :       67
+#I  Elapsed runtime                                :       39 sec.
+#I  Progress (relations)                           :        3 %
+#I  
+                             [ ... ]
+#I  
+#I  Complete factorizations over the factor base   :      651
+#I  Relations with a large prime factor            :      826
+#I  Relations remaining to be found                :        0
+#I  Total factorizations with a large prime factor :     9164
+#I  Used polynomials                               :     1021
+#I  Elapsed runtime                                :      455 sec.
+#I  Progress (relations)                           :      100 %
+#I  
+#I  Creating the exponent matrix
+#I  Doing Gaussian Elimination, #rows = 1477, #columns = 1378
+#I  Processing the zero rows
+#I  Dependency no. 1 yielded no factor
+                 [ ... ]
+#I  Dependency no. 8 yielded no factor
+#I  Dependency no. 9 yielded factor 26725378467920336641
+#I  The factors are
+[ 26725378467920336641, 15774696422795817479975816558881 ]
+#I  Digit partition : [ 20, 32 ]
+#I  MPQS runtime : 473.507 sec.
+
+#I  Intermediate result : 
+[ [ 26725378467920336641, 15774696422795817479975816558881 ], [  ] ]
+#I  
+#I  The result is
+[ [ 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 5, 5, 7, 11, 13, 31, 61, 73, 193, 283, 
+      521, 2251, 303889, 1064341, 158024051, 12077430061, 146270666951, 
+      4531280671081, 1700073116718901, 26725378467920336641, 
+      149430495783250750351, 20546596816316767296268561, 
+      15774696422795817479975816558881 ], [  ] ]
+
+#I  The total runtime was 799.408 sec
+
+[ 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 5, 5, 7, 11, 13, 31, 61, 73, 193, 283, 
+  521, 2251, 303889, 1064341, 158024051, 12077430061, 146270666951, 
+  4531280671081, 1700073116718901, 26725378467920336641, 
+  149430495783250750351, 20546596816316767296268561, 
+  15774696422795817479975816558881 ]
+\endtt
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%E  info.tex  . . . . . . . . . . . . . . . . . . . . . . . . . ends here
+
