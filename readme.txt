@@ -15,8 +15,8 @@ No other packages are needed.
 It must be installed in the pkg subdirectory of the 
 GAP distribution.
 
-Just extract the distribution file in the proper place
-and then load the package via LoadPackage( "factint" );
+By default, `FactInt' is autoloaded, otherwise
+you can load the package via LoadPackage( "factint" );
 
 If you have problems with this package, wish to make comments
 or suggestions, or if you find bugs, please send e-mail to
