@@ -16,7 +16,7 @@ in the preface.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{Pollard's p-1}
  
-\>FactorsPminus1( <n>, [ [ <a> ], <Limit1>, [ <Limit2> ] ] ) F
+\>FactorsPminus1( <n> [, [ <a>, ] <Limit1> [, <Limit2> ] ] ) F
 
 `FactorsPminus1' tries to factor <n> using Pollard's $p-1$, with <a>
 as base for exponentiation (the default is $a=2$), 
@@ -64,7 +64,7 @@ gap> List( last[ 1 ]{[ 3, 4, 5 ]}, p -> IntegerFactorization( p - 1 ) );
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{Williams' p+1}
 
-\>FactorsPplus1( <n>, [ [ <Residues> ], <Limit1>, [ <Limit2> ] ] ) F
+\>FactorsPplus1( <n> [, [ <Residues>, ] <Limit1> [, <Limit2> ] ] ) F
 
 `FactorsPplus1' tries to factor <n> using a variant of Williams' $p+1$, 
 where it tries <Residues> different residues (the probability of a 
@@ -106,7 +106,7 @@ gap> List( last[ 1 ], p -> [ Factors( p - 1 ), Factors( p + 1 ) ] );
 
 \atindex{Elliptic Curves Method (ECM)}{@Elliptic Curves Method (ECM)}
 
-\>FactorsECM( <n>, [ <Curves>, [ <Limit1>, [ <Limit2> [ <Delta> ] ] ] ] ) F
+\>FactorsECM( <n> [, <Curves> [, <Limit1> [, <Limit2> [, <Delta> ] ] ] ] ) F
 
 `FactorsECM' tries to factor <n> using the Elliptic Curves Method (ECM),
 where <Curves> specifies the number of curves to be tried,
