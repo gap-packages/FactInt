@@ -344,7 +344,7 @@ FactorsTD := function (arg)
     if n = 1 then return Result; fi;
   od;
   if IsProbablyPrimeInt(n) then Add(Result[1],n);
-                   else Add(Result[2],n); fi;   
+                           else Add(Result[2],n); fi;   
   return Result;
 end;
 MakeReadOnlyGlobal("FactorsTD");
@@ -363,6 +363,37 @@ BindGlobal("FIB_RES", # Fib(k) mod 13, 21, 34, 55, 89, 144.
   [ 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 68, 76, 81, 84, 86, 87, 88 ],
   [ 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 123, 136, 141, 143 ] ]);
 BindGlobal("POW3_M_POW2_FACTORS",[]);
+
+
+# Treat values of functions f such that a|b implies f(a)|f(b)
+# (f is assumed to be strictly growing)
+
+FactorsMultFunc := function ( n, f )
+
+  local  val, fact, k, step, fk, gcd, i;
+
+  if IsProbablyPrimeInt(n) then return [[n],[]]; fi;
+  k := 1;
+  repeat k := 2*k; until f(k) >= n;
+  step := k/4;
+  while f(k) <> n and IsInt(step) do
+    if f(k) > n then k := k - step; else k := k + step; fi;
+    step := step/2;
+  od;
+  if not IsInt(step) then return [[],[n]]; fi;
+  val := List(DivisorsInt(k),f);
+  fact := [n];
+  for fk in val do
+    for i in [1..Length(fact)] do
+      gcd := Gcd(fact[i],fk);
+      if not gcd in [1,fact[i]] then fact[i] := [gcd,fact[i]/gcd]; fi;
+    od;
+    fact := Flat(fact);
+  od;
+  return [Filtered(fact,IsProbablyPrimeInt),
+          Filtered(fact,q->not IsProbablyPrimeInt(q))];
+end;
+MakeReadOnlyGlobal("FactorsMultFunc");
 
 
 # Power Check
@@ -456,12 +487,13 @@ FactorsAurifeuillian := function ( n )
       factors := [ [  ], [  ] ];
       for j in [1..Length(FactorsOfP)] do
         a := PolyFactors[j];
-        if        b <= Length(BRENTFACTORSAVAILABLE)
+        if b <= Length(BRENTFACTORSAVAILABLE)
           and not IsBound(BRENTFACTORS[b]) and BRENTFACTORSAVAILABLE[b]
         then
           ReadPackage("factint",Concatenation("tables/brfac",String(b)));
         fi;
-        if    IsBound(BRENTFACTORS[b])
+        if b <= Length(BRENTFACTORSAVAILABLE)
+          and IsBound(BRENTFACTORS[b])
           and IsBound(BRENTFACTORS[b][FactorsOfP[j]])
         then
           for p in BRENTFACTORS[b][FactorsOfP[j]] do
@@ -534,7 +566,8 @@ MakeReadOnlyGlobal("FactorsAurifeuillian");
 ##  the remaining unfactored part(s), if there are any.
 ##
 InstallGlobalFunction(FactInt,
-function (n)
+
+function ( n )
 
   local  TDHints,RhoSteps,RhoCluster,
          Pminus1Limit1,Pminus1Limit2,
@@ -659,6 +692,9 @@ function (n)
 
   fib_res := List([13,21,34,55,89,144], m -> n mod m);
   if ForAll([1..6],i->fib_res[i] in FIB_RES[i]) then
+    ApplyFactoringMethod(FactorsMultFunc,[Fibonacci],
+                         FactorizationObtainedSoFar,infinity,
+                         ["Factors of Fibonacci(k) by divisors of k"]);
     if   IsEmpty(FACTORS_FIB)
     then ReadPackage("factint","tables/fibo.g"); fi;
     ApplyFactoringMethod(FactorsTD,[FACTORS_FIB],
@@ -670,6 +706,9 @@ function (n)
   # Special case 3^k - 2^k
 
   if n mod 2520 in [1,5,19,65,211,665,1051,1219,1265,1531,2059] then
+    ApplyFactoringMethod(FactorsMultFunc,[k->3^k-2^k],
+                         FactorizationObtainedSoFar,infinity,
+                         ["Factors of 3^k-2^k by divisors of k"]);
     if   IsEmpty(POW3_M_POW2_FACTORS)
     then ReadPackage("factint","tables/3k2k.g"); fi;
     ApplyFactoringMethod(FactorsTD,[POW3_M_POW2_FACTORS],
