@@ -5,7 +5,7 @@
 #H  @(#)$Id$
 ##
 
-DeclareAutoPackage( "factint", "1.2", ReturnTrue );
+DeclareAutoPackage( "factint", "1.3", ReturnTrue );
 DeclarePackageAutoDocumentation( "factint", "doc" );
 ReadPkg( "factint", "banner.g" );
 ReadPkg( "factint", "gap/factint.gd" );

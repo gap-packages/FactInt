@@ -8,9 +8,9 @@
 SetPackageInfo( rec(
 
 PkgName          := "FactInt",
-Version          := "1.2",
-Date             := "30/04/2002",
-ArchiveURL       := "http://www.cip.mathematik.uni-stuttgart.de/~kohlsn/factint/factint-1.2",
+Version          := "1.3",
+Date             := "11/07/2002",
+ArchiveURL       := "http://www.cip.mathematik.uni-stuttgart.de/~kohlsn/factint/factint-1.3",
 ArchiveFormats   := ".zoo",
 Persons          := [
                       rec( LastName      := "Kohl",
@@ -33,7 +33,7 @@ AbstractHTML     := "This package provides advanced methods for integer factoriz
 PackageWWWHome   := "http://www.cip.mathematik.uni-stuttgart.de/~kohlsn/factint.html",
 PackageDoc       := rec(
                          BookName  := "FactInt",
-                         Archive   := "http://www.cip.mathematik.uni-stuttgart.de/~kohlsn/factint/factint-1.2doc-win.zip",
+                         Archive   := "http://www.cip.mathematik.uni-stuttgart.de/~kohlsn/factint/factint-1.3doc-win.zip",
                          HTMLStart := "htm/chapters.htm",
                          PDFFile   := "doc/manual.pdf",
                          SixFile   := "doc/manual.six",
