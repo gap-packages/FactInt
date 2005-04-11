@@ -5,12 +5,12 @@
 #H  @(#)$Id$
 ##
 
-ReadPkg( "factint", "gap/general.gi" );
-ReadPkg( "factint", "gap/pminus1.gi" );
-ReadPkg( "factint", "gap/pplus1.gi" );
-ReadPkg( "factint", "gap/ecm.gi" );
-ReadPkg( "factint", "gap/cfrac.gi" );
-ReadPkg( "factint", "gap/mpqs.gi" );
+ReadPackage( "factint", "gap/general.gi" );
+ReadPackage( "factint", "gap/pminus1.gi" );
+ReadPackage( "factint", "gap/pplus1.gi" );
+ReadPackage( "factint", "gap/ecm.gi" );
+ReadPackage( "factint", "gap/cfrac.gi" );
+ReadPackage( "factint", "gap/mpqs.gi" );
 
 #############################################################################
 ##
