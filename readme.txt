@@ -1,5 +1,4 @@
 
-
                             The FactInt Package
                             ===================
 
