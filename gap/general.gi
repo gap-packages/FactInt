@@ -792,7 +792,7 @@ function ( n )
   # Special case `11111111 ...'
 
   if n mod 10000 in [1111,2222,3333,4444,5555,6666,7777,8888] then
-    if SmallestRootInt(9*n/(n mod 10) + 1) = 10 then
+    if n mod (n mod 10) = 0 and SmallestRootInt(9*n/(n mod 10) + 1) = 10 then
       ApplyFactoringMethod(FactorsTD,[Factors(9*n/(n mod 10))],
                            FactorizationObtainedSoFar,infinity,
                            ["RepUnits case ..."]);
@@ -843,7 +843,8 @@ function ( n )
                        FactorizationObtainedSoFar,infinity,
                        ["Pollard's Rho\nSteps = ",RhoSteps,
                         ", Cluster = ",RhoCluster,
-                        "\nNumber to be factored : ","n"]); fi;
+                        "\nNumber to be factored : ","n"]:
+                        UseProbabilisticPrimalityTest); fi;
   StateInfo();
 
   if ForAny(FactorizationObtainedSoFar[2],comp->comp>10^40) then
