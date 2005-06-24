@@ -1000,9 +1000,9 @@ InstallMethod( Factors,
 
 #############################################################################
 ##
-#M  CheapFactorsInt( <n>, <effort> )  . . partial factorization of an integer
+#M  PartialFactorization( <n>, <effort> )  . . . . . . . . . . . . try harder
 ##
-InstallMethod( CheapFactorsInt,
+InstallMethod( PartialFactorization,
                "try harder (FactInt)", true, [ IsInt, IsPosInt ], 1,
 
   function ( n, effort )
@@ -1013,7 +1013,7 @@ InstallMethod( CheapFactorsInt,
       factors    := SortedList(factors);
       factors[1] := sign*factors[1];
       if   Product(factors) <> N
-      then Error("CheapFactorsInt: Internal error, wrong result!"); fi;
+      then Error("PartialFactorization: Internal error, wrong result!"); fi;
     end;
 
     if effort < 6 then TryNextMethod(); fi;

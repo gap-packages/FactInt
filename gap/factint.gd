@@ -201,8 +201,9 @@ DeclareGlobalFunction( "FactInt" );
 ##
 DeclareGlobalFunction( "IntegerFactorization" );
 
-if not IsBound( CheapFactorsInt ) then
-  DeclareOperation( "CheapFactorsInt", [ IsMultiplicativeElement, IsInt ] );
+if not IsBound( PartialFactorization ) then
+  DeclareOperation( "PartialFactorization",
+                    [ IsMultiplicativeElement, IsInt ] );
 fi;
 
 #############################################################################
