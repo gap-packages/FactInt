@@ -73,3 +73,15 @@ Changes between version 1.4.7 and version 1.4.8:
  - Removed relics resp. compatibility with the package loading mechanism
    of GAP 4.3.
 
+Changes between version 1.4.8 and version 1.4.9:
+
+ - Better `AbstractHTML' in PackageInfo.g.
+
+Changes between version 1.4.9 and version 1.4.10:
+
+ - Fixed a bug which caused an error message when trying to factor a large
+   enough integer not of the form d*(10^k-1/9) whose last 4 decimal digits
+   were equal. This bug was there since version 1.4.6, and has been reported
+   by Sven Reichard.
+
+
