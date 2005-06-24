@@ -987,7 +987,7 @@ end);
 #M  Factors( Integers, <n> )  . . . . . . . . . . factorization of an integer
 ##
 InstallMethod( Factors,
-               "FactInt: for integers", true, [ IsIntegers, IsInt ], 1,
+               "for integers (FactInt)", true, [ IsIntegers, IsInt ], 1,
 
   function ( Integers, n )
 
@@ -995,6 +995,39 @@ InstallMethod( Factors,
       return FactorsInt( n );
     else
       return IntegerFactorization(n);
+    fi;
+  end );
+
+#############################################################################
+##
+#M  CheapFactorsInt( <n>, <effort> )  . . partial factorization of an integer
+##
+InstallMethod( CheapFactorsInt,
+               "for integers (FactInt)", true, [ IsInt, IsPosInt ], 1,
+
+  function ( n, effort )
+
+    local  CheckAndSortFactors, factors, sign, N;
+
+    CheckAndSortFactors := function ( )
+      factors    := SortedList(factors);
+      factors[1] := sign*factors[1];
+      if   Product(factors) <> N
+      then Error("CheapFactorsInt: Internal error, wrong result!"); fi;
+    end;
+
+    if effort < 6 then TryNextMethod(); fi;
+
+    N := n; sign := 1; if n < 0 then sign := -sign; n := -n; fi;
+
+    if effort  = 6 then
+      factors := SortedList(Concatenation(FactInt(n:cheap)));
+      CheckAndSortFactors(); return factors;
+    fi;
+    if effort >= 7 then
+      factors := SortedList(Concatenation(FactInt(n:FactIntPartial,
+                                                  MPQSLimit:=50)));
+      CheckAndSortFactors(); return factors;
     fi;
   end );
 

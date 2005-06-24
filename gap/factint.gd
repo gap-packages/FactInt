@@ -201,6 +201,10 @@ DeclareGlobalFunction( "FactInt" );
 ##
 DeclareGlobalFunction( "IntegerFactorization" );
 
+if not IsBound( CheapFactorsInt ) then
+  DeclareOperation( "CheapFactorsInt", [ IsMultiplicativeElement, IsInt ] );
+fi;
+
 #############################################################################
 ##
 #E  factint.gd . . . . . . . . . . . . . . . . . . . . . . . . . .  ends here
