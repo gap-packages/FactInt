@@ -1003,7 +1003,7 @@ InstallMethod( Factors,
 #M  CheapFactorsInt( <n>, <effort> )  . . partial factorization of an integer
 ##
 InstallMethod( CheapFactorsInt,
-               "for integers (FactInt)", true, [ IsInt, IsPosInt ], 1,
+               "try harder (FactInt)", true, [ IsInt, IsPosInt ], 1,
 
   function ( n, effort )
 
