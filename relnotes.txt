@@ -84,4 +84,7 @@ Changes between version 1.4.9 and version 1.4.10:
    were equal. This bug was there since version 1.4.6, and has been reported
    by Sven Reichard.
 
+Changes between version 1.4.10 and version 1.4.11:
+
+ - Added a method for the new operation `PartialFactorization'.
 
