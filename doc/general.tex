@@ -8,9 +8,9 @@
 
 \Chapter{The General Factorization Routine}
 
-The FactInt package provides a better method for the operation `Factors'
-for integer arguments, which supersedes the one included in the {\GAP}
-library:
+The {\sf FactInt} package provides a better method for the operation
+`Factors' for integer arguments, which supersedes the one included in
+the {\GAP} library:
 
 \>Factors( <n> ) M
 
@@ -25,7 +25,8 @@ The returned factors pass the built-in probabilistic primality test of
 The same holds for all other factorization routines provided by this
 package.
 
-It follows a rough description how FactInt's method for `Factors' works:
+It follows a rough description how {\sf FactInt}'s method for `Factors'
+works:
 
 First of all it checks whether $n = b^k \pm 1$ for some $b$, $k$ and
 looks for factors corresponding to polynomial factors of $x^k \pm 1$.
@@ -42,10 +43,10 @@ Then the method uses trial division and a number of cheap methods for
 special cases.
 
 After the small and other ``easy'' factors have been found this way,
-FactInt's method searches for ``medium-sized'' factors using Pollard's Rho
-(by the library function `FactorsRho', see the {\GAP} Reference Manual),
-Pollard's $p-1$ (see ~"FactorsPminus1"), Williams' $p+1$
-(see ~"FactorsPplus1") and the Elliptic Curves Method
+{\sf FactInt}'s method searches for ``medium-sized'' factors using
+Pollard's Rho (by the library function `FactorsRho', see the {\GAP}
+Reference Manual), Pollard's $p-1$ (see ~"FactorsPminus1"),
+Williams' $p+1$ (see ~"FactorsPplus1") and the Elliptic Curves Method
 (ECM, see ~"FactorsECM") in this order.
 
 If there is still an unfactored part remaining after that,
