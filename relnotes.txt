@@ -87,4 +87,6 @@ Changes between version 1.4.9 and version 1.4.10:
 Changes between version 1.4.10 and version 1.4.11:
 
  - Added a method for the new operation `PartialFactorization'.
+ - Added a note to the manual that FactInt is distributed under the same
+   conditions as the GAP system, i.e. under the GNU General Public License.
 
