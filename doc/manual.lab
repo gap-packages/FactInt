@@ -18,15 +18,15 @@
 \makelabel{factint:The Multiple Polynomial Quadratic Sieve (MPQS)}{3.6}
 \makelabel{factint:FactorsMPQS}{3.6.1}
 \makelabel{factint:MPQS}{3.6.1}
-\makelabel{factint:Getting Information about the Factoring Process}{4}
-\makelabel{factint:IntegerFactorizationInfo}{4}
-\makelabel{factint:InfoFactInt}{4}
-\makelabel{factint:FactIntInfo}{4}
-\makelabel{factint:FactInfo}{4}
-\makelabel{factint:How much Time does a Factorization take ?}{5}
-\makelabel{factint:The General Factorization Routine}{5.1}
-\makelabel{factint:Timings for ECM}{5.2}
-\makelabel{factint:Timings for the MPQS}{5.3}
+\makelabel{factint:How much Time does a Factorization take ?}{4}
+\makelabel{factint:The General Factorization Routine}{4.1}
+\makelabel{factint:Timings for ECM}{4.2}
+\makelabel{factint:Timings for the MPQS}{4.3}
+\makelabel{factint:Getting Information about the Factoring Process}{5}
+\makelabel{factint:IntegerFactorizationInfo}{5}
+\makelabel{factint:InfoFactInt}{5}
+\makelabel{factint:FactIntInfo}{5}
+\makelabel{factint:FactInfo}{5}
 \makelabel{factint:Bibliography}{}
 \setcitlab {Bressoud89}{Bre89}
 \setcitlab {Brent96}{Bre96}

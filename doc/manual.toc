@@ -7,10 +7,10 @@
 \seccontents {3.4}{The Elliptic Curves Method (ECM)} {9}
 \seccontents {3.5}{The Continued Fraction Algorithm (CFRAC)} {10}
 \seccontents {3.6}{The Multiple Polynomial Quadratic Sieve (MPQS)} {11}
-\chapcontents {4}{Getting Information about the Factoring Process}{12}
-\chapcontents {5}{How much Time does a Factorization take ?}{17}
-\seccontents {5.1}{The General Factorization Routine} {17}
-\seccontents {5.2}{Timings for ECM} {17}
-\seccontents {5.3}{Timings for the MPQS} {18}
+\chapcontents {4}{How much Time does a Factorization take ?}{12}
+\seccontents {4.1}{The General Factorization Routine} {12}
+\seccontents {4.2}{Timings for ECM} {12}
+\seccontents {4.3}{Timings for the MPQS} {13}
+\chapcontents {5}{Getting Information about the Factoring Process}{14}
 \chapcontents {}{Bibliography}{19}
 \chapcontents {}{Index}{20}
