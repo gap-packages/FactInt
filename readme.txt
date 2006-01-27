@@ -10,9 +10,9 @@ particular:
 
  - Pollard's p-1
  - Williams' p+1
- - The Elliptic Curves Method (ECM)
- - The Continued Fraction Algorithm (CFRAC)
- - The Multiple Polynomial Quadratic Sieve (MPQS)
+ - Elliptic Curves Method (ECM)
+ - Continued Fraction Algorithm (CFRAC)
+ - Multiple Polynomial Quadratic Sieve (MPQS)
 
 It also provides access to  Richard P. Brent's tables  of factors of integers
 of the form b^k +/- 1.
