@@ -815,10 +815,12 @@ function ( n )
                        ["Trial division by factors given as <TDHints>"]); fi;
   StateInfo();
   ApplyFactoringMethod(FactorsTD,
-                       [Filtered(List(Filtered(Difference(Set(IDENTS_GVAR()),
-                                               NAMES_SYSTEM_GVARS),ISB_GVAR),
-                                      ValueGlobal),
-                                 obj -> TNUM_OBJ_INT(obj)=1)],
+                       [Set(Filtered(List(Filtered(Difference(
+                                                     Set(IDENTS_GVAR()),
+                                                         NAMES_SYSTEM_GVARS),
+                                                   ISB_GVAR),
+                                          ValueGlobal),
+                                     obj -> TNUM_OBJ_INT(obj)=1))],
                        FactorizationObtainedSoFar,infinity,
                        ["Trial division by user GVar's in workspace"]);
   StateInfo();
