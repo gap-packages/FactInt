@@ -34,6 +34,8 @@
 Revision.general_gi :=
   "@(#)$Id$";
 
+if not IsBound(CommandLineHistory) then CommandLineHistory := fail; fi;
+
 InstallGlobalFunction( FactIntInfo,
                        function( lev ) 
                          SetInfoLevel(IntegerFactorizationInfo,lev); 
@@ -617,7 +619,7 @@ function ( n )
          IsNonnegInt, StateInfo, LastMentioned,
          FactorizationObtainedSoFar, Result, sign,
          CFRACBound, MPQSBound, StartingTime, UsedTime,
-         fib_res, a, b, nmod2520;
+         fib_res, a, b, nmod2520, NonDigits, CmdLineFacts;
 
   IsNonnegInt := n->(IsInt(n) and n >= 0);
 
@@ -824,6 +826,23 @@ function ( n )
                        FactorizationObtainedSoFar,infinity,
                        ["Trial division by user GVar's in workspace"]);
   StateInfo();
+  if CommandLineHistory <> fail and n > 10^40
+    and FactorizationObtainedSoFar[2] <> []
+  then
+    NonDigits := Difference(List([0..255],CHAR_INT),DIGITS);
+    CmdLineFacts := SplitString(Concatenation(List(CommandLineHistory,
+                                                   String)),
+                                NonDigits,NonDigits);
+    CmdLineFacts := Set(List(CmdLineFacts,Int));
+    CmdLineFacts := List(CmdLineFacts,
+                         m->Gcd(m,Maximum(FactorizationObtainedSoFar[2])));
+    CmdLineFacts := Filtered(Set(CmdLineFacts,AbsInt),m->m>1);
+    ApplyFactoringMethod(FactorsTD,[CmdLineFacts],
+                         FactorizationObtainedSoFar,infinity,
+                         [Concatenation("Trial division by numbers appear",
+                                        "ing in command line history")]);
+    StateInfo();
+  fi;
   ApplyFactoringMethod(FactorsPowerCheck,[FactInt,"FactInt"],
                        FactorizationObtainedSoFar,infinity,
                        ["Check for perfect powers"]);
