@@ -829,7 +829,7 @@ function ( n )
   if CommandLineHistory <> fail and n > 10^40
     and FactorizationObtainedSoFar[2] <> []
   then
-    NonDigits := Difference(List([0..255],CHAR_INT),DIGITS);
+    NonDigits := Difference(List([0..255],CHAR_INT),"0123456789");
     CmdLineFacts := SplitString(Concatenation(List(CommandLineHistory,
                                                    String)),
                                 NonDigits,NonDigits);
