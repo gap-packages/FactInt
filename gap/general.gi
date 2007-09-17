@@ -816,18 +816,8 @@ function ( n )
                        FactorizationObtainedSoFar,infinity,
                        ["Trial division by factors given as <TDHints>"]); fi;
   StateInfo();
-  ApplyFactoringMethod(FactorsTD,
-                       [Set(Filtered(List(Filtered(Difference(
-                                                     Set(IDENTS_GVAR()),
-                                                         NAMES_SYSTEM_GVARS),
-                                                   ISB_GVAR),
-                                          ValueGlobal),
-                                     obj -> TNUM_OBJ_INT(obj)=1))],
-                       FactorizationObtainedSoFar,infinity,
-                       ["Trial division by user GVar's in workspace"]);
-  StateInfo();
-  if CommandLineHistory <> fail and n > 10^40
-    and FactorizationObtainedSoFar[2] <> []
+  if IsBoundGlobal("CommandLineHistory") and CommandLineHistory <> fail
+    and n > 10^40 and FactorizationObtainedSoFar[2] <> []
   then
     NonDigits := Difference(List([0..255],CHAR_INT),"0123456789");
     CmdLineFacts := SplitString(Concatenation(List(CommandLineHistory,
