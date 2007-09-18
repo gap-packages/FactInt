@@ -5,6 +5,9 @@
 #H  @(#)$Id$
 ##
 
+# Read the implementation part of the package.
+
+ReadPackage( "factint", "gap/factintaux.g" );
 ReadPackage( "factint", "gap/general.gi" );
 ReadPackage( "factint", "gap/pminus1.gi" );
 ReadPackage( "factint", "gap/pplus1.gi" );

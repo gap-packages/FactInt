@@ -20,9 +20,9 @@ of the form b^k +/- 1.
 
                                 Requirements
 
-The FactInt Package needs at least  version 4.4 of GAP, is completely written
-in the  GAP language and does neither contain nor require  external binaries.
-No other packages are needed.
+The  FactInt Package needs  at least version 4.4.9 of GAP  and version 1.0 of
+GAPDoc. It is completely written in the GAP language and does neither contain
+nor require  external binaries.
 
 
                                 Installation
