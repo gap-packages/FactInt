@@ -10,7 +10,7 @@ SetPackageInfo( rec(
 PackageName      := "FactInt",
 Subtitle         := "Advanced Methods for Factoring Integers", 
 Version          := "1.5.0",
-Date             := "17/09/2007",
+Date             := "19/09/2007",
 ArchiveURL       := "http://www.cip.mathematik.uni-stuttgart.de/~kohlsn/factint/factint-1.5.0",
 ArchiveFormats   := ".tar.gz",
 Persons          := [
