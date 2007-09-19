@@ -124,7 +124,7 @@ the &GAP; Library:
         (see&nbsp;<Ref Func="FactorsECM"
                        Label="Elliptic Curves Method, ECM"/>).
       </Item>
-      <Mark>FBMethod</Mark>
+      <Mark><A>FBMethod</A></Mark>
       <Item>
         Specifies which of the factor base methods should be
         used to do the <Q>hard work</Q>. Currently implemented:
