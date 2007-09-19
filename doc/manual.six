@@ -1,52 +1,138 @@
-C preface.tex 1. Preface
-I 1.0. prime ideals
-I 1.0. Generalized Number Field Sieve
-I 1.0. Pollard's Rho
-I 1.0. RSA Factoring Challenge
-C general.tex 2. The General Factorization Routine
-F 2.0. Factors
-I 2.0. correctness of the results
-I 2.0. partial factorization
-F 2.0. FactInt
-C methods.tex 3. The Routines for Specific Factorization Methods
-S 3.1. Trial Division
-F 3.1. FactorsTD
-S 3.2. Pollard's p-1
-F 3.2. FactorsPminus1
-I 3.2. Lagrange's Theorem
-S 3.3. Williams' p+1
-F 3.3. FactorsPplus1
-S 3.4. The Elliptic Curves Method (ECM)
-I 3.4. Elliptic Curves Method (ECM)
-F 3.4. FactorsECM
-F 3.4. ECM
-I 3.4. first stage limit
-I 3.4. second stage limit
-I 3.4. elliptic curve groups
-I 3.4. E(a,b)/n
-I 3.4. elliptic curve point
-I 3.4. projective coordinates
-I 3.4. Weierstrass model
-S 3.5. The Continued Fraction Algorithm (CFRAC)
-I 3.5. Continued Fraction Algorithm (CFRAC)
-F 3.5. FactorsCFRAC
-F 3.5. CFRAC
-I 3.5. continued fraction approximation
-I 3.5. factor base
-I 3.5. large factors (factor base)
-I 3.5. Gaussian Elimination
-S 3.6. The Multiple Polynomial Quadratic Sieve (MPQS)
-I 3.6. Multiple Polynomial Quadratic Sieve (MPQS)
-F 3.6. FactorsMPQS
-F 3.6. MPQS
-I 3.6. sieving interval
-C timings.tex 4. How much Time does a Factorization take ?
-S 4.1. The General Factorization Routine
-S 4.2. Timings for ECM
-S 4.3. Timings for the MPQS
-C info.tex 5. Getting Information about the Factoring Process
-I 5.0. information about factoring process
-F 5.0. IntegerFactorizationInfo
-F 5.0. InfoFactInt
-F 5.0. FactIntInfo
-F 5.0. FactInfo
+#SIXFORMAT  GapDocGAP
+HELPBOOKINFOSIXTMP := rec(
+encoding := "UTF-8",
+bookname := "FactInt",
+entries :=
+[ [ "Title page", "", [ 0, 0, 0 ], 1, 1, "title page", "X7D2C85EC87DD46E5" ], 
+  [ "Abstract", "-2", [ 0, 0, 2 ], 31, 2, "abstract", "X7AA6C5737B711C89" ], 
+  [ "Copyright", "-1", [ 0, 0, 1 ], 54, 2, "copyright", "X81488B807F2A1CF1" ],
+  [ "Acknowledgements", "-3", [ 0, 0, 3 ], 60, 2, "acknowledgements", 
+      "X82A988D47DFAFCFA" ], 
+  [ "Table of contents", "-4", [ 0, 0, 4 ], 66, 3, "table of contents", 
+      "X8537FEB07AF2BEC8" ], 
+  [ "\033[1XPreface\033[0X", "1.", [ 1, 0, 0 ], 1, 4, "preface", 
+      "X874E1D45845007FE" ], 
+  [ "\033[1XThe General Factorization Routine\033[0X", "2.", [ 2, 0, 0 ], 1, 
+      5, "the general factorization routine", "X7B1A84BB788FC526" ], 
+  [ "\033[1XThe method for \033[10XFactors\033[1X\033[0X", "2.1", 
+      [ 2, 1, 0 ], 4, 5, "the method for factors", "X83BF2CD28017ABC5" ], 
+  [ "\033[1XGetting information about the factoring process\033[0X", "2.2", 
+      [ 2, 2, 0 ], 147, 7, "getting information about the factoring process", 
+      "X80EB87DD80462F80" ], 
+  [ "\033[1XThe Routines for Specific Factorization Methods\033[0X", "3.", 
+      [ 3, 0, 0 ], 1, 12, "the routines for specific factorization methods", 
+      "X7E7EE1A1785A8009" ], 
+  [ "\033[1XTrial Division\033[0X", "3.1", [ 3, 1, 0 ], 8, 12, 
+      "trial division", "X7A0392177E697956" ], 
+  [ "\033[1XPollard's p-1\033[0X", "3.2", [ 3, 2, 0 ], 29, 12, 
+      "pollards p-1", "X8081FF657DA9C674" ], 
+  [ "\033[1XWilliams' p+1\033[0X", "3.3", [ 3, 3, 0 ], 70, 13, 
+      "williams p+1", "X860B4BE37DABDE10" ], 
+  [ "\033[1XThe Elliptic Curves Method (ECM)\033[0X", "3.4", [ 3, 4, 0 ], 
+      106, 14, "the elliptic curves method ecm", "X7837106783A5194B" ], 
+  [ "\033[1XThe Continued Fraction Algorithm (CFRAC)\033[0X", "3.5", 
+      [ 3, 5, 0 ], 194, 15, "the continued fraction algorithm cfrac", 
+      "X78466BB97BEE5495" ], 
+  [ "\033[1XThe Multiple Polynomial Quadratic Sieve (MPQS)\033[0X", "3.6", 
+      [ 3, 6, 0 ], 236, 16, "the multiple polynomial quadratic sieve mpqs", 
+      "X7A5C621C7FCFAA8A" ], 
+  [ "\033[1XHow much Time does a Factorization take?\033[0X", "4.", 
+      [ 4, 0, 0 ], 1, 17, "how much time does a factorization take?", 
+      "X85B6B6E4796B99EE" ], 
+  [ "\033[1XTimings for the general factorization routine\033[0X", "4.1", 
+      [ 4, 1, 0 ], 4, 17, "timings for the general factorization routine", 
+      "X825FC33479FE2B1D" ], 
+  [ "\033[1XTimings for the ECM\033[0X", "4.2", [ 4, 2, 0 ], 30, 17, 
+      "timings for the ecm", "X8131C8BD7F637545" ], 
+  [ "\033[1XTimings for the MPQS\033[0X", "4.3", [ 4, 3, 0 ], 80, 18, 
+      "timings for the mpqs", "X7E2D09BD7AD0D77F" ], 
+  [ "Bibliography", "bib.", [ "Bib", 0, 0 ], 1, 19, "bibliography", 
+      "X7A6F98FD85F02BFE" ], 
+  [ "References", "bib.", [ "Bib", 0, 0 ], 1, 19, "references", 
+      "X7A6F98FD85F02BFE" ], 
+  [ "Index", "ind.", [ "Ind", 0, 0 ], 1, 20, "index", "X83A0356F839C696F" ], 
+  [ "prime ideal", "1.", [ 1, 0, 0 ], 1, 4, "prime ideal", 
+      "X874E1D45845007FE" ], 
+  [ "Generalized Number Field Sieve", "1.", [ 1, 0, 0 ], 1, 4, 
+      "generalized number field sieve", "X874E1D45845007FE" ], 
+  [ "Pollard's Rho", "1.", [ 1, 0, 0 ], 1, 4, "pollards rho", 
+      "X874E1D45845007FE" ], 
+  [ "RSA Factoring Challenge", "1.", [ 1, 0, 0 ], 1, 4, 
+      "rsa factoring challenge", "X874E1D45845007FE" ], 
+  [ "\033[2XFactors\033[0X (FactInt's method, for integers)", "2.1-1", 
+      [ 2, 1, 1 ], 10, 5, "factors factints method for integers", 
+      "X833B087D7A83BC7A" ], 
+  [ "primality of the factors", "2.1-1", [ 2, 1, 1 ], 10, 5, 
+      "primality of the factors", "X833B087D7A83BC7A" ], 
+  [ "\033[2XFactInt\033[0X (factorization of an integer)", "2.1-2", 
+      [ 2, 1, 2 ], 114, 6, "factint factorization of an integer", 
+      "X866CD23D78460060" ], 
+  [ "information about factoring process", "2.2", [ 2, 2, 0 ], 147, 7, 
+      "information about factoring process", "X80EB87DD80462F80" ], 
+  [ "\033[2XIntegerFactorizationInfo\033[0X (FactInt's Info class)", "2.2-1", 
+      [ 2, 2, 1 ], 153, 7, "integerfactorizationinfo factints info class", 
+      "X809A3A747E47B404" ], 
+  [ "\033[2XInfoFactInt\033[0X (shorthand for IntegerFactorizationInfo)", 
+      "2.2-1", [ 2, 2, 1 ], 153, 7, 
+      "infofactint shorthand for integerfactorizationinfo", 
+      "X809A3A747E47B404" ], 
+  [ "Trial Division", "3.1", [ 3, 1, 0 ], 8, 12, "trial division", 
+      "X7A0392177E697956" ], 
+  [ "\033[2XFactorsTD\033[0X (trial division)", "3.1-1", [ 3, 1, 1 ], 11, 12, 
+      "factorstd trial division", "X7C4D255A789F54B4" ], 
+  [ "Pollard's p-1", "3.2", [ 3, 2, 0 ], 29, 12, "pollards p-1", 
+      "X8081FF657DA9C674" ], 
+  [ "\033[2XFactorsPminus1\033[0X (Pollard's p-1)", "3.2-1", [ 3, 2, 1 ], 32, 
+      12, "factorspminus1 pollards p-1", "X7AF95E2E87F58200" ], 
+  [ "Lagrange's Theorem", "3.2-1", [ 3, 2, 1 ], 32, 12, "lagranges theorem", 
+      "X7AF95E2E87F58200" ], 
+  [ "Williams' p+1", "3.3", [ 3, 3, 0 ], 70, 13, "williams p+1", 
+      "X860B4BE37DABDE10" ], 
+  [ "\033[2XFactorsPplus1\033[0X (Williams' p+1)", "3.3-1", [ 3, 3, 1 ], 73, 
+      13, "factorspplus1 williams p+1", "X8079A0367DE4FC35" ], 
+  [ "Elliptic Curves Method (ECM)", "3.4", [ 3, 4, 0 ], 106, 14, 
+      "elliptic curves method ecm", "X7837106783A5194B" ], 
+  [ "\033[2XFactorsECM\033[0X (Elliptic Curves Method, ECM)", "3.4-1", 
+      [ 3, 4, 1 ], 109, 14, "factorsecm elliptic curves method ecm", 
+      "X87B162F878AD031C" ], 
+  [ "\033[2XECM\033[0X (shorthand for FactorsECM)", "3.4-1", [ 3, 4, 1 ], 
+      109, 14, "ecm shorthand for factorsecm", "X87B162F878AD031C" ], 
+  [ "first stage limit", "3.4-1", [ 3, 4, 1 ], 109, 14, "first stage limit", 
+      "X87B162F878AD031C" ], 
+  [ "second stage limit", "3.4-1", [ 3, 4, 1 ], 109, 14, "second stage limit",
+      "X87B162F878AD031C" ], 
+  [ "elliptic curve groups", "3.4-1", [ 3, 4, 1 ], 109, 14, 
+      "elliptic curve groups", "X87B162F878AD031C" ], 
+  [ "elliptic curve point", "3.4-1", [ 3, 4, 1 ], 109, 14, 
+      "elliptic curve point", "X87B162F878AD031C" ], 
+  [ "projective coordinates", "3.4-1", [ 3, 4, 1 ], 109, 14, 
+      "projective coordinates", "X87B162F878AD031C" ], 
+  [ "Weierstrass model", "3.4-1", [ 3, 4, 1 ], 109, 14, "weierstrass model", 
+      "X87B162F878AD031C" ], 
+  [ "Continued Fraction Algorithm (CFRAC)", "3.5", [ 3, 5, 0 ], 194, 15, 
+      "continued fraction algorithm cfrac", "X78466BB97BEE5495" ], 
+  [ "\033[2XFactorsCFRAC\033[0X (Continued Fraction Algorithm, CFRAC)", 
+      "3.5-1", [ 3, 5, 1 ], 197, 15, 
+      "factorscfrac continued fraction algorithm cfrac", "X7A5C8BC5861CFC8C" ]
+    , 
+  [ "\033[2XCFRAC\033[0X (shorthand for FactorsCFRAC)", "3.5-1", [ 3, 5, 1 ], 
+      197, 15, "cfrac shorthand for factorscfrac", "X7A5C8BC5861CFC8C" ], 
+  [ "continued fraction approximation", "3.5-1", [ 3, 5, 1 ], 197, 15, 
+      "continued fraction approximation", "X7A5C8BC5861CFC8C" ], 
+  [ "factor base", "3.5-1", [ 3, 5, 1 ], 197, 15, "factor base", 
+      "X7A5C8BC5861CFC8C" ], 
+  [ "factor base large factors", "3.5-1", [ 3, 5, 1 ], 197, 15, 
+      "factor base large factors", "X7A5C8BC5861CFC8C" ], 
+  [ "Gaussian Elimination", "3.5-1", [ 3, 5, 1 ], 197, 15, 
+      "gaussian elimination", "X7A5C8BC5861CFC8C" ], 
+  [ "Multiple Polynomial Quadratic Sieve (MPQS)", "3.6", [ 3, 6, 0 ], 236, 
+      16, "multiple polynomial quadratic sieve mpqs", "X7A5C621C7FCFAA8A" ], 
+  [ "\033[2XFactorsMPQS\033[0X (Multiple Polynomial Quadratic Sieve, MPQS)", 
+      "3.6-1", [ 3, 6, 1 ], 239, 16, 
+      "factorsmpqs multiple polynomial quadratic sieve mpqs", 
+      "X86F8DFB681442E05" ], 
+  [ "\033[2XMPQS\033[0X (shorthand for FactorsMPQS)", "3.6-1", [ 3, 6, 1 ], 
+      239, 16, "mpqs shorthand for factorsmpqs", "X86F8DFB681442E05" ], 
+  [ "sieving interval", "3.6-1", [ 3, 6, 1 ], 239, 16, "sieving interval", 
+      "X86F8DFB681442E05" ] ]
+);
