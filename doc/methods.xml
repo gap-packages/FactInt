@@ -11,15 +11,15 @@
 
 Descriptions of the factoring methods implemented in this package can
 be found in&nbsp;<Cite Key="Bressoud89"/> and <Cite Key="Cohen93"/>.
-The last book contains also descriptions of the other methods mentioned
+Cohen's book contains also descriptions of the other methods mentioned
 in the preface.
 
 <!-- #################################################################### -->
 
 <Section Label="sec:TrialDivision">
-<Heading>Trial Division</Heading>
+<Heading>Trial division</Heading>
 
-<Index Key="Trial Division">Trial Division</Index>
+<Index Key="trial division">trial division</Index>
 
 <ManSection>
   <Func Name="FactorsTD" Arg="n [, Divisors ]" Label="trial division"/>
@@ -29,7 +29,7 @@ in the preface.
     if there are any.
   </Returns>
   <Description>
-    This function tries to factor <A>n</A> using Trial Division.
+    This function tries to factor <A>n</A> by trial division.
     The optional argument <A>Divisors</A> is the list of trial divisors.
     If not given, it defaults to the list of primes <M>p &lt; 1000</M>.
 <Example>
@@ -80,19 +80,19 @@ gap> FactorsTD(12^25+25^12);
     <M>\gcd(a^{k!}-1,n)</M>. A prime factor <M>p</M> is usually found if
     the largest prime factor of <M>p-1</M> is not larger than <A>Limit2</A>,
     and the second-largest one is not larger than <A>Limit1</A>.
-    (Compare with <Ref Func="FactorsPplus1" Label="Williams' p+1"/>"
+    (Compare with <Ref Func="FactorsPplus1" Label="Williams' p+1"/>
     and&nbsp;<Ref Func="FactorsECM" Label="Elliptic Curves Method, ECM"/>.)
 <Example>
 <![CDATA[
 gap> FactorsPminus1( Factorial(158) + 1, 100000, 1000000 );
 [ [ 2879, 5227, 1452486383317, 9561906969931, 18331561438319, 
-      483714299709483760811581110341732950506493218122654853400674921345082310\
-906370452295654816571305041217323052879842924826121333143254713674832962773107\
-806789945715570386038565256719614524924705165110048148716160964980629081176057\
-0095669 ], [  ] ]
+      4837142997094837608115811103417329505064932181226548534006749213\
+4508231090637045229565481657130504121732305287984292482612133314325471\
+3674832962773107806789945715570386038565256719614524924705165110048148\
+7161609649806290811760570095669 ], [  ] ]
 gap> List( last[ 1 ]{[ 3, 4, 5 ]}, p -> Factors( p - 1 ) );
-[ [ 2, 2, 3, 3, 81937, 492413 ], [ 2, 3, 3, 3, 5, 7, 7, 1481, 488011 ], 
-  [ 2, 3001, 7643, 399613 ] ]
+[ [ 2, 2, 3, 3, 81937, 492413 ], [ 2, 3, 3, 3, 5, 7, 7, 1481, 488011 ]
+    , [ 2, 3001, 7643, 399613 ] ]
 ]]>
 </Example>
   </Description>
@@ -222,9 +222,9 @@ gap> List( last[ 1 ], p -> [ Factors( p - 1 ), Factors( p + 1 ) ] );
     of factoring <A>n</A> as well as choosing a larger value
     for <A>Limit1</A> and/or <A>Limit2</A>. It turns out to be not optimal
     either to try a large number of curves with very small <A>Limit1</A>
-    and <A>Limit2</A> or to grind on with a single curve and very large
-    limits. (Compare with&nbsp;<Ref Func="FactorsPminus1"
-                                    Label="Pollard's p-1"/>.)
+    and <A>Limit2</A> or to try only a few curves with very large limits.
+    (Compare with&nbsp;<Ref Func="FactorsPminus1"
+                            Label="Pollard's p-1"/>.)
     <P/>
 
     The elements of the group <M>E(a,b)/n</M> are the points <M>(x,y)</M>
@@ -255,8 +255,8 @@ gap> List( last[ 1 ], p -> [ Factors( p - 1 ), Factors( p + 1 ) ] );
     projective coordinates to have an explicit representation of the
     identity element and to avoid calculating inverses (mod&nbsp;<M>n</M>)
     for the group operation. Otherwise this would require using an
-    <M>O((log n)^3)</M>-algorithm, while multiplication (mod&nbsp;<M>n</M>)
-    is only <M>O((log n)^2)</M>. The corresponding equation is given by
+    <M>O((log \ n)^3)</M>-algorithm, while multiplication (mod&nbsp;<M>n</M>)
+    is only <M>O((log \ n)^2)</M>. The corresponding equation is given by
     <M>bY^2Z = X^3 + aX^2Z + XZ^2</M>. This form allows even more efficient
     computations than the
     <Index Key="Weierstrass model">Weierstrass model</Index>
@@ -274,7 +274,8 @@ gap> List( last[ 1 ], p -> [ Factors( p - 1 ), Factors( p + 1 ) ] );
 <![CDATA[
 gap> FactorsECM(2^256+1,100,10000,1000000,100);
 [ [ 1238926361552897, 
-      93461639715357977769163558199606896584051237541638188580280321 ], [  ] ]
+      93461639715357977769163558199606896584051237541638188580280321 ]
+    , [  ] ]
 ]]>
 </Example>
   </Description>
@@ -302,16 +303,20 @@ gap> FactorsECM(2^256+1,100,10000,1000000,100);
   <Description>
     This function tries to factor <A>n</A> using the Continued Fraction
     Algorithm (CFRAC), also known as Brillhart-Morrison Algorithm.
-    In case of failure an error is signalled. The same warning applies
-    as to the Quadratic Sieve
-    (see <Ref Func="FactorsMPQS"
-              Label="Multiple Polynomial Quadratic Sieve, MPQS"/>). <P/>
+    In case of failure an error is signalled. <P/>
+
+    Caution: The runtime of this function depends only on the size
+    of&nbsp;<A>n</A>, and not on the size of the factors.
+    Thus if a small factor is not found during the preprocessing
+    which is done before invoking the sieving process, the runtime is
+    as long as if <A>n</A> would have two prime factors of roughly
+    equal size. <P/>
 
     The Continued Fraction Algorithm tries to find integers <M>x</M>
     and&nbsp;<M>y</M> such that <M>x^2 \equiv y^2</M> (mod&nbsp;<M>n</M>),
     but not <M>\pm x \equiv \pm y</M> (mod&nbsp;<M>n</M>).
     In this situation, taking <M>\gcd(x - y,n)</M> yields a nontrivial
-    factor of&nbsp;<M>n</M>. For determining such a pair <M>(x,y)</M>,
+    divisor of&nbsp;<M>n</M>. For determining such a pair <M>(x,y)</M>,
     the algorithm uses the continued fraction expansion of the square root
     of&nbsp;<M>n</M>. If <M>x_i/y_i</M> is a
     <Index Key="continued fraction approximation">
@@ -378,7 +383,7 @@ gap> FactorsCFRAC( Factorial(34) - 1 );
     In case of failure an error is signalled. <P/>
 
     Caution: The runtime of this function depends only on the size
-    of&nbsp;<A>n</A>, not on the size of the factors.
+    of&nbsp;<A>n</A>, and not on the size of the factors.
     Thus if a small factor is not found during the preprocessing
     which is done before invoking the sieving process, the runtime is
     as long as if <A>n</A> would have two prime factors of roughly
@@ -390,7 +395,7 @@ gap> FactorsCFRAC( Factorial(34) - 1 );
     the computation again to be pushed as a record <A>MPQSTmp</A>
     on the options stack.
     When called again with the same argument <A>n</A>, <C>FactorsMPQS</C>
-    takes the record from the options stack and uses the previously
+    takes the record from the options stack and continues with the previously
     computed factorization data. For continuing the factorization process
     in another session, one needs to write this record to a file.
     This can be done by the function <C>SaveMPQSTmp(<A>filename</A>)</C>.
@@ -400,22 +405,22 @@ gap> FactorsCFRAC( Factorial(34) - 1 );
     The Multiple Polynomial Quadratic Sieve tries to find integers <M>x</M>
     and&nbsp;<M>y</M> such that <M>x^2 \equiv y^2</M> (mod&nbsp;<M>n</M>),
     but not <M>\pm x \equiv \pm y</M> (mod&nbsp;<M>n</M>).
-    In this situation, taking <M>\gcd(x - y,n)</M> yields a non-trivial
-    factor of&nbsp;<M>n</M>. For determining such a pair <M>(x,y)</M>,
+    In this situation, taking <M>\gcd(x - y,n)</M> yields a nontrivial
+    divisor of&nbsp;<M>n</M>. For determining such a pair <M>(x,y)</M>,
     the algorithm chooses polynomials <M>f_a</M> of the form
     <M>f_a(r) = ar^2 + 2br + c</M> with suitably chosen coefficients
     <M>a</M>, <M>b</M> and&nbsp;<M>c</M> which satisfy <M>b^2 \equiv n</M>
     (mod&nbsp;<M>a</M>) and <M>c = (b^2 - n)/a</M>.
-    The identity <M>a \times f_a(r) = (ar + b)^2 - n</M> yields a congruence
-    (mod&nbsp;<M>n</M>) with a perfect square on one side and
-    <M>a \times f_a(r)</M> on the other. The algorithm uses a sieving
+    The identity <M>a \cdot f_a(r) = (ar + b)^2 - n</M> yields
+    a congruence (mod&nbsp;<M>n</M>) with a perfect square on one side
+    and <M>a \cdot f_a(r)</M> on the other. The algorithm uses a sieving
     technique similar to the Sieve of Eratosthenes over an appropriately
     chosen
     <Index Key="sieving interval">sieving interval</Index>
     sieving interval to search for factorizations of values <M>f_a(r)</M>
     over a chosen factor base. Any two factorizations with the same single
     <Q>large</Q> factor which does not belong to the factor base can also be
-    used. Taking more polynomials and hence shorter sieving intervals yields
+    used. Taking more polynomials and hence shorter sieving intervals has
     the advantage of having to factor smaller values <M>f_a(r)</M> over the
     factor base. <P/>
 

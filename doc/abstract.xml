@@ -16,9 +16,9 @@ algorithms:
 <List>
   <Item>Pollard's <M>p-1</M></Item>
   <Item>Williams' <M>p+1</M></Item>
-  <Item>The Elliptic Curves Method (ECM)</Item>
-  <Item>The Continued Fraction Algorithm (CFRAC)</Item>
-  <Item>The Multiple Polynomial Quadratic Sieve (MPQS)</Item>
+  <Item>Elliptic Curves Method (ECM)</Item>
+  <Item>Continued Fraction Algorithm (CFRAC)</Item>
+  <Item>Multiple Polynomial Quadratic Sieve (MPQS)</Item>
 </List>
 
 It also contains code by Frank Lübeck for making use of Richard P.

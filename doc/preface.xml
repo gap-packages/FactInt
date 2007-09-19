@@ -42,11 +42,11 @@ prime ideals in the case of the
   Generalized Number Field Sieve
 </Index>
 Generalized Number Field Sieve.
-They use these factorizations to determine a pair of integers <M>(x,y)</M>
-such that <M>x^2</M> and <M>y^2</M> are congruent (mod&nbsp;<M>n</M>),
-but <M>\pm x</M> and <M>\pm y</M> are not.
-In this situation, taking Gcd(<M>n</M>,<M>x-y</M>) will yield
-a non-trivial divisor of&nbsp;<M>n</M>.
+The factor base methods use these factorizations to determine a pair of
+integers <M>(x,y)</M> such that <M>x^2</M> and <M>y^2</M> are congruent
+(mod&nbsp;<M>n</M>), but <M>\pm x</M> and <M>\pm y</M> are not.
+In this situation, taking <M>\gcd(n,x-y)</M> will yield
+a nontrivial divisor of&nbsp;<M>n</M>.
 Representatives of this class are the Continued Fraction Algorithm
 (CFRAC), the Multiple Polynomial Quadratic Sieve (MPQS) and the
 already mentioned Generalized Number Field Sieve (GNFS). The latter has
@@ -57,8 +57,8 @@ which is probably not within the feasible range of such a function
 implemented in&nbsp;&GAP;.
 The first two methods are implemented in this package. <P/>
 
-The only method which I am aware of (except of the <Q>naive</Q> ones like
-trial division and some <Q>historical</Q> methods)
+Except of the <Q>naive</Q> methods like trial division and some
+<Q>historical</Q> methods, the only method which I am aware of
 that does not fit into one of the two classes mentioned above is
 <Index Key="Pollard's Rho">Pollard's Rho</Index>
 Pollard's Rho, which is already implemented in the &GAP; Library. <P/>

@@ -44,7 +44,7 @@ are only suitable for finding factors with certain properties and CFRAC
                Label="Continued Fraction Algorithm, CFRAC"/>)
 is just a slower predecessor of the MPQS).
 All absolute timings are given for a Pentium&nbsp;200 under Windows
-as a reference machine (such a machine was a fast PC at the time the first
+as a reference machine (this was a fast machine at the time the first
 version of this package has been written).
 
 </Section>
