@@ -220,28 +220,30 @@ Optionally, the &FactInt; package prints information on the progress of
 the factorization process:
 
 <ManSection>
-  <InfoClass Name="IntegerFactorizationInfo"
-             Label="FactInt's Info class"/>
   <InfoClass Name="InfoFactInt"
-             Label="shorthand for IntegerFactorizationInfo"/>
+             Label="FactInt's Info class"/>
+  <Func      Name="FactIntInfo" Arg="level"
+             Label="setting the InfoLevel of InfoFactInt"/>
   <Description>
     This Info class allows to monitor what happens during the factoring
-    process. For a description of the Info mechanism, see
-    Section <E>Info Functions</E> in the &GAP; Reference Manual. <P/>
+    process. <P/>
 
-    If <C>InfoLevel(IntegerFactorizationInfo) = 1</C>, then basic information
+    If <C>InfoLevel(InfoFactInt) = 1</C>, then basic information
     about the factoring techniques used is displayed. If this InfoLevel has
     value&nbsp;2, then additionally all <Q>relevant</Q> steps in the
     factoring algorithms are mentioned. If it is set equal to&nbsp;3, then
     large amounts of details of the progress of the factoring process are
-    shown. The informational output is usually not literally the same in
-    each factorization attempt to a given integer with given parameters. <P/>
+    shown. <P/>
 
-    For convenience, <C>FactIntInfo(<A>level</A>)</C> sets the
-    <C>InfoLevel</C> of <C>IntegerFactorizationInfo</C> to the positive
-    integer <A>level</A>. <C>FactIntInfo(<A>level</A>);</C> is equivalent
-    to <C>SetInfoLevel( IntegerFactorizationInfo,<A>level</A>);</C>.
-    There is a shorthand <C>FactInfo</C> for <C>FactIntInfo</C>.
+    Enter <C>FactIntInfo(<A>level</A>)</C> to set the
+    <C>InfoLevel</C> of <C>InfoFactInt</C> to the positive
+    integer <A>level</A>. The call <C>FactIntInfo(<A>level</A>);</C>
+    is equivalent to <C>SetInfoLevel(InfoFactInt,<A>level</A>);</C>. <P/>
+
+    The informational output is usually not literally the same in
+    each factorization attempt to a given integer with given parameters.
+    For a description of the Info mechanism, see Section
+    <E>Info Functions</E> in the &GAP; Reference Manual. 
   </Description>
 </ManSection>
 
