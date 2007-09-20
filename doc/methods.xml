@@ -448,6 +448,8 @@ gap> FactorsMPQS( Factorial(38) + 1 );
   </Description>
 </ManSection>
 
+<Alt Only="HTML">&nbsp;</Alt>
+
 </Section>
 
 <!-- #################################################################### -->

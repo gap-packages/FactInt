@@ -95,7 +95,7 @@ Changes between version 1.4.11 and version 1.4.12:
    the ECM spent on the first or the second stage of a curve was below 1ms.
    It has been reported by Doug McTavish.
 
-Changes between version 1.4.12 and version 1.5.0 (September 19, 2007):
+Changes between version 1.4.12 and version 1.5.1 (September 20, 2007):
 
  - The manual has been converted to GAPDoc format.
  - Sometimes in version 1.4.12 the loading of autoreadable global variables
