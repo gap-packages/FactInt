@@ -226,13 +226,12 @@ InstallGlobalFunction( "FetchBrentFactors",
 
     local  str, get, comm, rows, b, k, a, dir;
 
-    # fetch the file from R. Brents ftp site and gunzip it into 'str'
+    # Fetch the file from R. P. Brent's ftp site and gunzip it into 'str'.
 
     str := "";
     get := OutputTextString(str, false);
-    comm := Concatenation("wget -q ftp://ftp.comlab.ox.ac.uk/pub/",
-                          "Documents/techpapers/Richard.Brent/factors/",
-                          "factors.gz -O - | gzip -dc ");
+    comm := Concatenation("wget -q http://wwwmaths.anu.edu.au/~brent/ftp/",
+                          "factors/factors.gz -O - | gzip -dc ");
     Process(DirectoryCurrent(), Filename(DirectoriesSystemPrograms(),"sh"),
             InputTextUser(), get, ["-c", comm]);
   
