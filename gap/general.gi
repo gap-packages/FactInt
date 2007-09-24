@@ -8,7 +8,7 @@
 ##  This file contains the general routines for integer factorization and
 ##  auxiliary functions used by them and/or more than one of the 
 ##  functions for the specific factorization methods implemented in
-##  pminus1.gi (Pollard's $p-1$), pplus1.gi (Williams' $p+1$), ecm.gi 
+##  pminus1.gi (Pollard's p-1), pplus1.gi (Williams' p+1), ecm.gi 
 ##  (Elliptic Curves Method, ECM), cfrac.gi (Continued Fraction Algorithm,
 ##  CFRAC) and mpqs.gi (Multiple Polynomial Quadratic Sieve, MPQS).
 ##
@@ -27,7 +27,7 @@
 ##  Generalized Number Field Sieve (GNFS), which is the asymptotically
 ##  most efficient factoring method known today. The GNFS is not
 ##  implemented in this package, because the MPQS is usually faster for
-##  numbers less than about $10^{100}$.
+##  numbers less than about 10^100.
 ##  Factoring ``difficult'' numbers of this order of magnitude is far
 ##  beyond the scope in this context.
 ##
@@ -118,7 +118,7 @@ MakeReadOnlyGlobal("SaveMPQSTmp");
 
 
 # Initialize the prime differences list
-# (used by ECM, Pollard's $p-1$ and Williams' $p+1$ for second stages)
+# (used by ECM, Pollard's p-1 and Williams' p+1 for second stages)
 
 BindGlobal("PrimeDiffs",[]);
 BindGlobal("PrimeDiffLimit",1000000);
@@ -180,7 +180,7 @@ MakeReadOnlyGlobal("InitPrimeDiffs");
 #
 # The source for the data is
 #
-# http://web.comlab.ox.ac.uk/oucl/work/richard.brent/factors.html.
+# http://wwwmaths.anu.edu.au/~brent/ftp/factors/factors.gz.
 #
 # The code for accessing these factorization tables has been contributed
 # by Frank Lübeck.
@@ -191,19 +191,18 @@ BindGlobal("BRENTFACTORSAVAILABLE", BlistStringDecode(
 FFFEFFFFDFFFF7FFFFFFFFEFFFFFFFFFF7FFFFFFFFFEFFFFFFEFFFF7FFFFFFFFFFEFFFFFFFFFFF\
 F7FFFFFFFFFFFEFFFFFFFFFFFFF7FFFFFFFFFFFFEFFFFFFFFFFFFFF7FFFFFFFFFFFFFEFFFFFFFF\
 FFFFFFF7FFFFFFFFE55D544774D5555574145577DD1555B715515570531415D555908890002000\
-10D820022208016000212000100A0A00008s032006s02103024s02A2s020200280242s020201s0\
-2098000080402s0280s030880s0220s030210008210s080822s0709000210s02200080s0280s09\
-80s0320s02A0s05020008000230s0220000200010As03082200080002s0480s052008s0210s030\
-4008A08s068080s0202s0601001040s07020080s0520s0202s0202s0202s042080s0420s0208s0\
-520s0509s020402800820s039808s03200240s0740000210s04020080s082020s0202000800088\
-020s0221s0702s04800002s05408002s0402s021220s074020s08040040s08802020s024008s0B\
-02s0308s0920s0220s0602s0280s110201s062002s0220s05084002s0902s050800801008s0208\
-0002080008s0502s078000200082s0620s060280s0808s0202s0A20s0A20s0220s0508s0A08s03\
-080008s0601s0620s020280s1620s038010s0380s0302s0208s0320s0902s0602s0609s1080s13\
-A0s031008s0508s0A08s0508s0C20s0301s2A80s0280s0880s0702s0D08s05080200010002s0D2\
-088s0402s0B20s1502s0508s0780s11220001s0702s0802s0502s130200200010s0B08s0420s0A\
-20s0508s0208s0508s0301s0580s0720s0A080002s0580s060820s0710s0580s0480s1A20s0A04\
-"));
+10D820022208016000212000100A0A00008s032006s033024s02A2s020200280242s020201s020\
+88000080402s0280s030880s0220s0302s028210s080822s0708000210s02200080s0280s0980s\
+0320s02A0s05020008000230s02200002s020As03082200080002s0480s052008s0604008A08s0\
+68080s0202s081040s07020080s0520s0202s0202s0202s042080s0420s0208s0520s0508s0204\
+02800820s039808s03200240s07400002s05020080s082020s0202000800088020s0220s0702s0\
+4800002s05408002s0402s020220s074020s08040040s08802020s024008s0B02s0308s0920s02\
+20s0602s0280s110201s062002s0220s05084002s0902s050800800008s02080002080008s0502\
+s078000200082s0620s060280s0808s0202s0A20s0A20s0220s0508s0A08s03080008s0D20s020\
+280s1620s0380s0480s0302s0208s0320s0902s0602s0608s1080s13A0s0408s0508s0A08s0508\
+s0C20s2E80s0280s0880s0702s0D08s050802s0302s0D2088s0402s0B20s1502s0508s0780s112\
+2s0902s0802s0502s13020020s0D08s0420s0A20s0508s0208s0508s0980s0720s0A080002s058\
+0s060820s0D80s0480s1A20s0A04"));
 
 BindGlobal( "WriteBrentFactorsFiles",
 
@@ -645,7 +644,7 @@ function ( n )
 
   if AbsInt(n) < 10^12 then
     Info(IntegerFactorizationInfo,3," | ",n," | ",
-         "< 10^12, so use library function `FactorsInt'");
+         "< 10^12, so use GAP Library function `FactorsInt'");
     return [FactorsInt(n),[]];
   fi;
 
@@ -1006,7 +1005,7 @@ InstallMethod( Factors,
 
   function ( Integers, n )
 
-    if IsSmallIntRep( n ) then
+    if AbsInt(n) <= 268435455 then  # 32-bit small integer
       return FactorsInt( n );
     else
       return IntegerFactorization(n);
