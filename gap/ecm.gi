@@ -17,25 +17,27 @@
 ##  <Delta>   the increment per curve for the first stage limit
 ##            (the second stage limit is adjusted appropriately)
 ##
-##  The result is returned as a list of two lists. The first list
-##  contains the prime factors found, and the second list contains
-##  remaining unfactored parts of <n>, if there are any.
+##  The result is returned as a list of two lists. The first list contains
+##  the prime factors found, and the second list contains remaining
+##  unfactored parts of <n>, if there are any.
 ##
-##  The computations are done with elliptic curve points given in
-##  projective coordinates [$X$,$Y$,$Z$], as integer solutions of
-##  $b Y^2 Z = X^3 + a X^2 Z + X Z^2$, where the ``point at infinity'',
-##  the identity element of the group E($a$,$b$)/$n$, corresponds to
-##  [0,$Y$,0] (with arbitrary $Y$).
-##  This avoids the calculation of inverses (mod <n>) for the
-##  group operation and gives the advantage of having an explicit 
-##  representation of the identity element
-##  on the one hand, but requires more multiplications (mod <n>)
-##  than in affine representation on the other hand; since inversion
-##  (mod <n>) is O($(\log n)^3$) and multiplication (mod <n>) is only
-##  O($(\log n)^2$), this is at least asymptotically a good choice.
+##  The computations are done with elliptic curve points given in projective
+##  coordinates [X,Y,Z], as integer solutions of
 ##
-##  The algorithm only keeps track on two of the three coordinates,
-##  namely $X$ and $Z$.
+##                      b*Y^2*Z = X^3 + a*X^2*Z + X*Z^2,
+##
+##  where the ``point at infinity'', the identity element of the group
+##  E(a,b)/n, corresponds to [0,Y,0] (with arbitrary Y). This avoids the
+##  calculation of inverses (mod <n>) for the group operation and gives the
+##  advantage of having an explicit representation of the identity element
+##  on the one hand, but requires more multiplications (mod <n>) than in
+##  affine representation on the other hand; since inversion (mod <n>) is
+##  O((log n)^3) and multiplication (mod <n>) is only O((log n)^2), this is
+##  at least asymptotically a good choice.
+##
+##  The algorithm only keeps track on two of the three coordinates, namely
+##  X and Z.
+##
 ##  The choice of curves is done in a way that ensures the order of the
 ##  respective group to be divisible by 12.
 ##

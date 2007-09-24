@@ -4,7 +4,7 @@
 ##
 #H  @(#)$Id$
 ##
-##  This file contains functions for factorization using Pollard's $p-1$.
+##  This file contains functions for factorization using Pollard's p-1.
 ##
 ##  Arguments of FactorsPminus1:
 ##

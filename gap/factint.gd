@@ -44,8 +44,7 @@ DeclareSynonym( "FactInfo", FactIntInfo );
 ##
 ##  A utility for fetching the current version of
 ##
-##  ftp://ftp.comlab.ox.ac.uk/pub/Documents/techpapers/Richard.Brent/factors/
-##  factors.gz
+##  http://wwwmaths.anu.edu.au/~brent/ftp/factors/factors.gz
 ##
 ##  from the network and unpacking the information into 'BRENTFACTORS'.
 ##  This information is then stored in the directory pkg/factint/tables.
@@ -70,7 +69,7 @@ DeclareGlobalFunction( "FactorsTD" );
 ##
 #F  FactorsPminus1( <n> [ [, <a> ], <Limit1> [, <Limit2> ] ] )
 ##
-##  Prime factorization of the integer <n>, using Pollard's $p-1$ with
+##  Prime factorization of the integer <n>, using Pollard's p-1 with
 ##  first stage limit <Limit1>, second stage limit <Limit2> and 
 ##  exponentiation base <a>. (Without much loss of generality, one can
 ##  use <a> = 2 -- this is also the default).
@@ -85,9 +84,9 @@ DeclareGlobalFunction( "FactorsPminus1" );
 ##
 #F  FactorsPplus1( <n> [ [, <Residues> ], <Limit1> [, <Limit2> ] ] )
 ##
-##  Prime factorization of the integer <n>, using a variant of Williams'
-##  $p+1$ with first stage limit <Limit1> and second stage limit <Limit2>
-##  for <Residues> different residues.
+##  Prime factorization of the integer <n>, using a variant of Williams' p+1
+##  with first stage limit <Limit1> and second stage limit <Limit2> for
+##  <Residues> different residues.
 ##
 ##  The result is returned as a list of two lists. The first list
 ##  contains the prime factors found, and the second list contains
@@ -161,11 +160,11 @@ DeclareSynonym( "MPQS", FactorsMPQS );
 ##  <TDHints>          a list of additional trial divisors
 ##  <RhoSteps>         number of steps for Pollard's Rho
 ##  <RhoCluster>       interval for Gcd computation in Pollard's Rho
-##  <Pminus1Limit1>    first stage limit for Pollard's $p-1$
-##  <Pminus1Limit2>    second stage limit for Pollard's $p-1$ 
-##  <Pplus1Residues>   number of residues to be tried in William's $p+1$
-##  <Pplus1Limit1>     first stage limit for William's $p+1$
-##  <Pplus1Limit2>     second stage limit for William's $p+1$
+##  <Pminus1Limit1>    first stage limit for Pollard's p-1
+##  <Pminus1Limit2>    second stage limit for Pollard's p-1
+##  <Pplus1Residues>   number of residues to be tried in William's p+1
+##  <Pplus1Limit1>     first stage limit for William's p+1
+##  <Pplus1Limit2>     second stage limit for William's p+1
 ##  <ECMCurves>        number of elliptic curves to be tried by 
 ##                     the Elliptic Curves Method (ECM),
 ##                     also admissible: a function that takes the number to

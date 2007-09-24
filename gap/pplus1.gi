@@ -5,7 +5,7 @@
 #H  @(#)$Id$
 ##
 ##  This file contains functions for factorization using a variant of
-##  Williams' $p+1$.
+##  Williams' p+1.
 ##
 ##  Arguments of FactorsPplus1:
 ##
