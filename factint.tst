@@ -11,8 +11,8 @@
 ##
 
 gap> START_TEST("$Id$");
-gap> oldwarninglevel := InfoLevel(InfoWarning);;
-gap> SetInfoLevel(InfoWarning,0);
+gap> oldwarninglevel := InfoLevel(InfoPrimeInt);;
+gap> SetInfoLevel(InfoPrimeInt,0);
 gap> IntegerFactorization(Factorial(39)+1:ECMDeterministic);
 [ 79, 57554485363, 146102648914939, 30705821478100704367 ]
 gap> FactInt(Factorial(43)-1:ECMDeterministic);
@@ -32,7 +32,7 @@ gap> FactorsCFRAC(Factorial(24)-1);
 [ 625793187653, 991459181683 ]
 gap> FactorsMPQS(NrPartitions(808));
 [ 5963320232189, 1366982853893003 ]
-gap> SetInfoLevel(InfoWarning,oldwarninglevel);
+gap> SetInfoLevel(InfoPrimeInt,oldwarninglevel);
 gap> STOP_TEST( "factint.tst", 10000000000 );
 
 #############################################################################
