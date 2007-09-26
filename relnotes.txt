@@ -102,6 +102,11 @@ Changes between version 1.4.12 and version 1.5.1 (September 20, 2007):
    was unnecessarily triggered, which resulted in short delays and some
    wasting of memory. This issue has been resolved.
 
+Changes between version 1.5.1 and version 1.5.2:
+
+ - FactInt now uses a flexible caching mechanism for factorizations of
+   small integers. This yields a substantial speedup when many small numbers
+   are factored.
 
 
 
