@@ -96,8 +96,11 @@ end;
 MakeReadOnlyGlobal("FactorizationCheck");
 
 
-# Initialize the factorization cache
+# Initialize the factorization caches
 
+BindGlobal("FACTINT_SMALLINTCACHE_LIMIT",64);
+BindGlobal("FACTINT_SMALLINTCACHE",List([1..64],FactorsInt));
+BindGlobal("FACTINT_SMALLINTCOUNT",0);
 BindGlobal("FACTINT_CACHE",[]);
 BindGlobal("FACTINT_FACTORS_CACHE",[]);
 
@@ -853,13 +856,14 @@ function ( n )
   # cast out the medium-sized factors
 
   if RhoSteps > 0 then
-  ApplyFactoringMethod(FactorsRho,[1,RhoCluster,RhoSteps],
-                       FactorizationObtainedSoFar,infinity,
-                       ["Pollard's Rho\nSteps = ",RhoSteps,
-                        ", Cluster = ",RhoCluster,
-                        "\nNumber to be factored : ","n"]:
-                        UseProbabilisticPrimalityTest); fi;
-  StateInfo();
+    ApplyFactoringMethod(FactorsRho,[1,RhoCluster,RhoSteps],
+                         FactorizationObtainedSoFar,infinity,
+                         ["Pollard's Rho\nSteps = ",RhoSteps,
+                          ", Cluster = ",RhoCluster,
+                          "\nNumber to be factored : ","n"]:
+                          UseProbabilisticPrimalityTest);
+    StateInfo();
+  fi;
 
   if ForAny(FactorizationObtainedSoFar[2],comp->comp>10^40) then
     ApplyFactoringMethod(FactorsFermat,[1000,1], # Once again, try harder
@@ -955,6 +959,37 @@ function ( n )
   if   not IsInt(n) 
   then Error("Usage: IntegerFactorization( <n> ), ",
              "where n has to be an integer"); fi;
+  if AbsInt(n) <= FACTINT_SMALLINTCACHE_LIMIT then
+    if   n > 0 then if   IsBound(FACTINT_SMALLINTCACHE[n])
+                    then result := ShallowCopy(FACTINT_SMALLINTCACHE[n]);
+                    else result := FactorsInt(n);
+                         FACTINT_SMALLINTCACHE[n] := ShallowCopy(result);
+                    fi;
+                    return result;
+    elif n < 0 then if   IsBound(FACTINT_SMALLINTCACHE[-n])
+                    then result := ShallowCopy(FACTINT_SMALLINTCACHE[-n]);
+                         result[1] := -result[1];
+                    else result := FactorsInt(n);
+                         FACTINT_SMALLINTCACHE[-n] := ShallowCopy(result);
+                         FACTINT_SMALLINTCACHE[-n][1] :=
+                        -FACTINT_SMALLINTCACHE[-n][1];
+                    fi;
+                    return result;
+    else return [0]; fi;
+  elif AbsInt(n) < 16 * FACTINT_SMALLINTCACHE_LIMIT then
+    MakeReadWriteGlobal("FACTINT_SMALLINTCOUNT");
+    FACTINT_SMALLINTCOUNT := FACTINT_SMALLINTCOUNT + 1;
+    MakeReadOnlyGlobal("FACTINT_SMALLINTCOUNT");
+    if    FACTINT_SMALLINTCOUNT > 16 * FACTINT_SMALLINTCACHE_LIMIT
+      and FACTINT_SMALLINTCACHE_LIMIT < 1048576
+    then
+      MakeReadWriteGlobal("FACTINT_SMALLINTCACHE_LIMIT");
+      FACTINT_SMALLINTCACHE_LIMIT := 2 * FACTINT_SMALLINTCACHE_LIMIT;
+      MakeReadOnlyGlobal("FACTINT_SMALLINTCACHE_LIMIT");
+    fi;
+    return FactorsInt(n);
+  elif AbsInt(n) <= 268435455 then return FactorsInt(n); fi;
+
   pos := Position(List(FACTINT_CACHE,t->t[1]),n);
   if IsInt(pos) then
     MakeReadWriteGlobal("FACTINT_CACHE");
@@ -1004,13 +1039,10 @@ InstallMethod( Factors,
                "for integers (FactInt)", true, [ IsIntegers, IsInt ], 1,
 
   function ( Integers, n )
-
-    if AbsInt(n) <= 268435455 then  # 32-bit small integer
-      return FactorsInt( n );
-    else
-      return IntegerFactorization(n);
-    fi;
+    return IntegerFactorization( n );
   end );
+
+InstallOtherMethod( Factors, [ IsInt ], n -> Factors( Integers, n ) );
 
 #############################################################################
 ##
