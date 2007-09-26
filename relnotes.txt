@@ -107,6 +107,7 @@ Changes between version 1.5.1 and version 1.5.2:
  - FactInt now uses a flexible caching mechanism for factorizations of
    small integers. This yields a substantial speedup when many small numbers
    are factored.
-
+ - The copy of Brent's tables of factors of integers of the form b^k +/- 1
+   has been updated. There are now roughly 20000 new factors in the database.
 
 
