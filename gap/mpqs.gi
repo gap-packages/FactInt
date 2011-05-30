@@ -2,8 +2,6 @@
 ##
 #W  mpqs.gi                GAP4 Package `FactInt'                 Stefan Kohl
 ##
-#H  @(#)$Id$
-##
 ##  This file contains functions for factorization using the
 ##  Single Large Prime Variation of the
 ##  Multiple Polynomial Quadratic Sieve (MPQS).
@@ -17,8 +15,7 @@
 ##  A possible improvement would be the implementation of the
 ##  Double Large Prime Variation of the MPQS (PPMPQS).
 ##
-Revision.mpqs_gi :=
-  "@(#)$Id$";
+#############################################################################
 
 MPQSSplit := function (n)
 

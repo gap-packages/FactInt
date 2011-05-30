@@ -110,4 +110,7 @@ Changes between version 1.5.1 and version 1.5.2:
  - The copy of Brent's tables of factors of integers of the form b^k +/- 1
    has been updated. There are now roughly 20000 new factors in the database.
 
+Changes between version 1.5.2 and version 1.5.3:
+
+ - The CVS revision entries have been removed from the source files.
 

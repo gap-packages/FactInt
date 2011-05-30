@@ -2,13 +2,10 @@
 ##
 #W  primorial.g              GAP4 Package `FactInt'               Stefan Kohl
 ##
-#H  @(#)$Id$
-##
 ##  This file contains a database of factors of numbers of the form
 ##  p1 * p2 * p3 * ... * pk +/- 1, where pi denotes the ith prime.
 ##
-Revision.primorial_g :=
-  "@(#)$Id$";
+#############################################################################
 
 MakeReadWriteGlobal( "K_PRIMORIAL_M1_FACTORS" );
 K_PRIMORIAL_M1_FACTORS :=

@@ -2,12 +2,9 @@
 ##
 #W  factintaux.g              GAP4 Package `FactInt'              Stefan Kohl
 ##
-#H  @(#)$Id$
-##
 ##  This file contains auxiliary functions for the FactInt package.
 ##
-Revision.factintaux_g :=
-  "@(#)$Id$";
+#############################################################################
 
 #############################################################################
 ##

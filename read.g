@@ -2,10 +2,9 @@
 ##
 #W  read.g                 GAP4 Package `FactInt'                 Stefan Kohl
 ##
-#H  @(#)$Id$
+##  Read the implementation part of the package.
 ##
-
-# Read the implementation part of the package.
+#############################################################################
 
 ReadPackage( "factint", "gap/factintaux.g" );
 ReadPackage( "factint", "gap/general.gi" );

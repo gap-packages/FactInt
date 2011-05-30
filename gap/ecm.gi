@@ -2,8 +2,6 @@
 ##
 #W  ecm.gi                GAP4 Package `FactInt'                  Stefan Kohl
 ##
-#H  @(#)$Id$
-##
 ##  This file contains functions for factorization using the
 ##  Elliptic Curves Method (ECM).
 ##
@@ -52,8 +50,7 @@
 ##  P. L. Montgomery, Speeding the Pollard and elliptic curve methods of
 ##  factorization, Math. Comp. 48 (1987)  
 ##
-Revision.ecm_gi :=
-  "@(#)$Id$";
+#############################################################################
 
 ECMProduct := function (Quot,P1,P2,n)
 

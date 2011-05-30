@@ -3,8 +3,6 @@
 #W  general.gi              GAP4 Package `FactInt'                Stefan Kohl
 ##                                                               Frank Lübeck
 ##
-#H  @(#)$Id$
-##
 ##  This file contains the general routines for integer factorization and
 ##  auxiliary functions used by them and/or more than one of the 
 ##  functions for the specific factorization methods implemented in
@@ -31,8 +29,7 @@
 ##  Factoring ``difficult'' numbers of this order of magnitude is far
 ##  beyond the scope in this context.
 ##
-Revision.general_gi :=
-  "@(#)$Id$";
+#############################################################################
 
 if not IsBound(CommandLineHistory) then CommandLineHistory := fail; fi;
 

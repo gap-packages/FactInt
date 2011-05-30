@@ -2,8 +2,6 @@
 ##
 #W  pminus1.gi               GAP4 Package `FactInt'               Stefan Kohl
 ##
-#H  @(#)$Id$
-##
 ##  This file contains functions for factorization using Pollard's p-1.
 ##
 ##  Arguments of FactorsPminus1:
@@ -17,8 +15,7 @@
 ##  contains the prime factors found, and the second list contains
 ##  remaining unfactored parts of <n>, if there are any.
 ##
-Revision.pminus1_gi :=
-  "@(#)$Id$";
+#############################################################################
 
 Pminus1Split := function (n,a,Limit1,Limit2)
 

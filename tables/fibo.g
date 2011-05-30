@@ -2,12 +2,9 @@
 ##  
 #W  fibo.g                 GAP4 Package `FactInt'                 Stefan Kohl
 ##
-#H  @(#)$Id$
-##
 ##  This file contains a database of factors of Fibonacci numbers.
 ##
-Revision.fibo_g :=
-  "@(#)$Id$";
+#############################################################################
 
 MakeReadWriteGlobal( "FACTORS_FIB" );
 FACTORS_FIB :=
