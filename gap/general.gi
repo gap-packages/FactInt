@@ -235,8 +235,8 @@ InstallGlobalFunction( "FetchBrentFactors",
 
     str := "";
     get := OutputTextString(str, false);
-    comm := Concatenation("wget -q http://wwwmaths.anu.edu.au/~brent/ftp/",
-                          "factors/factors.gz -O - | gzip -dc ");
+    comm := Concatenation("wget -q http://www.gap-system.org/DevelopersPages/StefanKohl/",
+                          "factors.gz -O - | gzip -dc ");
     Process(DirectoryCurrent(), Filename(DirectoriesSystemPrograms(),"sh"),
             InputTextUser(), get, ["-c", comm]);
   
