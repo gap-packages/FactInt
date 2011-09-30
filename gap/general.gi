@@ -31,8 +31,6 @@
 ##
 #############################################################################
 
-if not IsBound(CommandLineHistory) then CommandLineHistory := fail; fi;
-
 InstallGlobalFunction( FactIntInfo,
                        function( lev ) 
                          SetInfoLevel(IntegerFactorizationInfo,lev); 
