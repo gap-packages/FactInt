@@ -1,6 +1,12 @@
 
-                             The FactInt Package
-                             ===================
+           FactInt -- Advanced Methods for [Fact]oring [Int]egers
+           ======================================================
+
+                           -- A GAP 4 Package --
+
+                               Version 1.5.3
+
+        Author and Maintainer:  Stefan Kohl, stefan@mcs.st-and.ac.uk
 
 
                                   Abstract
@@ -16,6 +22,10 @@ particular:
 
 It also provides access to  Richard P. Brent's tables  of factors of integers
 of the form b^k +/- 1.
+   FactInt installs a better method for the operation `Factors' for integers.
+For details see the package documentation in the `doc' subdirectory -- either
+view  its  HTML  version  (chap0.html)  with  a browser,  or its  PDF version
+`manual.pdf' with a PDF viewer.
 
 
                                 Requirements
@@ -32,10 +42,22 @@ tory of the GAP distribution.  This is accomplished by extracting the distri-
 bution file in this directory. By default, FactInt is autoloaded.  This means
 that it is loaded automatically when you start GAP.
 
+
+                          Distribution and Updates
+
+This package is distributed  with the main  GAP archive.  For updates between
+releases of GAP itself check the package web page
+
+      http://www.gap-system.org/DevelopersPages/StefanKohl/factint.html
+
+or the packages' redistribution on the GAP website
+
+      http://www.gap-system.org/Packages/factint.html
+
                                     ---
 
 If you have problems with this package, wish to make comments or suggestions,
-or if you find bugs, please send e-mail to
+or if you find bugs, please send me an e-mail (stefan@mcs.st-and.ac.uk).
 
-Stefan Kohl, stefan@mcs.st-and.ac.uk
+Stefan Kohl,  October 2011
 
