@@ -91,7 +91,7 @@ Changes between version 1.4.9 and version 1.4.10:
 Changes between version 1.4.11 and version 1.4.12:
 
  - A problem in the code for formatting the Info output of the ECM routine
-   has been fixed. This problem caused an error message if the runtime of
+   has been fixed. This problem caused an error message if the run time of
    the ECM spent on the first or the second stage of a curve was below 1ms.
    It has been reported by Doug McTavish.
 

@@ -17,7 +17,7 @@ prediction for the CPU time needed for factoring a given integer.
 This time depends heavily on the sizes of the factors of the given number
 and on some other properties which cannot be tested before actually
 doing the factorization.
-But nevertheless, rough runtime estimates can be given for numbers
+But nevertheless, rough run time estimates can be given for numbers
 with factors of given orders of magnitude. <P/>
 
 After casting out the small and other <Q>easy</Q> factors -- which should
@@ -34,7 +34,7 @@ The latter is often the most time-consuming part. <P/>
 
 In the sequel, some timings for the ECM and for the MPQS are given.
 These methods are by far the most important ones with respect to
-runtime statistics (the <M>p \pm 1</M>-methods
+run time statistics (the <M>p \pm 1</M>-methods
 (see&nbsp;<Ref Func="FactorsPminus1" Label="Pollard's p-1"/> and
           <Ref Func="FactorsPplus1"  Label="Williams' p+1"/>)
 are only suitable for finding factors with certain properties and CFRAC
@@ -52,14 +52,14 @@ version of this package has been written).
 <Section Label="sec:TimingsForTheECM">
 <Heading>Timings for the ECM</Heading>
 
-The runtime of <C>FactorsECM</C> depends mainly on the size of the factors
+The run time of <C>FactorsECM</C> depends mainly on the size of the factors
 of the input number.
 On average, finding a 12-digit factor of a 100-digit number
 takes about 1&nbsp;min&nbsp;40&nbsp;s, finding a 15-digit factor of
 a 100-digit number takes about 10&nbsp;min and finding an 18-digit factor
 of a 100-digit number takes about 50&nbsp;min.
 A&nbsp;general rule of thumb is the following: one digit more increases the
-runtime by a bit less than a factor of two.
+run time by a bit less than a factor of two.
 These timings are very rough, and they may vary by a factor of 10 or more.
 You can compare trying an elliptic curve with throwing a couple of dice,
 where a success corresponds to the case where all of them show the same
@@ -114,7 +114,7 @@ needed for the second stage is a bit less than linear in <A>Limit2</A>.
 <Section Label="sec:TimingsForTheMPQS">
 <Heading>Timings for the MPQS</Heading>
 
-The runtime of <C>FactorsMPQS</C> depends only on the size of the input
+The run time of <C>FactorsMPQS</C> depends only on the size of the input
 number, and not on the size of its factors.
 Rough timings are as follows: 90&nbsp;s for a 40-digit number, 10&nbsp;min
 for a 50-digit number, 2&nbsp;h for a 60-digit number, 20&nbsp;h for

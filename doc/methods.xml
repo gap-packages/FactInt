@@ -303,10 +303,10 @@ gap> FactorsECM(2^256+1,100,10000,1000000,100);
     Algorithm (CFRAC), also known as Brillhart-Morrison Algorithm.
     In case of failure an error is signalled. <P/>
 
-    Caution: The runtime of this function depends only on the size
+    Caution: The run time of this function depends only on the size
     of&nbsp;<A>n</A>, and not on the size of the factors.
     Thus if a small factor is not found during the preprocessing
-    which is done before invoking the sieving process, the runtime is
+    which is done before invoking the sieving process, the run time is
     as long as if <A>n</A> would have two prime factors of roughly
     equal size. <P/>
 
@@ -380,10 +380,10 @@ gap> FactorsCFRAC( Factorial(34) - 1 );
     Variation of the Multiple Polynomial Quadratic Sieve (MPQS).
     In case of failure an error is signalled. <P/>
 
-    Caution: The runtime of this function depends only on the size
+    Caution: The run time of this function depends only on the size
     of&nbsp;<A>n</A>, and not on the size of the factors.
     Thus if a small factor is not found during the preprocessing
-    which is done before invoking the sieving process, the runtime is
+    which is done before invoking the sieving process, the run time is
     as long as if <A>n</A> would have two prime factors of roughly
     equal size. <P/>
 

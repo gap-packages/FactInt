@@ -29,7 +29,7 @@ This however comes along with the drawback of suboptimal performance
 for large factors. <P/>
 
 The other important class consists of the so-called factor base methods.
-Their runtime depends only on the size of the number <M>n</M> to be
+Their run time depends only on the size of the number <M>n</M> to be
 factored, and not on the size of its factors.
 Factor base methods compute factorizations of perfect squares
 (mod&nbsp;<M>n</M>) over an appropriately chosen factor base.
