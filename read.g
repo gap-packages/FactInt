@@ -6,13 +6,13 @@
 ##
 #############################################################################
 
-ReadPackage( "factint", "gap/factintaux.g" );
-ReadPackage( "factint", "gap/general.gi" );
-ReadPackage( "factint", "gap/pminus1.gi" );
-ReadPackage( "factint", "gap/pplus1.gi" );
-ReadPackage( "factint", "gap/ecm.gi" );
-ReadPackage( "factint", "gap/cfrac.gi" );
-ReadPackage( "factint", "gap/mpqs.gi" );
+ReadPackage( "factint", "lib/factintaux.g" );
+ReadPackage( "factint", "lib/general.gi" );
+ReadPackage( "factint", "lib/pminus1.gi" );
+ReadPackage( "factint", "lib/pplus1.gi" );
+ReadPackage( "factint", "lib/ecm.gi" );
+ReadPackage( "factint", "lib/cfrac.gi" );
+ReadPackage( "factint", "lib/mpqs.gi" );
 
 #############################################################################
 ##
