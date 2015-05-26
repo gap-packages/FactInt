@@ -58,7 +58,7 @@ Dependencies     := rec(
                        ),
 AvailabilityTest := ReturnTrue,
 BannerString     := Concatenation( "\nLoading FactInt ", ~.Version,
-                                   " (Routines for Integer Factorization )",
+                                   " (Routines for Integer Factorization)",
                                    "\nby Stefan Kohl, stefan@mcs.st-and.ac.uk\n\n" ),
 TestFile         := "factint.tst",
 Keywords         := [ "Integer factorization", "ECM", "Elliptic Curves Method",
