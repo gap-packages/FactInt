@@ -4,7 +4,7 @@
 
                            -- A GAP 4 Package --
 
-                               Version 1.5.3
+                               Version 1.5.4
 
         Author and Maintainer:  Stefan Kohl, stefan@mcs.st-and.ac.uk
 
@@ -48,7 +48,7 @@ that it is loaded automatically when you start GAP.
 This package is distributed  with the main  GAP archive.  For updates between
 releases of GAP itself check the package web page
 
-      http://www.gap-system.org/DevelopersPages/StefanKohl/factint.html
+      https://stefan-kohl.github.io/factint.html
 
 or the packages' redistribution on the GAP website
 
@@ -57,7 +57,8 @@ or the packages' redistribution on the GAP website
                                     ---
 
 If you have problems with this package, wish to make comments or suggestions,
-or if you find bugs, please send me an e-mail (stefan@mcs.st-and.ac.uk).
+or if you find bugs, please let me know.
 
-Stefan Kohl,  October 2011
+
+
 

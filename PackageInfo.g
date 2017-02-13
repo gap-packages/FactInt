@@ -8,31 +8,25 @@ SetPackageInfo( rec(
 
 PackageName      := "FactInt",
 Subtitle         := "Advanced Methods for Factoring Integers", 
-Version          := "1.5.3",
-Date             := "16/06/2011",
-ArchiveURL       := "http://www.gap-system.org/DevelopersPages/StefanKohl/factint/factint-1.5.3",
-ArchiveFormats   := "-win.zip", # ".tar.gz" when providing text files with UNIX-style line breaks
+Version          := "1.5.4",
+Date             := "13/02/2017",
+ArchiveURL       := "https://stefan-kohl.github.io/factint/factint-1.5.4",
+ArchiveFormats   := ".tar.gz", # "-win.zip" when providing text files with Windows line breaks
 Persons          := [
                       rec( LastName      := "Kohl",
                            FirstNames    := "Stefan",
                            IsAuthor      := true,
                            IsMaintainer  := true,
                            Email         := "stefan@mcs.st-and.ac.uk",
-                           WWWHome       := "http://www.gap-system.org/DevelopersPages/StefanKohl/",
-                           PostalAddress := Concatenation("Department of Mathematics\n",
-                                                          "University of Vlora\n",
-                                                          "Lagjja: Pavaresia\n",
-                                                          "Vlore / Albania"),
-                           Place         := "Vlore / Albania",
-                           Institution   := "University of Vlora"
+                           WWWHome       := "https://stefan-kohl.github.io/"
                          )
                     ],
 Status           := "accepted",
 CommunicatedBy   := "Mike Atkinson (St. Andrews)",
 AcceptDate       := "07/1999",
-PackageWWWHome   := "http://www.gap-system.org/DevelopersPages/StefanKohl/factint.html",
-README_URL       := "http://www.gap-system.org/DevelopersPages/StefanKohl/factint/README.factint",
-PackageInfoURL   := "http://www.gap-system.org/DevelopersPages/StefanKohl/factint/PackageInfo.g",
+PackageWWWHome   := "https://stefan-kohl.github.io/factint.html",
+README_URL       := "https://stefan-kohl.github.io/factint/README.factint",
+PackageInfoURL   := "https://stefan-kohl.github.io/factint/PackageInfo.g",
 AbstractHTML     := Concatenation("This package provides routines for factoring integers, ",
                                   "in particular:</p>\n<ul>\n  <li>Pollard's <em>p</em>-1</li>\n",
                                   "  <li>Williams' <em>p</em>+1</li>\n  <li>Elliptic Curves ",
