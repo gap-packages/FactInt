@@ -17,7 +17,7 @@ Persons          := [
                            FirstNames    := "Stefan",
                            IsAuthor      := true,
                            IsMaintainer  := true,
-                           Email         := "stefan@mcs.st-and.ac.uk",
+                           Email         := "stefan@gap-system.org",
                            WWWHome       := "https://stefan-kohl.github.io/"
                          )
                     ],
@@ -53,7 +53,7 @@ Dependencies     := rec(
 AvailabilityTest := ReturnTrue,
 BannerString     := Concatenation( "\nLoading FactInt ", ~.Version,
                                    " (Routines for Integer Factorization)",
-                                   "\nby Stefan Kohl, stefan@mcs.st-and.ac.uk\n\n" ),
+                                   "\nby Stefan Kohl, stefan@gap-system.org\n\n" ),
 TestFile         := "factint.tst",
 Keywords         := [ "Integer factorization", "ECM", "Elliptic Curves Method",
                       "MPQS", "Multiple Polynomial Quadratic Sieve", "CFRAC",
