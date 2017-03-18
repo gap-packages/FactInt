@@ -82,12 +82,13 @@ FactorizationCheck := function (n,Result)
                         and ForAll(Result,IsProbablyPrimeInt);
   fi;
   if not ResultCorrect
-  then Error("\nInternal error, the result is incorrect !!!\n\n",
-             "Please send e-mail to the author\n",
-             "(kohl@mathematik.uni-stuttgart.de)\n",
-             "and mention the number to be factored : \n",n,
-             "\nas well as the options you specified, ",
-             "thank you very much.\n"); 
+  then Error("FactInt: Internal error, the result is incorrect !!!\n\n",
+             "Please send e-mail to the author ",
+             "(stefan@gap-system.org)\n",
+             "and mention the number to be factored: ",n,
+             ",\nthe versions of FactInt and GAP you used ",
+             "and the options you specified.",
+             "\n-- Thank you very much.\n\n"); 
   fi;
 end;
 MakeReadOnlyGlobal("FactorizationCheck");
