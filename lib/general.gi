@@ -838,8 +838,9 @@ function ( n )
                        FactorizationObtainedSoFar,infinity,
                        ["Trial division by factors given as <TDHints>"]); fi;
   StateInfo();
-  if IsBoundGlobal("CommandLineHistory") and CommandLineHistory <> fail
-    and n > 10^40 and FactorizationObtainedSoFar[2] <> []
+  if not IsBound(HPCGAP) and IsBoundGlobal("CommandLineHistory") and
+    CommandLineHistory <> fail and n > 10^40 and
+    FactorizationObtainedSoFar[2] <> []
   then
     NonDigits := Difference(List([0..255],CHAR_INT),"0123456789");
     CmdLineFacts := SplitString(Concatenation(List(CommandLineHistory,
