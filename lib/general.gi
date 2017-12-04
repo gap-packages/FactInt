@@ -566,31 +566,97 @@ MakeReadOnlyGlobal("FactorsFermat");
 
 # Check for n = b^k +/- 1
 
-FactorsAlgebraic := function ( n )
+FactorsOfPowerPlusMinusOne := function ( n )
 
-  local b, k, s, FactorsOfP, PolyFactors, factors, c, m, j, p, a;
+  local  b, k, e, c, a, p, factors, FactorsOfP, PolyFactors, AuriFactors,
+         DBFactors, fact, auri, gcd, T, A, B, pos, j, s;
 
   for c  in [ -1, 1 ]  do
+
     b := SmallestRootInt( n - c );
+
     if b < n - c  then
+
       k := LogInt( n - c, b );
       if c = -1  then
         s := " - 1";
+        if b <= 12 and k mod 2 = 0 then  # b^k = (b^(k/2)+1) * (b^(k/2)-1)
+          Factors(b^(k/2)-1);  # Add factors to the database  
+          Factors(b^(k/2)+1);  # of trial divisors.
+        fi;
       else
         s := " + 1";
       fi;
-      Info( IntegerFactorizationInfo, 1, n, " = ", b, "^", k, s);
+
+      Info( IntegerFactorizationInfo, 1, n, " = ", b, "^", k, s );
+
       if c = -1 then
         FactorsOfP := DivisorsInt(k);
       else
         FactorsOfP := Difference(DivisorsInt(2*k), DivisorsInt(k));
       fi;
+
       PolyFactors := List(FactorsOfP,
                           i -> ValuePol(CyclotomicPol(i), b));
+
       Info( IntegerFactorizationInfo, 1,
             "The factors corresponding to ", "polynomial factors are\n",
             PolyFactors );
+
+      if   b =  2 and k mod  4 =  2 then
+        e := (k-2)/4;
+        AuriFactors := [ 2^(2*e+1)-2^(e+1)+1,
+                         2^(2*e+1)+2^(e+1)+1 ];
+      elif b =  3 and k mod  6 =  3 then
+        e := (k-3)/6;
+        AuriFactors := [ 3^(2*e+1)+1,
+                         3^(2*e+1)-3^(e+1)+1,
+                         3^(2*e+1)+3^(e+1)+1 ];
+      elif b =  5 and k mod 10 =  5 then
+        e := (k-5)/10;
+        T := 5^(2*e+1)+1;
+        AuriFactors := [ T-2,
+                         T^2-5^(e+1)*T+5^(2*e+1),
+                         T^2+5^(e+1)*T+5^(2*e+1) ];
+      elif b =  6 and k mod 12 =  6 then
+        e := (k-6)/12;
+        T := 6^(2*e+1)+1;
+        AuriFactors := [ 6^(4*e+2)+1,
+                         T^2-6^(e+1)*T+6^(2*e+1),
+                         T^2+6^(e+1)*T+6^(2*e+1) ];
+      elif b =  7 and k mod 14 =  7 then
+        e := (k-7)/14;
+        A := 7^(6*e+3)+3*7^(4*e+2)+3*7^(2*e+1)+1;
+        B := 7^(5*e+3)+7^(3*e+2)+7^(e+1);
+        AuriFactors := [ 7^(2*e+1)+1, A-B, A+B ];
+      elif b = 10 and k mod 20 = 10 then
+        e := (k-10)/20;
+        A := 10^(8*e+4)+5*10^(6*e+3)+7*10^(4*e+2)+5*10^(2*e+1)+1;
+        B := 10^(7*e+4)+2*10^(5*e+3)+2*10^(3*e+2)+10^(e+1);
+        AuriFactors := [ 10^(4*e+2)+1, A-B, A+B ];
+      elif b = 11 and k mod 22 = 11 then
+        e := (k-11)/22;
+        A := 11^(10*e+5)+5*11^(8*e+4)-11^(6*e+3)-11^(4*e+2)+5*11^(2*e+1)+1;
+        B := 11^(9*e+5)+11^(7*e+4)-11^(5*e+3)+11^(3*e+2)+11^(e+1);
+        AuriFactors := [ 11^(2*e+1)+1, A-B, A+B ];
+      elif b = 12 and k mod  6 =  3 then
+        e := (k-3)/6;
+        AuriFactors := [ 12^(2*e+1)+1,
+                         12^(2*e+1)-6*12^e+1,
+                         12^(2*e+1)+6*12^e+1 ];
+      else
+        AuriFactors := [ n ];
+      fi;
+
+      if Length(AuriFactors) > 1 then
+        Info( IntegerFactorizationInfo, 1,
+              "The Aurifeuillian factors are\n", AuriFactors );
+      fi;
+
+      DBFactors := [  ];
+
       factors := [ [  ], [  ] ];
+
       for j in [1..Length(FactorsOfP)] do
         a := PolyFactors[j];
         if b <= Length(BRENTFACTORSAVAILABLE)
@@ -605,6 +671,7 @@ FactorsAlgebraic := function ( n )
         then
           for p in BRENTFACTORS[b][FactorsOfP[j]] do
             while a mod p = 0 do
+              Add(DBFactors,p);
               Add(factors[1],p);
               a := a/p;
             od;
@@ -616,12 +683,43 @@ FactorsAlgebraic := function ( n )
           Add(factors[2], a);
         fi;
       od;
+
+      if DBFactors <> [  ] then
+        Info( IntegerFactorizationInfo, 1,
+              "Factors taken from the database: ", DBFactors );
+      fi;
+
+      if Length(AuriFactors) > 1 then
+        repeat
+          fact := First(factors[2],
+                        fact->ForAny(AuriFactors,
+                                     auri-> not Gcd(fact,auri) in [1,fact]));
+          if fact <> fail then
+            auri := First(AuriFactors,auri-> not Gcd(fact,auri) in [1,fact]);
+            pos  := Position(factors[2],fact);
+            gcd  := Gcd(fact,auri);
+            factors[2][pos] := [gcd,fact/gcd];
+            factors[2] := Flat(factors[2]);
+          fi;
+        until fact = fail;
+        factors[1] := Concatenation(factors[1],
+                                    Filtered(factors[2],IsProbablyPrimeInt));
+        factors[2] := Filtered(factors[2],
+                               fact->not IsProbablyPrimeInt(fact));
+      fi;
+
+      if Product(Flat(factors)) <> n then
+        Error("FactInt: internal error when factoring ",b,"^",k,s);
+      fi;
+
       return factors;
     fi;
+
   od;
+
   return [ [  ], [ n ] ];
 end;
-MakeReadOnlyGlobal("FactorsAlgebraic");
+MakeReadOnlyGlobal("FactorsOfPowerPlusMinusOne");
 
 
 #############################################################################
@@ -724,7 +822,7 @@ function ( n )
 
   # First of all, check whether n = b^k +/- 1 for some b, k
 
-  ApplyFactoringMethod(FactorsAlgebraic,[],
+  ApplyFactoringMethod(FactorsOfPowerPlusMinusOne,[],
                        FactorizationObtainedSoFar,infinity,
                        ["Check for n = b^k +/- 1"]);
   StateInfo();
