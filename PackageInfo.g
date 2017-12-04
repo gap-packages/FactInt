@@ -8,9 +8,9 @@ SetPackageInfo( rec(
 
 PackageName      := "FactInt",
 Subtitle         := "Advanced Methods for Factoring Integers", 
-Version          := "1.5.4",
-Date             := "13/02/2017",
-ArchiveURL       := "https://stefan-kohl.github.io/factint/factint-1.5.4",
+Version          := "1.6.0",
+Date             := "04/12/2017",
+ArchiveURL       := "https://stefan-kohl.github.io/factint/factint-1.6.0",
 ArchiveFormats   := ".tar.gz", # "-win.zip" when providing text files with Windows line breaks
 Persons          := [
                       rec( LastName      := "Kohl",
@@ -45,8 +45,8 @@ PackageDoc       := rec(
                          Autoload         := true
                        ),
 Dependencies     := rec(
-                         GAP                    := ">=4.4.9",
-                         NeededOtherPackages    := [ ["GAPDoc",">=1.0"] ],
+                         GAP                    := ">=4.8.8",
+                         NeededOtherPackages    := [ ["GAPDoc",">=1.6"] ],
                          SuggestedOtherPackages := [ ],
                          ExternalConditions     := [ ]
                        ),

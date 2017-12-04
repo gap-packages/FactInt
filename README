@@ -4,7 +4,7 @@
 
                            -- A GAP 4 Package --
 
-                               Version 1.5.4
+                               Version 1.6.0
 
          Author and Maintainer:  Stefan Kohl, stefan@gap-system.org
 
@@ -30,9 +30,9 @@ view  its  HTML  version  (chap0.html)  with  a browser,  or its  PDF version
 
                                 Requirements
 
-This Version of FactInt needs at least  version 4.4.9 of GAP and  version 1.0
-of GAPDoc. It is completely written in the GAP language and does neither con-
-tain nor require external binaries.
+This Version of FactInt needs at least  GAP >=4.8.8  and GAPDoc >=1.6.  It is
+completely written in the  GAP language and does neither contain  nor require
+external binaries.
 
 
                                 Installation
