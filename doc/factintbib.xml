@@ -58,9 +58,9 @@
     <name><first>Frank</first><last>Lübeck</last></name>
     <name><first>Max</first><last>Neunhöffer</last></name>
   </author>
-  <title><C>GAPDoc (Version 1.0)</C></title>
+  <title><C>GAPDoc (Version 1.6)</C></title>
   <organization>RWTH Aachen</organization>
-  <year>2007</year>
+  <year>2017</year>
   <other type="note">
     GAP package, <URL>http://www.gap-system.org/Packages/gapdoc.html</URL>
   </other>
