@@ -566,7 +566,7 @@ MakeReadOnlyGlobal("FactorsFermat");
 
 # Check for n = b^k +/- 1
 
-FactorsAurifeuillian := function ( n )
+FactorsAlgebraic := function ( n )
 
   local b, k, s, FactorsOfP, PolyFactors, factors, c, m, j, p, a;
 
@@ -621,7 +621,7 @@ FactorsAurifeuillian := function ( n )
   od;
   return [ [  ], [ n ] ];
 end;
-MakeReadOnlyGlobal("FactorsAurifeuillian");
+MakeReadOnlyGlobal("FactorsAlgebraic");
 
 
 #############################################################################
@@ -724,7 +724,7 @@ function ( n )
 
   # First of all, check whether n = b^k +/- 1 for some b, k
 
-  ApplyFactoringMethod(FactorsAurifeuillian,[],
+  ApplyFactoringMethod(FactorsAlgebraic,[],
                        FactorizationObtainedSoFar,infinity,
                        ["Check for n = b^k +/- 1"]);
   StateInfo();
