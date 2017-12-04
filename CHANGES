@@ -2,6 +2,12 @@
                      Version history of the FactInt package
                      ======================================
 
+
+Changes between version 1.5.4 and version 1.6.0 ():
+
+ - FactInt now makes use of Aurifeuillian factorization of b^k+1 for bases
+   up to 12.
+
 Changes between version 1.5.3 and version 1.5.4 (February 13, 2017):
 
  - The directory factint/gap/ has been renamed to factint/lib/,
