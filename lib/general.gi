@@ -936,7 +936,7 @@ function ( n )
                        FactorizationObtainedSoFar,infinity,
                        ["Trial division by factors given as <TDHints>"]); fi;
   StateInfo();
-  if not IsBound(HPCGAP) and IsBoundGlobal("CommandLineHistory") and
+  if not IsBoundGlobal("HPCGAP") and IsBoundGlobal("CommandLineHistory") and
     CommandLineHistory <> fail and n > 10^40 and
     FactorizationObtainedSoFar[2] <> []
   then
