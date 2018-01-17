@@ -447,19 +447,12 @@ MakeReadOnlyGlobal("FactorsTDNC");
 
 # Initialize some lists of trial divisors
 
-BindGlobal("K_FACTORIAL_M1_FACTORS",[]);
-BindGlobal("K_FACTORIAL_P1_FACTORS",[]);
-BindGlobal("K_PRIMORIAL_M1_FACTORS",[]);
-BindGlobal("K_PRIMORIAL_P1_FACTORS",[]);
-BindGlobal("FACTORS_FIB",[]);
 BindGlobal("FIB_RES", # Fib(k) mod 13, 21, 34, 55, 89, 144.
 [ [ 0, 1, 2, 3, 5, 8, 10, 11, 12 ], [ 0, 1, 2, 3, 5, 8, 13, 18, 20 ],
   [ 0, 1, 2, 3, 5, 8, 13, 21, 26, 29, 31, 32, 33 ],
   [ 0, 1, 2, 3, 5, 8, 13, 21, 34, 47, 52, 54 ],
   [ 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 68, 76, 81, 84, 86, 87, 88 ],
   [ 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 123, 136, 141, 143 ] ]);
-BindGlobal("POW3_M_POW2_FACTORS",[]);
-BindGlobal("AK_PM_BK_MOD_2520",[]);
 
 
 # Treat values of functions f such that a|b implies f(a)|f(b)
@@ -834,8 +827,6 @@ function ( n )
   # Special case k! +/- 1
 
   if n mod 620448401733239439360000 in [1,620448401733239439359999] then
-    if   IsEmpty(K_FACTORIAL_M1_FACTORS)
-    then ReadPackage("factint","tables/factorial.g"); fi;
     if n mod 6 = 1 then
       ApplyFactoringMethod(FactorsTD,[K_FACTORIAL_P1_FACTORS],
                            FactorizationObtainedSoFar,infinity,
@@ -851,8 +842,6 @@ function ( n )
   # Special case Primorial(k) +/- 1
 
   if n mod 32589158477190044730 in [1,32589158477190044729] then
-    if   IsEmpty(K_PRIMORIAL_M1_FACTORS)
-    then ReadPackage("factint","tables/primorial.g"); fi;
     if n mod 6 = 1 then
       ApplyFactoringMethod(FactorsTD,[K_PRIMORIAL_P1_FACTORS],
                            FactorizationObtainedSoFar,infinity,
@@ -872,8 +861,6 @@ function ( n )
     ApplyFactoringMethod(FactorsMultFunc,[Fibonacci],
                          FactorizationObtainedSoFar,infinity,
                          ["Factors of Fibonacci(k) by divisors of k"]);
-    if   IsEmpty(FACTORS_FIB)
-    then ReadPackage("factint","tables/fibo.g"); fi;
     ApplyFactoringMethod(FactorsTD,[FACTORS_FIB],
                          FactorizationObtainedSoFar,infinity,
                          ["Trial division by factors of Fibonacci(k)"]);
@@ -886,8 +873,6 @@ function ( n )
     ApplyFactoringMethod(FactorsMultFunc,[k->3^k-2^k],
                          FactorizationObtainedSoFar,infinity,
                          ["Factors of 3^k-2^k by divisors of k"]);
-    if   IsEmpty(POW3_M_POW2_FACTORS)
-    then ReadPackage("factint","tables/3k2k.g"); fi;
     ApplyFactoringMethod(FactorsTD,[POW3_M_POW2_FACTORS],
                          FactorizationObtainedSoFar,infinity,
                          ["Trial division by factors of 3^k-2^k"]);
@@ -896,8 +881,6 @@ function ( n )
 
   # Special case a^k +/- b^k
 
-  if   IsEmpty(AK_PM_BK_MOD_2520)
-  then ReadPackage("factint","tables/akbk.g"); fi;
   nmod2520 := n mod 2520;
   for a in [3..Length(AK_PM_BK_MOD_2520[1])] do
     for b in [2..a-1] do

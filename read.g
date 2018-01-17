@@ -6,6 +6,12 @@
 ##
 #############################################################################
 
+ReadPackage( "factint", "tables/3k2k.g" );
+ReadPackage( "factint", "tables/akbk.g" );
+ReadPackage( "factint", "tables/factorial.g" );
+ReadPackage( "factint", "tables/fibo.g" );
+ReadPackage( "factint", "tables/primorial.g" );
+
 ReadPackage( "factint", "lib/general.gi" );
 ReadPackage( "factint", "lib/pminus1.gi" );
 ReadPackage( "factint", "lib/pplus1.gi" );
