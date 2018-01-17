@@ -8,10 +8,22 @@ SetPackageInfo( rec(
 
 PackageName      := "FactInt",
 Subtitle         := "Advanced Methods for Factoring Integers", 
-Version          := "1.6.0",
-Date             := "04/12/2017",
-ArchiveURL       := "https://stefan-kohl.github.io/factint/factint-1.6.0",
-ArchiveFormats   := ".tar.gz", # "-win.zip" when providing text files with Windows line breaks
+Version          := "1.6.1",
+Date             := "17/01/2018",
+
+SourceRepository := rec(
+    Type := "git",
+    URL := Concatenation( "https://github.com/gap-packages/", ~.PackageName ),
+),
+IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
+PackageWWWHome  := Concatenation( "https://gap-packages.github.io/", ~.PackageName ),
+README_URL      := Concatenation( ~.PackageWWWHome, "/README.md" ),
+PackageInfoURL  := Concatenation( ~.PackageWWWHome, "/PackageInfo.g" ),
+ArchiveURL      := Concatenation( ~.SourceRepository.URL,
+                                 "/releases/download/v", ~.Version,
+                                 "/", ~.PackageName, "-", ~.Version ),
+ArchiveFormats := ".tar.gz",
+
 Persons          := [
                       rec( LastName      := "Kohl",
                            FirstNames    := "Stefan",
@@ -19,14 +31,25 @@ Persons          := [
                            IsMaintainer  := true,
                            Email         := "stefan@gap-system.org",
                            WWWHome       := "https://stefan-kohl.github.io/"
-                         )
+                         ),
+                      rec( LastName      := "Konovalov",
+                           FirstNames    := "Alexander",
+                           IsAuthor      := false,
+                           IsMaintainer  := true,
+                           Email         := "alexander.konovalov@st-andrews.ac.uk",
+                           WWWHome       := "https://alexk.host.cs.st-andrews.ac.uk",
+                           PostalAddress := Concatenation( [
+                             "School of Computer Science\n",
+                             "University of St Andrews\n",
+                             "Jack Cole Building, North Haugh,\n",
+                             "St Andrews, Fife, KY16 9SX, Scotland" ] ),
+                           Place         := "St Andrews",
+                           Institution   := "University of St Andrews"
+    ),
                     ],
 Status           := "accepted",
 CommunicatedBy   := "Mike Atkinson (St. Andrews)",
 AcceptDate       := "07/1999",
-PackageWWWHome   := "https://stefan-kohl.github.io/factint.html",
-README_URL       := "https://stefan-kohl.github.io/factint/README.factint",
-PackageInfoURL   := "https://stefan-kohl.github.io/factint/PackageInfo.g",
 AbstractHTML     := Concatenation("This package provides routines for factoring integers, ",
                                   "in particular:</p>\n<ul>\n  <li>Pollard's <em>p</em>-1</li>\n",
                                   "  <li>Williams' <em>p</em>+1</li>\n  <li>Elliptic Curves ",
