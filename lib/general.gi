@@ -418,21 +418,25 @@ end );
 
 FactorsTDNC := function ( n )
 
-  local  Result, p;
+  local  Result, p, neg;
 
-  if n > 0 then
-    Result := [[],[]];
-    for p in Primes do
-      while n mod p = 0 do 
-        Add(Result[1],p); 
-        n := n/p;
-      od;
-      if n = 1 then return Result; fi;
+  neg := n < 0;
+  if neg then
+    n := -n;
+  fi;
+  Result := [[],[]];
+  for p in Primes do
+    while n mod p = 0 do
+      Add(Result[1],p);
+      n := n/p;
     od;
-    if n < 1000000 then Add(Result[1],n);
-                   else Add(Result[2],n); fi;   
-  else
-    Result := FactorsTDNC(-n);
+    if n = 1 then break; fi;
+  od;
+  # Primes contains all primes <= 1000
+  if n in [2 .. 1000^2] then Add(Result[1],n);
+                        else Add(Result[2],n); fi;
+
+  if neg then
     if   Result[1] <> []
     then Result[1][1] := -Result[1][1];
     else Result[2][1] := -Result[2][1]; fi;
