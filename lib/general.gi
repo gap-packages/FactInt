@@ -1,7 +1,7 @@
 #############################################################################
 ##
 #W  general.gi              GAP4 Package `FactInt'                Stefan Kohl
-##                                                               Frank Lübeck
+##                                                               Frank LÃ¼beck
 ##
 ##  This file contains the general routines for integer factorization and
 ##  auxiliary functions used by them and/or more than one of the 
@@ -185,7 +185,7 @@ MakeReadOnlyGlobal("InitPrimeDiffs");
 # http://wwwmaths.anu.edu.au/~brent/ftp/factors/factors.gz.
 #
 # The code for accessing these factorization tables has been contributed
-# by Frank Lübeck.
+# by Frank LÃ¼beck.
 
 BindGlobal("BRENTFACTORS", []);
 BindGlobal("BRENTFACTORSAVAILABLE", BlistStringDecode(

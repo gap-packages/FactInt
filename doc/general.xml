@@ -38,7 +38,7 @@ the &GAP; Library:
     Provided that <M>b</M> and <M>k</M> are not too large, the factors that
     do not correspond to polynomial factors are taken from Richard P. Brent's
     Factor Tables&nbsp;<Cite Key="Brent04"/>.
-    The code for accessing these tables has been contributed by Frank Lübeck.
+    The code for accessing these tables has been contributed by Frank LÃ¼beck.
     <P/>
 
     Then the method uses trial division and a number of cheap methods for

@@ -19,7 +19,7 @@ algorithms:
   <Item>Multiple Polynomial Quadratic Sieve (MPQS)</Item>
 </List>
 
-It also contains code by Frank Lübeck for making use of Richard P.
+It also contains code by Frank LÃ¼beck for making use of Richard P.
 Brent's tables of factors of integers of the form <M>b^k \pm 1</M>.
 
 &FactInt; is completely written in the &GAP; language and contains /
