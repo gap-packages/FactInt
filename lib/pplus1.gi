@@ -20,7 +20,7 @@
 ##
 #############################################################################
 
-Pplus1Product := function (a,b,n)
+BindGlobal("Pplus1Product", function (a,b,n)
 
   local  c,c12,a12b12;
 
@@ -29,10 +29,9 @@ Pplus1Product := function (a,b,n)
   c      := [[(a[1][1] * b[1][1] + a12b12) mod n, c12],
              [c12, (a12b12 + a[2][2] * b[2][2]) mod n]];
   return c;
-end;
-MakeReadOnlyGlobal("Pplus1Product");
+end);
 
-Pplus1Square := function (a,n)
+BindGlobal("Pplus1Square", function (a,n)
 
   local  c,c12,a12a12;
 
@@ -41,10 +40,9 @@ Pplus1Square := function (a,n)
   c      := [[(a[1][1]^2 + a12a12) mod n, c12],
              [c12, (a12a12 + a[2][2]^2) mod n]];
   return c;
-end;
-MakeReadOnlyGlobal("Pplus1Square");
+end);
 
-Pplus1Power := function (Base,exp,n)
+BindGlobal("Pplus1Power", function (Base,exp,n)
 
   local  Power,BinExp,i;
 
@@ -59,10 +57,9 @@ Pplus1Power := function (Base,exp,n)
   od;
 
   return Power;
-end;
-MakeReadOnlyGlobal("Pplus1Power");
+end);
 
-Pplus1Split := function (n,Residues,Limit1,Limit2)
+BindGlobal("Pplus1Split", function (n,Residues,Limit1,Limit2)
 
   local  Residue,ResNo,a,
          PowerOfa,PowerAfterFirstStage,p,pExponent,
@@ -136,8 +133,7 @@ Pplus1Split := function (n,Residues,Limit1,Limit2)
   od;
 
   Add(FactorsFound,n); return FactorsFound;
-end;
-MakeReadOnlyGlobal("Pplus1Split");
+end);
 
 #############################################################################
 ##

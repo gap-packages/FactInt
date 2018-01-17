@@ -17,7 +17,7 @@
 ##
 #############################################################################
 
-Pminus1Split := function (n,a,Limit1,Limit2)
+BindGlobal("Pminus1Split", function (n,a,Limit1,Limit2)
 
   local  PowerOfa,PowerAfterFirstStage,p,pExponent,
          DiffPowers,DiffPos,DiffSum,NextDiff,DiffsLng,BufProd,
@@ -80,8 +80,7 @@ Pminus1Split := function (n,a,Limit1,Limit2)
   od;
 
   Add(FactorsFound,n); return FactorsFound;
-end;
-MakeReadOnlyGlobal("Pminus1Split");
+end);
 
 #############################################################################
 ##
