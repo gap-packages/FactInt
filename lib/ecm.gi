@@ -52,7 +52,7 @@
 ##
 #############################################################################
 
-ECMProduct := function (Quot,P1,P2,n)
+BindGlobal("ECMProduct", function (Quot,P1,P2,n)
 
   local  X1,Z1,X2,Z2,X3,Z3,
          Product1,Product2,Square1,Square2;
@@ -68,10 +68,9 @@ ECMProduct := function (Quot,P1,P2,n)
   Z3       := Quot[1] * Square2 mod n;    
 
   return [X3,Z3];
-end;
-MakeReadOnlyGlobal("ECMProduct");
+end);
 
-ECMSquare := function (P,n,a)
+BindGlobal("ECMSquare", function (P,n,a)
 
   local  X1,Z1,X2,Z2,
          Square1,Square2,FourX1Z1,FouraX1Z1;
@@ -86,10 +85,9 @@ ECMSquare := function (P,n,a)
   Z2        := FourX1Z1 * (Square2 + FouraX1Z1) mod n;
 
   return [X2,Z2];
-end;
-MakeReadOnlyGlobal("ECMSquare");
+end);
 
-ECMPower := function (Base,exp,n,a)
+BindGlobal("ECMPower", function (Base,exp,n,a)
 
   local  Power,PowerTimesBase,BinExp,i;
 
@@ -109,10 +107,9 @@ ECMPower := function (Base,exp,n,a)
   od;
 
   return Power;
-end;
-MakeReadOnlyGlobal("ECMPower");
+end);
 
-ECMTryCurve := function (n,CurveNo,X,Z,a,Limit1,Limit2,StartingTime)
+BindGlobal("ECMTryCurve", function (n,CurveNo,X,Z,a,Limit1,Limit2,StartingTime)
 
   local  p,q,qExponent,Point,GcdInterval,NextGcdAt,Lastq,
          PowerAfterFirstStage,GcdExtCutOffPoint,PowerTable,
@@ -232,10 +229,9 @@ ECMTryCurve := function (n,CurveNo,X,Z,a,Limit1,Limit2,StartingTime)
        ", total        : ",TimeToString(TotalTime));
 
   return rec(p := 1, Stage := "none"); 
-end;
-MakeReadOnlyGlobal("ECMTryCurve");
+end);
 
-ECMSplit := function (n,Curve,Curves,Limit1,Limit2,Delta,deterministic,
+BindGlobal("ECMSplit", function (n,Curve,Curves,Limit1,Limit2,Delta,deterministic,
                       StartingTime)
 
   local  Sigma,u,v,X,Z,a,a1,a2,p,Result,RangeRatio;
@@ -290,8 +286,7 @@ ECMSplit := function (n,Curve,Curves,Limit1,Limit2,Delta,deterministic,
 
   if not p in [1,n] then return rec(Curves := Curve - 1, Result := [p,n/p]);
                     else return rec(Curves := Curve - 1, Result := [n]); fi;
-end;
-MakeReadOnlyGlobal("ECMSplit");
+end);
 
 #############################################################################
 ##

@@ -17,7 +17,7 @@
 ##
 #############################################################################
 
-MPQSSplit := function (n)
+BindGlobal("MPQSSplit", function (n)
 
   local Sieve,Pos,x1,x2,Pos1,Pos2,Weight,pi,qi,i,j,pos,zero,one,
         Digits,Multiplier,MultiplierQuality,MultiplierPrimeValues,
@@ -491,8 +491,7 @@ MPQSSplit := function (n)
        "MPQS runtime : ",TimeToString(UsedTime),"\n");
 
   return Result;
-end;
-MakeReadOnlyGlobal("MPQSSplit");
+end);
 
 #############################################################################
 ##

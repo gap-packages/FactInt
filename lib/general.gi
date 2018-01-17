@@ -41,7 +41,7 @@ InstallGlobalFunction( FactIntInfo,
 
 # For pretty-printing info messages
 
-PrettyInfo := function (lev,Args)
+BindGlobal("PrettyInfo", function (lev,Args)
 
   local InfoString,Arg;
   
@@ -53,24 +53,22 @@ PrettyInfo := function (lev,Args)
     fi;
   od;
   Info(IntegerFactorizationInfo,lev,InfoString);
-end;
-MakeReadOnlyGlobal("PrettyInfo");
+end);
 
 
 # For converting a time in ms as given by Runtime() to a
 # printable string
 
-TimeToString := function (Time)
+BindGlobal("TimeToString", function (Time)
 
   return Concatenation(String(Int(Time/1000)),".",
                        String(Time mod 1000 + 1000){[2..4]}," sec.");
-end;
-MakeReadOnlyGlobal("TimeToString");
+end);
 
 
 # For checking the results of all the factorization routines
 
-FactorizationCheck := function (n,Result)
+BindGlobal("FactorizationCheck", function (n,Result)
 
   local  ResultCorrect;
 
@@ -90,8 +88,7 @@ FactorizationCheck := function (n,Result)
              "and the options you specified.",
              "\n-- Thank you very much.\n\n"); 
   fi;
-end;
-MakeReadOnlyGlobal("FactorizationCheck");
+end);
 
 
 # Initialize the factorization caches
@@ -108,15 +105,14 @@ BindGlobal("FACTINT_FACTORS_CACHE",[]);
 # (relations over the factor base etc.) to a file which can
 # be read using the `Read'-function
 
-SaveMPQSTmp := function (TempFile)
+BindGlobal("SaveMPQSTmp", function (TempFile)
 
   local  MPQSTmp;
 
   MPQSTmp := ValueOption("MPQSTmp");
   PrintTo(TempFile,
           "PushOptions(rec(MPQSTmp :=\n",MPQSTmp,"));\n");
-end;
-MakeReadOnlyGlobal("SaveMPQSTmp");
+end);
 
 
 # Initialize the prime differences list
@@ -125,7 +121,7 @@ MakeReadOnlyGlobal("SaveMPQSTmp");
 BindGlobal("PrimeDiffs",[]);
 BindGlobal("PrimeDiffLimit",1000000);
 
-InitPrimeDiffs := function ( Limit )
+BindGlobal("InitPrimeDiffs", function ( Limit )
 
   local  Sieve, SieveSegment, ChunkSize, p, Maxp, pos, incr,
          zero, one;
@@ -168,8 +164,7 @@ InitPrimeDiffs := function ( Limit )
     fi;
   od;
   MakeReadOnlyGlobal("PrimeDiffs");
-end;
-MakeReadOnlyGlobal("InitPrimeDiffs");
+end);
 
 
 # BRENTFACTORS is a list of lists. If there is an entry in position [a][n]
@@ -284,7 +279,7 @@ InstallGlobalFunction( "FetchBrentFactors",
 # Grab factors with at least <mindigits> decimal digits from <file>.
 # Optionally exclude rightmost (largest?) factor.
 
-GrabFactors := function ( file, mindigits, excludelast )
+BindGlobal("GrabFactors", function ( file, mindigits, excludelast )
 
   local  nums, num, lines, line, nondigits;
 
@@ -300,13 +295,12 @@ GrabFactors := function ( file, mindigits, excludelast )
     nums := Concatenation(nums,num);
   od;
   return Set(nums);  
-end;
-MakeReadOnlyGlobal("GrabFactors");
+end);
 
 # Remove redundancies from a list <facts> of factors of numbers <f>(k)
 # for 1 <= k <= <max_k>, under the assumption that a|b implies f(a)|f(b).
 
-CleanedFactorsList := function ( facts, f, max_k )
+BindGlobal("CleanedFactorsList", function ( facts, f, max_k )
 
   local  result, smldivpos, val, i;
 
@@ -318,14 +312,13 @@ CleanedFactorsList := function ( facts, f, max_k )
     if result[i] <> [] then Unbind(result[i][Length(result[i])]); fi;
   od;
   return Set(Flat(result));
-end;
-MakeReadOnlyGlobal("CleanedFactorsList");
+end);
 
 
 # Apply a factoring method to the composite factors of a partial
 # factorization and give information about it
 
-ApplyFactoringMethod := function (arg)
+BindGlobal("ApplyFactoringMethod", function (arg)
 
   local  FactoringMethod,Parameters,FactList,Bound,
          InfoArgs,InfoArgsTmp,InfoBaseString,InfoString,Display_n,
@@ -376,8 +369,7 @@ ApplyFactoringMethod := function (arg)
     else Add(FactList[2],n);
     fi;
   od;
-end;
-MakeReadOnlyGlobal("ApplyFactoringMethod");
+end);
 
 
 #############################################################################
@@ -416,7 +408,7 @@ function ( arg )
   return Result;
 end );
 
-FactorsTDNC := function ( n )
+BindGlobal("FactorsTDNC", function ( n )
 
   local  Result, p, neg;
 
@@ -442,8 +434,7 @@ FactorsTDNC := function ( n )
     else Result[2][1] := -Result[2][1]; fi;
   fi;
   return Result;
-end;
-MakeReadOnlyGlobal("FactorsTDNC");
+end);
 
 # Initialize some lists of trial divisors
 
@@ -458,7 +449,7 @@ BindGlobal("FIB_RES", # Fib(k) mod 13, 21, 34, 55, 89, 144.
 # Treat values of functions f such that a|b implies f(a)|f(b)
 # (f is assumed to be strictly growing)
 
-FactorsMultFunc := function ( n, f )
+BindGlobal("FactorsMultFunc", function ( n, f )
 
   local  val, fact, k, step, fk, gcd, i;
 
@@ -482,13 +473,12 @@ FactorsMultFunc := function ( n, f )
   od;
   return [Filtered(fact,IsProbablyPrimeInt),
           Filtered(fact,q->not IsProbablyPrimeInt(q))];
-end;
-MakeReadOnlyGlobal("FactorsMultFunc");
+end);
 
 
 # Power Check
 
-FactorsPowerCheck := function (n,SplittingFunction,SplittingFunctionName)
+BindGlobal("FactorsPowerCheck", function (n,SplittingFunction,SplittingFunctionName)
 
   local  m,k,FactorsOfm,factors;
 
@@ -509,14 +499,13 @@ FactorsPowerCheck := function (n,SplittingFunction,SplittingFunctionName)
     Sort(factors[1]); Sort(factors[2]);
     return factors;
   fi;
-end;
-MakeReadOnlyGlobal("FactorsPowerCheck");
+end);
 
 
 # Check for a decomposition n = p*q such that p/q is close
 # to a fraction with small numerator and denominator.
 
-FactorsFermat := function ( n, maxmult, steps )
+BindGlobal("FactorsFermat", function ( n, maxmult, steps )
 
   local  a, b, a2, b2, d, mult,
          steps1, steps2, facts, result;
@@ -557,13 +546,12 @@ FactorsFermat := function ( n, maxmult, steps )
                               Factors(n/Product(Flat(result)))));
   fi;
   return result;
-end;
-MakeReadOnlyGlobal("FactorsFermat");
+end);
 
 
 # Check for n = b^k +/- 1
 
-FactorsOfPowerPlusMinusOne := function ( n )
+BindGlobal("FactorsOfPowerPlusMinusOne", function ( n )
 
   local  b, k, e, c, a, p, factors, FactorsOfP, PolyFactors, AuriFactors,
          DBFactors, fact, auri, gcd, T, A, B, pos, j, s;
@@ -715,8 +703,7 @@ FactorsOfPowerPlusMinusOne := function ( n )
   od;
 
   return [ [  ], [ n ] ];
-end;
-MakeReadOnlyGlobal("FactorsOfPowerPlusMinusOne");
+end);
 
 
 #############################################################################

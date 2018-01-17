@@ -13,7 +13,7 @@
 ##
 #############################################################################
 
-CFRACSplit := function (n)
+BindGlobal("CFRACSplit", function (n)
 
   local Digits,
         Multiplier,FactorBase,FactorBaseSize,MaxFactorBaseEl,pi,sqrt,
@@ -294,8 +294,7 @@ CFRACSplit := function (n)
        "CFRAC runtime : ",TimeToString(UsedTime),"\n");
 
   return Result;
-end;
-MakeReadOnlyGlobal("CFRACSplit");
+end);
 
 #############################################################################
 ##
