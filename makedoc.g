@@ -5,4 +5,11 @@ if fail = LoadPackage("AutoDoc", ">= 2016.01.21") then
     Error("AutoDoc 2016.01.21 or newer is required");
 fi;
 
-AutoDoc(rec(gapdoc:=rec(main:="main.xml")));
+AutoDoc(rec( scaffold := rec(
+        includes := [ "preface.xml", "general.xml", "methods.xml", "timings.xml" ],
+        bib := "factintbib.xml",
+        gapdoc_latex_options := rec( EarlyExtraPreamble := """
+            \usepackage{amsfonts}
+            \usepackage{amsxtra}
+            """ ),
+    )));
