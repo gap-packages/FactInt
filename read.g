@@ -6,7 +6,6 @@
 ##
 #############################################################################
 
-ReadPackage( "factint", "lib/factintaux.g" );
 ReadPackage( "factint", "lib/general.gi" );
 ReadPackage( "factint", "lib/pminus1.gi" );
 ReadPackage( "factint", "lib/pplus1.gi" );
