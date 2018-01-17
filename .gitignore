@@ -19,3 +19,5 @@
 /doc/*.toc
 /doc/manual.pdf
 /doc/factintbib.xml.bib
+/doc/FactInt.xml
+/doc/title.xml
