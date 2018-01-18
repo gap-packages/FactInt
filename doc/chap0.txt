@@ -1,1 +1,113 @@
-Placeholder
+  
+  
+                                   [1X FactInt [101X
+  
+  
+                   [1X Advanced Methods for Factoring Integers [101X
+  
+  
+                                     1.6.1
+  
+  
+                                17 January 2018
+  
+  
+                                  Stefan Kohl
+  
+                              Alexander Konovalov
+  
+  
+  
+  Stefan Kohl
+      Email:    [7Xmailto:stefan@gap-system.org[107X
+      Homepage: [7Xhttps://stefan-kohl.github.io/[107X
+  Alexander Konovalov
+      Email:    [7Xmailto:alexander.konovalov@st-andrews.ac.uk[107X
+      Homepage: [7Xhttps://alexk.host.cs.st-andrews.ac.uk[107X
+      Address:  [33X[0;14YSchool of Computer Science[133X
+                [33X[0;14YUniversity of St Andrews[133X
+                [33X[0;14YJack Cole Building, North Haugh,[133X
+                [33X[0;14YSt Andrews, Fife, KY16 9SX, Scotland[133X
+  
+  
+  
+  -------------------------------------------------------
+  [1XAbstract[101X
+  [33X[0;0YThis  package  for  [5XGAP[105X 4  provides  a general-purpose integer factorization
+  routine,  which  makes  use  of  a  combination  of  factoring  methods.  In
+  particular it contains implementations of the following algorithms:[133X
+  
+  [30X    [33X[0;6YPollard's [22Xp-1[122X[133X
+  
+  [30X    [33X[0;6YWilliams' [22Xp+1[122X[133X
+  
+  [30X    [33X[0;6YElliptic Curves Method (ECM)[133X
+  
+  [30X    [33X[0;6YContinued Fraction Algorithm (CFRAC)[133X
+  
+  [30X    [33X[0;6YMultiple Polynomial Quadratic Sieve (MPQS)[133X
+  
+  [33X[0;0YIt  also  contains code by Frank Lübeck for making use of Richard P. Brent's
+  tables  of  factors  of  integers of the form [22Xb^k ± 1[122X. [5XFactInt[105X is completely
+  written in the [5XGAP[105X language and contains / requires no external binaries. It
+  needs  [5XGAPDoc[105X 1.6  [LN17]  or  higher.  [5XFactInt[105X must be installed in the [11Xpkg[111X
+  subdirectory of the [5XGAP[105X distribution.[133X
+  
+  
+  -------------------------------------------------------
+  [1XCopyright[101X
+  [33X[0;0Y© 1999 - 2017 by Stefan Kohl.[133X
+  
+  [33X[0;0Y[5XFactInt[105X is free software: you can redistribute it and/or modify it under the
+  terms  of  the  GNU General Public License as published by the Free Software
+  Foundation,  either  version 2 of the License, or (at your option) any later
+  version.[133X
+  
+  [33X[0;0Y[5XFactInt[105X  is  distributed in the hope that it will be useful, but WITHOUT ANY
+  WARRANTY;  without  even  the implied warranty of MERCHANTABILITY or FITNESS
+  FOR  A  PARTICULAR  PURPOSE.  See  the  GNU  General Public License for more
+  details.[133X
+  
+  [33X[0;0YFor  a  copy  of the GNU General Public License, see the file [11XGPL[111X in the [11Xetc[111X
+  directory       of       the       [5XGAP[105X       distribution       or       see
+  [7Xhttp://www.gnu.org/licenses/gpl.html[107X.[133X
+  
+  
+  -------------------------------------------------------
+  [1XAcknowledgements[101X
+  [33X[0;0YI  would  like  to thank Bettina Eick and Steve Linton for their support and
+  many interesting discussions.[133X
+  
+  
+  -------------------------------------------------------
+  
+  
+  [1XContents (FactInt)[101X
+  
+  1 [33X[0;0YPreface[133X
+  2 [33X[0;0YThe General Factorization Routine[133X
+    2.1 [33X[0;0YThe method for [10XFactors[110X[133X
+      2.1-1 Factors
+      2.1-2 FactInt
+    2.2 [33X[0;0YGetting information about the factoring process[133X
+      2.2-1 InfoFactInt
+  3 [33X[0;0YThe Routines for Specific Factorization Methods[133X
+    3.1 [33X[0;0YTrial division[133X
+      3.1-1 FactorsTD
+    3.2 [33X[0;0YPollard's [22Xp-1[122X[133X
+      3.2-1 FactorsPminus1
+    3.3 [33X[0;0YWilliams' [22Xp+1[122X[133X
+      3.3-1 FactorsPplus1
+    3.4 [33X[0;0YThe Elliptic Curves Method (ECM)[133X
+      3.4-1 FactorsECM
+    3.5 [33X[0;0YThe Continued Fraction Algorithm (CFRAC)[133X
+      3.5-1 FactorsCFRAC
+    3.6 [33X[0;0YThe Multiple Polynomial Quadratic Sieve (MPQS)[133X
+      3.6-1 FactorsMPQS
+  4 [33X[0;0YHow much Time does a Factorization take?[133X
+    4.1 [33X[0;0YTimings for the general factorization routine[133X
+    4.2 [33X[0;0YTimings for the ECM[133X
+    4.3 [33X[0;0YTimings for the MPQS[133X
+  
+  
+  [32X

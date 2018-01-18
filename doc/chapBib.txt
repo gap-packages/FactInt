@@ -1,0 +1,24 @@
+  
+  
+  [1XReferences[101X
+  
+  [[20XBre89[120X]    [16XBressoud,   D.   M.[116X,   [17XFactorization   and   Primality   Testing[117X,
+  Springer-Verlag (1989).
+  
+  [[20XBre96[120X] [16XBrent, R. P.[116X, [17XFactorization of the Tenth and Eleventh Fermat Numbers[117X
+  (1996),                                                                   ((
+  ftp://ftp.comlab.ox.ac.uk/pub/Documents/techpapers/Richard.Brent/rpb161tr.dvi.gz
+  )).
+  
+  [[20XBre04[120X]      [16XBrent,      R.     P.[116X,     [17XFactor     Tables[117X     (2004),     ((
+  http://web.comlab.ox.ac.uk/oucl/work/richard.brent/factors.html )).
+  
+  [[20XCoh93[120X]  [16XCohen,  H.[116X,  [17XA  Course  in  Computational  Algebraic Number Theory[117X,
+  Springer-Verlag (1993).
+  
+  [[20XLN17[120X]  [16XLübeck,  F.  and  Neunhöffer,  M.[116X, [17XGAPDoc (Version 1.6)[117X, RWTH Aachen
+  (2017), (( GAP package, http://www.gap-system.org/Packages/gapdoc.html )).
+  
+  
+  
+  [32X

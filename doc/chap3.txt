@@ -1,0 +1,301 @@
+  
+  [1X3 [33X[0;0YThe Routines for Specific Factorization Methods[133X[101X
+  
+  [33X[0;0YDescriptions  of  the  factoring  methods implemented in this package can be
+  found in [Bre89] and [Coh93]. Cohen's book contains also descriptions of the
+  other methods mentioned in the preface.[133X
+  
+  
+  [1X3.1 [33X[0;0YTrial division[133X[101X
+  
+  [1X3.1-1 FactorsTD[101X
+  
+  [33X[1;0Y[29X[2XFactorsTD[102X( [3Xn[103X[, [3XDivisors[103X] ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ya  list  of  two  lists: The first list contains the prime factors
+            found,  and the second list contains remaining unfactored parts of
+            [3Xn[103X, if there are any.[133X
+  
+  [33X[0;0YThis  function  tries  to  factor [3Xn[103X by trial division. The optional argument
+  [3XDivisors[103X  is  the  list  of trial divisors. If not given, it defaults to the
+  list of primes [22Xp < 1000[122X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X[128X[104X
+    [4X[25Xgap>[125X [27XFactorsTD(12^25+25^12);[127X[104X
+    [4X[28X[ [ 13, 19, 727 ], [ 5312510324723614735153 ] ][128X[104X
+    [4X[28X[128X[104X
+  [4X[32X[104X
+  
+  
+  [1X3.2 [33X[0;0YPollard's [22Xp-1[122X[101X[1X[133X[101X
+  
+  [1X3.2-1 FactorsPminus1[101X
+  
+  [33X[1;0Y[29X[2XFactorsPminus1[102X( [3Xn[103X[[, [3Xa[103X], [3XLimit1[103X[, [3XLimit2[103X]] ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ya  list  of  two  lists: The first list contains the prime factors
+            found,  and the second list contains remaining unfactored parts of
+            [3Xn[103X, if there are any.[133X
+  
+  [33X[0;0YThis  function  tries to factor [3Xn[103X using Pollard's [22Xp-1[122X. It uses [3Xa[103X as base for
+  exponentiation,  [3XLimit1[103X  as  first  stage  limit  and [3XLimit2[103X as second stage
+  limit.  If  the function is called with three arguments, these arguments are
+  interpreted  as  [3Xn[103X, [3XLimit1[103X and [3XLimit2[103X. Defaults are chosen for all arguments
+  which are omitted.[133X
+  
+  [33X[0;0YPollard's  [22Xp-1[122X  is based on the fact that exponentiation (mod [22Xn[122X) can be done
+  efficiently  enough  to  compute  [22Xa^k![122X  mod [22Xn[122X  for sufficiently large [22Xk[122X in a
+  reasonable  amount  of time. Assume that [22Xp[122X is a prime factor of [22Xn[122X which does
+  not  divide [22Xa[122X,  and  that  [22Xk![122X  is a multiple of [22Xp-1[122X. Then Lagrange's Theorem
+  states  that  [22Xa^k!  ≡  1[122X (mod [22Xp[122X). If [22Xk![122X is not a multiple of [22Xq-1[122X for another
+  prime  factor  [22Xq[122X  of [22Xn[122X,  it is likely that the factor [22Xp[122X can be determined by
+  computing  [22Xgcd(a^k!-1,n)[122X.  A  prime factor [22Xp[122X is usually found if the largest
+  prime factor of [22Xp-1[122X is not larger than [3XLimit2[103X, and the second-largest one is
+  not  larger  than [3XLimit1[103X. (Compare with [2XFactorsPplus1[102X ([14X3.3-1[114X) and [2XFactorsECM[102X
+  ([14X3.4-1[114X).)[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X[128X[104X
+    [4X[25Xgap>[125X [27XFactorsPminus1( Factorial(158) + 1, 100000, 1000000 );[127X[104X
+    [4X[28X[ [ 2879, 5227, 1452486383317, 9561906969931, 18331561438319, [128X[104X
+    [4X[28X      4837142997094837608115811103417329505064932181226548534006749213\[128X[104X
+    [4X[28X4508231090637045229565481657130504121732305287984292482612133314325471\[128X[104X
+    [4X[28X3674832962773107806789945715570386038565256719614524924705165110048148\[128X[104X
+    [4X[28X7161609649806290811760570095669 ], [  ] ][128X[104X
+    [4X[25Xgap>[125X [27XList( last[ 1 ]{[ 3, 4, 5 ]}, p -> Factors( p - 1 ) );[127X[104X
+    [4X[28X[ [ 2, 2, 3, 3, 81937, 492413 ], [ 2, 3, 3, 3, 5, 7, 7, 1481, 488011 ][128X[104X
+    [4X[28X    , [ 2, 3001, 7643, 399613 ] ][128X[104X
+    [4X[28X[128X[104X
+  [4X[32X[104X
+  
+  
+  [1X3.3 [33X[0;0YWilliams' [22Xp+1[122X[101X[1X[133X[101X
+  
+  [1X3.3-1 FactorsPplus1[101X
+  
+  [33X[1;0Y[29X[2XFactorsPplus1[102X( [3Xn[103X[[, [3XResidues[103X], [3XLimit1[103X[, [3XLimit2[103X]] ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ya  list  of  two  lists: The first list contains the prime factors
+            found,  and the second list contains remaining unfactored parts of
+            [3Xn[103X, if there are any.[133X
+  
+  [33X[0;0YThis  function  tries  to  factor  [3Xn[103X  using Williams' [22Xp+1[122X. It tries [3XResidues[103X
+  different  residues,  and  uses  [3XLimit1[103X  as  first stage limit and [3XLimit2[103X as
+  second  stage  limit.  If the function is called with three arguments, these
+  arguments  are  interpreted as [3Xn[103X, [3XLimit1[103X and [3XLimit2[103X. Defaults are chosen for
+  all arguments which are omitted.[133X
+  
+  [33X[0;0YWilliams' [22Xp+1[122X is very similar to Pollard's [22Xp-1[122X (see [2XFactorsPminus1[102X ([14X3.2-1[114X)).
+  The  difference  is that the underlying group here can either have order [22Xp+1[122X
+  or  [22Xp-1[122X,  and  that the group operation takes more time. A prime factor [22Xp[122X is
+  usually  found  if  the  largest  prime factor of the group order is at most
+  [3XLimit2[103X  and  the second-largest one is not larger than [3XLimit1[103X. (Compare also
+  with [2XFactorsECM[102X ([14X3.4-1[114X).)[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X[128X[104X
+    [4X[25Xgap>[125X [27XFactorsPplus1( Factorial(55) - 1, 10, 10000, 100000 );[127X[104X
+    [4X[28X[ [ 73, 39619, 277914269, 148257413069 ], [128X[104X
+    [4X[28X  [ 106543529120049954955085076634537262459718863957 ] ][128X[104X
+    [4X[25Xgap>[125X [27XList( last[ 1 ], p -> [ Factors( p - 1 ), Factors( p + 1 ) ] );[127X[104X
+    [4X[28X[ [ [ 2, 2, 2, 3, 3 ], [ 2, 37 ] ], [128X[104X
+    [4X[28X  [ [ 2, 3, 3, 31, 71 ], [ 2, 2, 5, 7, 283 ] ], [128X[104X
+    [4X[28X  [ [ 2, 2, 2207, 31481 ], [ 2, 3, 5, 9263809 ] ], [128X[104X
+    [4X[28X  [ [ 2, 2, 47, 788603261 ], [ 2, 3, 5, 13, 37, 67, 89, 1723 ] ] ][128X[104X
+    [4X[28X[128X[104X
+  [4X[32X[104X
+  
+  
+  [1X3.4 [33X[0;0YThe Elliptic Curves Method (ECM)[133X[101X
+  
+  [1X3.4-1 FactorsECM[101X
+  
+  [33X[1;0Y[29X[2XFactorsECM[102X( [3Xn[103X[, [3XCurves[103X[, [3XLimit1[103X[, [3XLimit2[103X[, [3XDelta[103X]]]] ) [32X function[133X
+  [33X[1;0Y[29X[2XECM[102X( [3Xn[103X[, [3XCurves[103X[, [3XLimit1[103X[, [3XLimit2[103X[, [3XDelta[103X]]]] ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ya  list  of  two  lists: The first list contains the prime factors
+            found,  and the second list contains remaining unfactored parts of
+            [3Xn[103X, if there are any.[133X
+  
+  [33X[0;0YThis  function tries to factor [3Xn[103X using the Elliptic Curves Method (ECM). The
+  argument  [3XCurves[103X is the number of curves to be tried. The argument [3XLimit1[103X is
+  the initial first stage limit, and [3XLimit2[103X is the initial second stage limit.
+  The argument [3XDelta[103X is the increment per curve for the first stage limit. The
+  second  stage  limit  is adjusted appropriately. Defaults are chosen for all
+  arguments which are omitted.[133X
+  
+  [33X[0;0Y[10XFactorsECM[110X recognizes the option [3XECMDeterministic[103X. If set, the choice of the
+  curves  is deterministic. This means that in repeated runs of [10XFactorsECM[110X the
+  same  curves  are  used, and hence for the same [22Xn[122X the same factors are found
+  after the same number of trials.[133X
+  
+  [33X[0;0YThe  Elliptic  Curves Method is based on the fact that exponentiation in the
+  elliptic  curve  groups [22XE(a,b)/n[122X can be performed fast enough to compute for
+  example  [22Xg^k![122X  for [22Xk[122X large enough (e.g. 100000 or so) in a reasonable amount
+  of  time  and  without  using much memory, and on Lagrange's Theorem. Assume
+  that [22Xp[122X is a prime divisor of [22Xn[122X. Then Lagrange's Theorem states that if [22Xk![122X is
+  a  multiple  of  [22X|E(a,b)/p|[122X,  then for any elliptic curve point [22Xg[122X, the power
+  [22Xg^k![122X  is  the  identity  element  of  [22XE(a,b)/p[122X.  In  this situation -- under
+  reasonable  circumstances  --  the  factor [22Xp[122X  can be determined by taking an
+  appropriate gcd.[133X
+  
+  [33X[0;0YIn  practice,  the  algorithm  chooses  in some sense [21Xbetter[121X products [22XP_k[122X of
+  small  primes  rather  than  [22Xk![122X as exponents. After reaching the first stage
+  limit with [22XP_Limit1[122X, it considers further products [22XP_Limit1q[122X for primes [22Xq[122X up
+  to  the  second  stage limit [3XLimit2[103X, which is usually set equal to something
+  like 100 times the first stage limit. The prime [22Xq[122X corresponds to the largest
+  prime factor of the order of the group [22XE(a,b)/p[122X.[133X
+  
+  [33X[0;0YA  prime divisor [22Xp[122X is usually found if the largest prime factor of the order
+  of  one of the examined elliptic curve groups [22XE(a,b)/p[122X is at most [3XLimit2[103X and
+  the  second-largest  one  is  at most [3XLimit1[103X. Thus trying a larger number of
+  curves  increases  the  chance  of  factoring [3Xn[103X as well as choosing a larger
+  value for [3XLimit1[103X and/or [3XLimit2[103X. It turns out to be not optimal either to try
+  a  large number of curves with very small [3XLimit1[103X and [3XLimit2[103X or to try only a
+  few curves with very large limits. (Compare with [2XFactorsPminus1[102X ([14X3.2-1[114X).)[133X
+  
+  [33X[0;0YThe  elements  of  the  group  [22XE(a,b)/n[122X  are  the  points [22X(x,y)[122X given by the
+  solutions  of  [22Xy^2 = x^3 + ax + by[122X in the residue class ring (mod [22Xn[122X), and an
+  additional  point  [22X∞[122X  at infinity, which serves as identity element. To turn
+  this  set  into  a group, define the product (although elliptic curve groups
+  are  usually  written additively, I prefer using the multiplicative notation
+  here  to  retain  the  analogy  to  [2XFactorsPminus1[102X ([14X3.2-1[114X) and [2XFactorsPplus1[102X
+  ([14X3.3-1[114X))  of  two  points [22Xp_1[122X and [22Xp_2[122X as follows: If [22Xp_1 ≠ p_2[122X, let [22Xl[122X be the
+  line  through  [22Xp_1[122X  and [22Xp_2[122X,  otherwise  let [22Xl[122X be the tangent to the curve [22XC[122X
+  given  by the above equation in the point [22Xp_1 = p_2[122X. The line [22Xl[122X intersects [22XC[122X
+  in  a  third  point,  say [22Xp_3[122X.  If [22Xl[122X does not intersect the curve in a third
+  affine  point, then set [22Xp_3 := ∞[122X. Define [22Xp_1 ⋅ p_2[122X by the image of [22Xp_3[122X under
+  the  reflection  across  the [22Xx[122X-axis. Define the product of any curve point [22Xp[122X
+  and  [22X∞[122X  by  [22Xp[122X itself. This -- more or less obviously, checking associativity
+  requires some calculation -- turns the set of points on the given curve into
+  an abelian group [22XE(a,b)/n[122X.[133X
+  
+  [33X[0;0YHowever,  the  calculations  are  done  in projective coordinates to have an
+  explicit  representation  of  the  identity element and to avoid calculating
+  inverses (mod [22Xn[122X) for the group operation. Otherwise this would require using
+  an  [22XO((log  n)^3)[122X-algorithm,  while  multiplication  (mod [22Xn[122X)  is only [22XO((log
+  n)^2)[122X.  The  corresponding  equation is given by [22XbY^2Z = X^3 + aX^2Z + XZ^2[122X.
+  This form allows even more efficient computations than the Weierstrass model
+  [22XY^2Z  = X^3 + aXZ^2 + bZ^3[122X, which is the projective equivalent of the affine
+  representation [22Xy^2 = x^3 + ax + by[122X mentioned above. The algorithm only keeps
+  track of two of the three coordinates, namely [22XX[122X and [22XZ[122X. The curves are chosen
+  in  a  way that ensures the order of the corresponding group to be divisible
+  by 12.  This  increases the chance that it is smooth enough to find a factor
+  of [22Xn[122X.  The  implementation  follows  the description of R. P. Brent given in
+  [Bre96],  pp.  5  --  8.  In  terms  of this paper, for the second stage the
+  [21Ximproved standard continuation[121X is used.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X[128X[104X
+    [4X[25Xgap>[125X [27XFactorsECM(2^256+1,100,10000,1000000,100);[127X[104X
+    [4X[28X[ [ 1238926361552897, [128X[104X
+    [4X[28X      93461639715357977769163558199606896584051237541638188580280321 ][128X[104X
+    [4X[28X    , [  ] ][128X[104X
+    [4X[28X[128X[104X
+  [4X[32X[104X
+  
+  
+  [1X3.5 [33X[0;0YThe Continued Fraction Algorithm (CFRAC)[133X[101X
+  
+  [1X3.5-1 FactorsCFRAC[101X
+  
+  [33X[1;0Y[29X[2XFactorsCFRAC[102X( [3Xn[103X ) [32X function[133X
+  [33X[1;0Y[29X[2XCFRAC[102X( [3Xn[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ya list of the prime factors of [3Xn[103X.[133X
+  
+  [33X[0;0YThis  function  tries  to  factor  [3Xn[103X  using the Continued Fraction Algorithm
+  (CFRAC),  also  known as Brillhart-Morrison Algorithm. In case of failure an
+  error is signalled.[133X
+  
+  [33X[0;0YCaution:  The  run  time of this function depends only on the size of [3Xn[103X, and
+  not  on  the size of the factors. Thus if a small factor is not found during
+  the preprocessing which is done before invoking the sieving process, the run
+  time is as long as if [3Xn[103X would have two prime factors of roughly equal size.[133X
+  
+  [33X[0;0YThe  Continued  Fraction  Algorithm tries to find integers [22Xx[122X and [22Xy[122X such that
+  [22Xx^2  ≡  y^2[122X  (mod [22Xn[122X),  but  not [22X± x ≡ ± y[122X (mod [22Xn[122X). In this situation, taking
+  [22Xgcd(x  -  y,n)[122X yields a nontrivial divisor of [22Xn[122X. For determining such a pair
+  [22X(x,y)[122X,  the  algorithm  uses  the continued fraction expansion of the square
+  root  of [22Xn[122X.  If  [22Xx_i/y_i[122X is a continued fraction approximation of the square
+  root  of [22Xn[122X,  then [22Xc_i := x_i^2 - ny_i^2[122X is bounded by a small constant times
+  the  square  root  of [22Xn[122X. The algorithm tries to find as many [22Xc_i[122X as possible
+  which  factor  completely over a chosen factor base (a list of small primes)
+  or  with only one factor not in the factor base. The latter ones can be used
+  if and only if a second [22Xc_i[122X with the same [21Xlarge[121X factor is found. Once enough
+  values  [22Xc_i[122X  have  been factored, as a final stage Gaussian Elimination over
+  GF(2) is used to determine which of the congruences [22Xx_i^2 ≡ c_i[122X (mod [22Xn[122X) have
+  to  be  multiplied together to obtain a congruence of the desired form [22Xx^2 ≡
+  y^2[122X  (mod [22Xn[122X).  Let  [22XM[122X be the corresponding matrix. Then the entries of [22XM[122X are
+  given  by  [22XM_ij  =  1[122X if an odd power of the [22Xj[122X-th element of the factor base
+  divides  the  [22Xi[122X-th  usable factored value, and [22XM_ij = 0[122X otherwise. To obtain
+  the  desired  congruence,  it  is  necessary that the rows of [22XM[122X are linearly
+  dependent.  In other words, this means that the number of factored [22Xc_i[122X needs
+  to be larger than the rank of [22XM[122X, which is approximately given by the size of
+  the factor base. (Compare with [2XFactorsMPQS[102X ([14X3.6-1[114X).)[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X[128X[104X
+    [4X[25Xgap>[125X [27XFactorsCFRAC( Factorial(34) - 1 );[127X[104X
+    [4X[28X[ 10398560889846739639, 28391697867333973241 ][128X[104X
+    [4X[28X[128X[104X
+  [4X[32X[104X
+  
+  
+  [1X3.6 [33X[0;0YThe Multiple Polynomial Quadratic Sieve (MPQS)[133X[101X
+  
+  [1X3.6-1 FactorsMPQS[101X
+  
+  [33X[1;0Y[29X[2XFactorsMPQS[102X( [3Xn[103X ) [32X function[133X
+  [33X[1;0Y[29X[2XMPQS[102X( [3Xn[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ya list of the prime factors of [3Xn[103X.[133X
+  
+  [33X[0;0YThis  function  tries  to factor [3Xn[103X using the Single Large Prime Variation of
+  the  Multiple Polynomial Quadratic Sieve (MPQS). In case of failure an error
+  is signalled.[133X
+  
+  [33X[0;0YCaution:  The  run  time of this function depends only on the size of [3Xn[103X, and
+  not  on  the size of the factors. Thus if a small factor is not found during
+  the preprocessing which is done before invoking the sieving process, the run
+  time is as long as if [3Xn[103X would have two prime factors of roughly equal size.[133X
+  
+  [33X[0;0YThe  intermediate  results  of a computation can be saved by interrupting it
+  with  [10X[Ctrl][C][110X  and  calling  [10XPause();[110X from the break loop. This causes all
+  data  needed  for  resuming  the  computation again to be pushed as a record
+  [3XMPQSTmp[103X  on  the  options stack. When called again with the same argument [3Xn[103X,
+  [10XFactorsMPQS[110X  takes  the record from the options stack and continues with the
+  previously  computed  factorization  data.  For continuing the factorization
+  process  in  another session, one needs to write this record to a file. This
+  can  be done by the function [10XSaveMPQSTmp([3Xfilename[103X[10X)[110X. The file written by this
+  function can be read by the standard [10XRead[110X-function of [5XGAP[105X.[133X
+  
+  [33X[0;0YThe  Multiple Polynomial Quadratic Sieve tries to find integers [22Xx[122X and [22Xy[122X such
+  that [22Xx^2 ≡ y^2[122X (mod [22Xn[122X), but not [22X± x ≡ ± y[122X (mod [22Xn[122X). In this situation, taking
+  [22Xgcd(x  -  y,n)[122X yields a nontrivial divisor of [22Xn[122X. For determining such a pair
+  [22X(x,y)[122X, the algorithm chooses polynomials [22Xf_a[122X of the form [22Xf_a(r) = ar^2 + 2br
+  +  c[122X  with  suitably  chosen  coefficients  [22Xa[122X, [22Xb[122X and [22Xc[122X which satisfy [22Xb^2 ≡ n[122X
+  (mod [22Xa[122X) and [22Xc = (b^2 - n)/a[122X. The identity [22Xa ⋅ f_a(r) = (ar + b)^2 - n[122X yields
+  a congruence (mod [22Xn[122X) with a perfect square on one side and [22Xa ⋅ f_a(r)[122X on the
+  other.  The  algorithm  uses  a  sieving  technique  similar to the Sieve of
+  Eratosthenes  over  an  appropriately  chosen sieving interval to search for
+  factorizations  of  values  [22Xf_a(r)[122X  over  a  chosen  factor  base.  Any  two
+  factorizations  with  the  same single [21Xlarge[121X factor which does not belong to
+  the  factor base can also be used. Taking more polynomials and hence shorter
+  sieving  intervals  has  the  advantage  of  having to factor smaller values
+  [22Xf_a(r)[122X over the factor base.[133X
+  
+  [33X[0;0YOnce  enough  values  [22Xf_a(r)[122X  have  been factored, as a final stage Gaussian
+  Elimination  over  GF(2)  is  used to determine which congruences have to be
+  multiplied  together  to  obtain  a congruence of the desired form [22Xx^2 ≡ y^2[122X
+  (mod [22Xn[122X).  Let [22XM[122X be the corresponding matrix. Then the entries of [22XM[122X are given
+  by  [22XM_ij  = 1[122X if an odd power of the [22Xj[122X-th element of the factor base divides
+  the  [22Xi[122X-th  usable  factored  value,  and  [22XM_ij  = 0[122X otherwise. To obtain the
+  desired  congruence,  it  is  necessary  that  the  rows  of [22XM[122X  are linearly
+  dependent.   In   other   words,  this  means  that  the  number  of  usable
+  factorizations  of  values [22Xf_a(r)[122X needs to be larger than the rank of [22XM[122X. The
+  latter  is  approximately  equal  to  the  size of the factor base. (Compare
+  with [2XFactorsCFRAC[102X ([14X3.5-1[114X).)[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X[128X[104X
+    [4X[25Xgap>[125X [27XFactorsMPQS( Factorial(38) + 1 );[127X[104X
+    [4X[28X[ 14029308060317546154181, 37280713718589679646221 ][128X[104X
+    [4X[28X[128X[104X
+  [4X[32X[104X
+  

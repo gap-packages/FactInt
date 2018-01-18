@@ -1,102 +1,117 @@
-#############################################################################
-##  
-##  Demo PackageInfo.g for the GitHubPagesForGAP
+####################################################################################################
 ##
+##  PackageInfo.g                         GAP4 Package `FactInt'                         Stefan Kohl
+##  
+####################################################################################################
 
 SetPackageInfo( rec(
 
-PackageName := "GitHubPagesForGAP",
+PackageName      := "FactInt",
+Subtitle         := "Advanced Methods for Factoring Integers", 
+Version          := "1.6.1",
+Date             := "17/01/2018",
 
-Subtitle := "A GitHub Pages generator for GAP packages",
-Version := "0.2",
-Date := "04/02/2017", # dd/mm/yyyy format
-
-Persons := [
-  rec(
-    LastName      := "Horn",
-    FirstNames    := "Max",
-    IsAuthor      := true,
-    IsMaintainer  := true,
-    Email         := "max.horn@math.uni-giessen.de",
-    WWWHome       := "http://www.quendi.de/math",
-    PostalAddress := Concatenation(
-                       "AG Algebra\n",
-                       "Mathematisches Institut\n",
-                       "Justus-Liebig-Universität Gießen\n",
-                       "Arndtstraße 2\n",
-                       "35392 Gießen\n",
-                       "Germany" ),
-    Place         := "Gießen",
-    Institution   := "Justus-Liebig-Universität Gießen"
-  ),
-
-  rec(
-    LastName      := "Thor",
-    FirstNames    := "A. U.",
-    IsAuthor      := true,
-    IsMaintainer  := false,
-    #Email         := "author@example.com",
-  ),
-
-  rec(
-    LastName      := "Itor",
-    FirstNames    := "Jan",
-    IsAuthor      := false,
-    IsMaintainer  := true,
-    #Email         := "janitor@example.com",
-  ),
-],
-
-Status := "other",
-
-# The following are not strictly necessary in your own PackageInfo.g
-# (in the sense that update.g only looks at the usual fields
-# like PackageWWWHome, ArchiveURL etc.). But they are convenient
-# if you use exactly the scheme for your package website that we propose.
-GithubUser := "gap-system",
-GithubRepository := ~.PackageName,
-GithubWWW := Concatenation("https://github.com/", ~.GithubUser, "/", ~.GithubRepository),
-
-PackageWWWHome := Concatenation("https://", ~.GithubUser, ".github.io/", ~.GithubRepository, "/"),
-README_URL     := Concatenation( ~.PackageWWWHome, "README.md" ),
-PackageInfoURL := Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
-# The following assumes you are using the Github releases system. If not, adjust
-# it accordingly.
-ArchiveURL     := Concatenation(~.GithubWWW,
-                    "/releases/download/v", ~.Version, "/",
-                    ~.GithubRepository, "-", ~.Version),
-
-ArchiveFormats := ".tar.gz .tar.bz2",
-
-AbstractHTML := 
-  "This is a pseudo package that contains no actual\
-  <span class=\"pkgname\">GAP</span> code. Instead, it is a template for other\
-  GAP packages that allows to quickly setup GitHub Pages.",
-
-PackageDoc := rec(
-  BookName  := "GitHubPagesForGAP",
-  ArchiveURLSubset := ["doc"],
-  HTMLStart := "doc/chap0.html",
-  PDFFile   := "doc/manual.pdf",
-  SixFile   := "doc/manual.six",
-  LongTitle := "A GitHub Pages generator for GAP packages",
+SourceRepository := rec(
+    Type := "git",
+    URL := Concatenation( "https://github.com/gap-packages/", ~.PackageName ),
 ),
+IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
+PackageWWWHome  := Concatenation( "https://gap-packages.github.io/", ~.PackageName ),
+README_URL      := Concatenation( ~.PackageWWWHome, "/README.md" ),
+PackageInfoURL  := Concatenation( ~.PackageWWWHome, "/PackageInfo.g" ),
+ArchiveURL      := Concatenation( ~.SourceRepository.URL,
+                                 "/releases/download/v", ~.Version,
+                                 "/", ~.PackageName, "-", ~.Version ),
+ArchiveFormats := ".tar.gz",
 
-# The following dependencies are fake and for testing / demo purposes
-Dependencies := rec(
-  GAP := ">=4.8.1",
-  NeededOtherPackages := [
-    ["GAPDoc", ">= 1.2"],
-    ["IO", ">= 4.1"],
-  ],
-  SuggestedOtherPackages := [["orb", ">= 4.2"]],
-  ExternalConditions := []
-),
-
+Persons          := [
+                      rec( LastName      := "Kohl",
+                           FirstNames    := "Stefan",
+                           IsAuthor      := true,
+                           IsMaintainer  := true,
+                           Email         := "stefan@gap-system.org",
+                           WWWHome       := "https://stefan-kohl.github.io/"
+                         ),
+                      rec( LastName      := "Konovalov",
+                           FirstNames    := "Alexander",
+                           IsAuthor      := false,
+                           IsMaintainer  := true,
+                           Email         := "alexander.konovalov@st-andrews.ac.uk",
+                           WWWHome       := "https://alexk.host.cs.st-andrews.ac.uk",
+                           PostalAddress := Concatenation( [
+                             "School of Computer Science\n",
+                             "University of St Andrews\n",
+                             "Jack Cole Building, North Haugh,\n",
+                             "St Andrews, Fife, KY16 9SX, Scotland" ] ),
+                           Place         := "St Andrews",
+                           Institution   := "University of St Andrews"
+    ),
+                    ],
+Status           := "accepted",
+CommunicatedBy   := "Mike Atkinson (St. Andrews)",
+AcceptDate       := "07/1999",
+AbstractHTML     := Concatenation("This package provides routines for factoring integers, ",
+                                  "in particular:</p>\n<ul>\n  <li>Pollard's <em>p</em>-1</li>\n",
+                                  "  <li>Williams' <em>p</em>+1</li>\n  <li>Elliptic Curves ",
+                                  "Method (ECM)</li>\n  <li>Continued Fraction Algorithm ",
+                                  "(CFRAC)</li>\n  <li>Multiple Polynomial Quadratic Sieve ",
+                                  "(MPQS)</li>\n</ul>\n<p>It also provides access to Richard P. ",
+                                  "Brent's tables of factors of integers of the form ",
+                                  "<em>b</em>^<em>k</em> +/- 1."),
+PackageDoc       := rec(
+                         BookName         := "FactInt",
+                         ArchiveURLSubset := ["doc"],
+                         HTMLStart        := "doc/chap0.html",
+                         PDFFile          := "doc/manual.pdf",
+                         SixFile          := "doc/manual.six",
+                         LongTitle        := "A GAP4 Package for FACToring INTegers",
+                         Autoload         := true
+                       ),
+Dependencies     := rec(
+                         GAP                    := ">=4.8.8",
+                         NeededOtherPackages    := [ ["GAPDoc",">=1.6"] ],
+                         SuggestedOtherPackages := [ ],
+                         ExternalConditions     := [ ]
+                       ),
 AvailabilityTest := ReturnTrue,
+BannerString     := Concatenation( "\nLoading FactInt ", ~.Version,
+                                   " (Routines for Integer Factorization)",
+                                   "\nby Stefan Kohl, stefan@gap-system.org\n\n" ),
+TestFile         := "tst/testall.g",
+Keywords         := [ "Integer factorization", "ECM", "Elliptic Curves Method",
+                      "MPQS", "Multiple Polynomial Quadratic Sieve", "CFRAC",
+                      "Continued Fraction Algorithm", "Pollard's p-1", "Williams' p+1",
+                      "Cunningham Tables", "Richard P. Brent's Factor Tables" ],
 
-Keywords := ["GitHub Pages", "GAP"]
+AutoDoc := rec(
+  TitlePage := rec(
+    Copyright := """
+      &copyright; 1999 - 2017 by Stefan Kohl. <P/>
 
-));
+      &FactInt; is free software: you can redistribute it and/or modify
+      it under the terms of the GNU General Public License as published by
+      the Free Software Foundation, either version 2 of the License, or
+      (at your option) any later version. <P/>
 
+      &FactInt; is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+      GNU General Public License for more details. <P/>
 
+      For a copy of the GNU General Public License, see
+      the file <F>GPL</F> in the <F>etc</F> directory of the &GAP;
+      distribution or see <URL>http://www.gnu.org/licenses/gpl.html</URL>.
+      """,
+    Abstract := """<#Include SYSTEM "abstract.xml">""",
+    Acknowledgements := """
+      I would like to thank Bettina Eick and Steve Linton for their support
+      and many interesting discussions.
+      """,
+  ),
+),
+
+) );
+
+####################################################################################################
+##
+#E  PackageInfo.g  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ends here

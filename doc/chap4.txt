@@ -1,0 +1,95 @@
+  
+  [1X4 [33X[0;0YHow much Time does a Factorization take?[133X[101X
+  
+  
+  [1X4.1 [33X[0;0YTimings for the general factorization routine[133X[101X
+  
+  [33X[0;0YA  few  words  in  advance: In general, it is not possible to give a precise
+  prediction  for the CPU time needed for factoring a given integer. This time
+  depends  heavily on the sizes of the factors of the given number and on some
+  other   properties   which  cannot  be  tested  before  actually  doing  the
+  factorization.  But  nevertheless, rough run time estimates can be given for
+  numbers with factors of given orders of magnitude.[133X
+  
+  [33X[0;0YAfter  casting out the small and other [21Xeasy[121X factors -- which should not take
+  more  than  at  most  a  few  minutes  for numbers of [21Xreasonable[121X size -- the
+  general  factorization  routine  uses first ECM (see [2XFactorsECM[102X ([14X3.4-1[114X)) for
+  finding factors very roughly up to the third root of the remaining composite
+  and  then the MPQS (see [2XFactorsMPQS[102X ([14X3.6-1[114X)) for doing the [21Xrest[121X of the work.
+  The latter is often the most time-consuming part.[133X
+  
+  [33X[0;0YIn  the  sequel,  some timings for the ECM and for the MPQS are given. These
+  methods  are  by  far  the  most  important  ones  with  respect to run time
+  statistics  (the [22Xp ± 1[122X-methods (see [2XFactorsPminus1[102X ([14X3.2-1[114X) and [2XFactorsPplus1[102X
+  ([14X3.3-1[114X))  are  only suitable for finding factors with certain properties and
+  CFRAC  (see [2XFactorsCFRAC[102X ([14X3.5-1[114X)) is just a slower predecessor of the MPQS).
+  All  absolute  timings  are  given  for  a  Pentium 200  under  Windows as a
+  reference  machine (this was a fast machine at the time the first version of
+  this package has been written).[133X
+  
+  
+  [1X4.2 [33X[0;0YTimings for the ECM[133X[101X
+  
+  [33X[0;0YThe  run time of [10XFactorsECM[110X depends mainly on the size of the factors of the
+  input  number.  On  average, finding a 12-digit factor of a 100-digit number
+  takes  about  1 min 40 s,  finding  a  15-digit factor of a 100-digit number
+  takes  about  10 min  and  finding  an 18-digit factor of a 100-digit number
+  takes about 50 min. A general rule of thumb is the following: one digit more
+  increases the run time by a bit less than a factor of two. These timings are
+  very  rough,  and  they  may vary by a factor of 10 or more. You can compare
+  trying  an  elliptic  curve  with throwing a couple of dice, where a success
+  corresponds  to  the  case  where  all  of  them show the same side -- it is
+  possible to be successful with the first trial, but it is also possible that
+  this  takes  much  longer.  In particular, all trials are independent of one
+  another.  In  general,  ECM is superior to Pollard's Rho for finding factors
+  with  at  least  10 decimal digits. In the same time needed by Pollard's Rho
+  for  finding  a 13-digit factor one can reasonably expect to find a 17-digit
+  factor  when using ECM, for which Pollard's Rho in turn would need about 100
+  times as long as ECM. For larger factors this difference grows rapidly. From
+  theory  it  can  be  said  that finding a 20-digit factor requires about 500
+  times  as  much work as finding a 10-digit factor, finding a 30-digit factor
+  requires  about  160  times  as  much  work as finding a 20-digit factor and
+  finding  a 40-digit factor requires about 80 times as much work as finding a
+  30-digit factor.[133X
+  
+  [33X[0;0YThe default parameters are optimized for finding factors with about 15 -- 35
+  digits. This seems to be a sensible choice, since this is the most important
+  range  for  the application of ECM. The function [10XFactorsECM[110X usually gives up
+  when the input number [22Xn[122X has two factors which are both larger than its third
+  root.  This  is  of  course only a [21Xprobabilistic[121X statement. Sometimes -- but
+  seldom  --  the  remaining  composite  has 3 factors, 4 factors should occur
+  (almost) never.[133X
+  
+  [33X[0;0YThe  user  can of course specify other parameters than the default ones, but
+  giving  timings  for  all  possible  choices  is  obviously  impossible. The
+  interested  reader should follow the references given in the bibliography at
+  the end of this manual for getting information on how many curves with which
+  parameters  are  usually  needed  for  finding factors of a given size. This
+  depends  mainly  on the distribution of primes, respectively of numbers with
+  prime factors not exceeding a certain bound.[133X
+  
+  [33X[0;0YFor  benchmarking  purposes,  the  amount of time needed for trying a single
+  curve  with  given  smoothness  bounds  for a number of given size is suited
+  best.  A  typical example is the following: one curve with ([3XLimit1[103X,[3XLimit2[103X) =
+  (100000,10000000)  applied  to  a  100-digit  integer  requires  a  total of
+  10 min 20 s,  where  6 min 45 s are spent for the first stage and 3 min 35 s
+  are  spent  for  the  second  stage.  The time needed for the first stage is
+  approximately linear in [3XLimit1[103X and the time needed for the second stage is a
+  bit less than linear in [3XLimit2[103X.[133X
+  
+  
+  [1X4.3 [33X[0;0YTimings for the MPQS[133X[101X
+  
+  [33X[0;0YThe  run  time  of [10XFactorsMPQS[110X depends only on the size of the input number,
+  and not on the size of its factors. Rough timings are as follows: 90 s for a
+  40-digit  number,  10 min  for a 50-digit number, 2 h for a 60-digit number,
+  20 h  for  a  70-digit number and 100 h for a 75-digit number. These timings
+  are  much more precise than those given for ECM, but they may also vary by a
+  factor  of  2  or 3  depending  on  whether  a good factor base can be found
+  without  using  a  large  multiplier  or not. A general rule of thumb is the
+  following:  10 digits  more  cause  10 times  as much work. For benchmarking
+  purposes,  precise  timings  for  some integers are given: [22X38!+1[122X (45 digits,
+  good  factor  base  with multiplier 1): 2 min 22 s, [22X40!-1[122X (48 digits, not so
+  good  factor base even with multiplier 7): 8 min 58 s, cofactor of [22X1093^33+1[122X
+  (61 digits, good factor base with multiplier 1): 1 h 12 min.[133X
+  

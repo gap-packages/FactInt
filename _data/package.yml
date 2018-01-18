@@ -1,48 +1,45 @@
-name: GitHubPagesForGAP
-version: 0.2
-date: 04/02/2017
+name: FactInt
+version: 1.6.1
+date: 17/01/2018
 description: |
-    A GitHub Pages generator for GAP packages
+    Advanced Methods for Factoring Integers
 
 authors:
-    - name: Max Horn
-      url: http://www.quendi.de/math
-    - name: A. U. Thor
+    - name: Stefan Kohl
+      url: https://stefan-kohl.github.io/
 
 maintainers:
-    - name: Max Horn
-      url: http://www.quendi.de/math
-    - name: Jan Itor
+    - name: Stefan Kohl
+      url: https://stefan-kohl.github.io/
+    - name: Alexander Konovalov
+      url: https://alexk.host.cs.st-andrews.ac.uk
 
-GAP: ">=4.8.1"
+GAP: ">=4.8.8"
 
 needed-pkgs:
     - name: "GAPDoc"
-      version: ">= 1.2"
+      version: ">=1.6"
       url: "http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc"
-    - name: "IO"
-      version: ">= 4.1"
-      url: "https://gap-packages.github.io/io"
 
-suggested-pkgs:
-    - name: "orb"
-      version: ">= 4.2"
-      url: "https://gap-packages.github.io/orb"
-
-www: https://gap-system.github.io/GitHubPagesForGAP/
+www: https://gap-packages.github.io/FactInt
 readme: README.md
-packageinfo: https://gap-system.github.io/GitHubPagesForGAP/PackageInfo.g
-github: https://github.com/gap-system/GitHubPagesForGAP
+packageinfo: https://gap-packages.github.io/FactInt/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/gap-system/GitHubPagesForGAP/releases/download/v0.2/GitHubPagesForGAP-0.2.tar.gz
-    - name: .tar.bz2
-      url: https://github.com/gap-system/GitHubPagesForGAP/releases/download/v0.2/GitHubPagesForGAP-0.2.tar.bz2
+      url: https://github.com/gap-packages/FactInt/releases/download/v1.6.1/FactInt-1.6.1.tar.gz
 
 abstract: |
-    This is a pseudo package that contains no actual  <span class="pkgname">GAP</span> code. Instead, it is a template for other  GAP packages that allows to quickly setup GitHub Pages.
+    This package provides routines for factoring integers, in particular:</p>
+<ul>
+  <li>Pollard's <em>p</em>-1</li>
+  <li>Williams' <em>p</em>+1</li>
+  <li>Elliptic Curves Method (ECM)</li>
+  <li>Continued Fraction Algorithm (CFRAC)</li>
+  <li>Multiple Polynomial Quadratic Sieve (MPQS)</li>
+</ul>
+<p>It also provides access to Richard P. Brent's tables of factors of integers of the form <em>b</em>^<em>k</em> +/- 1.
 
-status: other
+status: accepted
 doc-html: doc/chap0.html
 doc-pdf: doc/manual.pdf
