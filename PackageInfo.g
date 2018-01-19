@@ -50,14 +50,18 @@ Persons          := [
 Status           := "accepted",
 CommunicatedBy   := "Mike Atkinson (St. Andrews)",
 AcceptDate       := "07/1999",
-AbstractHTML     := Concatenation("This package provides routines for factoring integers, ",
-                                  "in particular:</p>\n<ul>\n  <li>Pollard's <em>p</em>-1</li>\n",
-                                  "  <li>Williams' <em>p</em>+1</li>\n  <li>Elliptic Curves ",
-                                  "Method (ECM)</li>\n  <li>Continued Fraction Algorithm ",
-                                  "(CFRAC)</li>\n  <li>Multiple Polynomial Quadratic Sieve ",
-                                  "(MPQS)</li>\n</ul>\n<p>It also provides access to Richard P. ",
-                                  "Brent's tables of factors of integers of the form ",
-                                  "<em>b</em>^<em>k</em> +/- 1."),
+AbstractHTML     := """
+This package provides routines for factoring integers, in particular:
+<ul>
+  <li>Pollard's <em>p</em>-1</li>
+  <li>Williams' <em>p</em>+1</li>
+  <li>Elliptic Curves Method (ECM)</li>
+  <li>Continued Fraction Algorithm (CFRAC)</li>
+  <li>Multiple Polynomial Quadratic Sieve (MPQS)</li>
+</ul>
+It also provides access to Richard P. Brent's tables of factors of integers of the form <em>b</em>^<em>k</em> +/- 1.
+""",
+
 PackageDoc       := rec(
                          BookName         := "FactInt",
                          ArchiveURLSubset := ["doc"],
