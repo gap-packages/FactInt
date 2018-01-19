@@ -74,9 +74,6 @@ Dependencies     := rec(
                          ExternalConditions     := [ ]
                        ),
 AvailabilityTest := ReturnTrue,
-BannerString     := Concatenation( "\nLoading FactInt ", ~.Version,
-                                   " (Routines for Integer Factorization)",
-                                   "\nby Stefan Kohl, stefan@gap-system.org\n\n" ),
 TestFile         := "tst/testall.g",
 Keywords         := [ "Integer factorization", "ECM", "Elliptic Curves Method",
                       "MPQS", "Multiple Polynomial Quadratic Sieve", "CFRAC",
