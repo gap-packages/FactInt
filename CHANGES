@@ -2,6 +2,11 @@
                      Version history of the FactInt package
                      ======================================
 
+Changes between FactInt 1.6.0 and FactInt 1.6.1
+
+ - The function `FactorsECM` has been updated to reflect the change that
+   `RootInt` no longer accepts non-integral arguments. Now we ensure that
+   the 1st argument of `RootInt` is converted to an integer first.
 
 Changes between FactInt 1.5.4 and FactInt 1.6.0 (December 4, 2017):
 
