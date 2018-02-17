@@ -2,7 +2,12 @@
                      Version history of the FactInt package
                      ======================================
 
-Changes between FactInt 1.6.0 and FactInt 1.6.1
+Changes between FactInt 1.6.2 and FactInt 1.6.1 (February 17, 2018)
+
+ - Rewritten `FactorsTDNC` to avoid recursion.
+ - Some optimisations of loading data tables.
+
+Changes between FactInt 1.6.0 and FactInt 1.6.1 (January 17, 2018)
 
  - The function `FactorsECM` has been updated to reflect the change that
    `RootInt` no longer accepts non-integral arguments. Now we ensure that

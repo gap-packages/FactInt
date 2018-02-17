@@ -8,8 +8,8 @@ SetPackageInfo( rec(
 
 PackageName      := "FactInt",
 Subtitle         := "Advanced Methods for Factoring Integers", 
-Version          := "1.6.1",
-Date             := "17/01/2018",
+Version          := "1.6.2",
+Date             := "18/02/2018",
 
 SourceRepository := rec(
     Type := "git",
