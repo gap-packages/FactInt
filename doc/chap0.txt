@@ -6,10 +6,10 @@
                    [1X Advanced Methods for Factoring Integers [101X
   
   
-                                     1.6.1
+                                     1.6.2
   
   
-                                17 January 2018
+                                18 February 2018
   
   
                                   Stefan Kohl
