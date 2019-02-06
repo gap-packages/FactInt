@@ -92,7 +92,7 @@ BindGlobal("MPQSSplit", function (n)
   Digits := LogInt(n,10) + 1;
 
   Info(IntegerFactorizationInfo,2,"MPQS for n = ",n);
-  PrettyInfo(2,["Digits                     : ",[Digits,10]]);
+  Info(IntegerFactorizationInfo,2,"Digits                     : ",String(Digits,10));
 
   zero := Zero(GF(2)); one := One(GF(2));
 
@@ -195,15 +195,15 @@ BindGlobal("MPQSSplit", function (n)
   CompleteBase := Concatenation(FactorBase,aFactorsPool);
   Required := Length(CompleteBase) + 20;
 
-  PrettyInfo(2,["Multiplier                 : ",[Multiplier,10]]);
-  PrettyInfo(2,["Size of factor base        : ",[FactorBaseSize,10]]);
+  Info(IntegerFactorizationInfo,2,"Multiplier                 : ",String(Multiplier,10));
+  Info(IntegerFactorizationInfo,2,"Size of factor base        : ",String(FactorBaseSize,10));
   Info(IntegerFactorizationInfo,3,"Factor base : \n",FactorBase,"\n");
-  PrettyInfo(2,["Prime powers to be sieved  : ",[NrSievedPowers,10]]);
-  PrettyInfo(2,["Length of sieving interval : ",[SievingIntervalLength,10]]);
-  PrettyInfo(2,["Small prime limit          : ",[SmallPrimeLimit,10]]);
-  PrettyInfo(2,["Large prime limit          : ",[LargePrimeLimit,10]]);
-  PrettyInfo(2,["Number of used a-factors   : ",[NraFactors,10]]);
-  PrettyInfo(2,["Size of a-factors pool     : ",[aFactorsPoolsize,10]]);
+  Info(IntegerFactorizationInfo,2,"Prime powers to be sieved  : ",String(NrSievedPowers,10));
+  Info(IntegerFactorizationInfo,2,"Length of sieving interval : ",String(SievingIntervalLength,10));
+  Info(IntegerFactorizationInfo,2,"Small prime limit          : ",String(SmallPrimeLimit,10));
+  Info(IntegerFactorizationInfo,2,"Large prime limit          : ",String(LargePrimeLimit,10));
+  Info(IntegerFactorizationInfo,2,"Number of used a-factors   : ",String(NraFactors,10));
+  Info(IntegerFactorizationInfo,2,"Size of a-factors pool     : ",String(aFactorsPoolsize,10));
   Info(IntegerFactorizationInfo,3,"a-factors pool :\n",aFactorsPool,"\n");
 
   # Initialize the sieve
@@ -228,7 +228,7 @@ BindGlobal("MPQSSplit", function (n)
   NextCollectionAt := CollectingInterval;
 
   UsedTime := Int((Runtime() - StartingTime)/1000);
-  PrettyInfo(2,["Initialization time        : ",[UsedTime,10]," sec."]);
+  Info(IntegerFactorizationInfo,2,"Initialization time        : ",String(UsedTime,10)," sec.");
 
   Resume();  # Check whether there are intermediate results on
              # the options stack for the number to be factored
@@ -386,24 +386,33 @@ BindGlobal("MPQSSplit", function (n)
       UsedTime    := Int((Runtime() - StartingTime)/1000);
       Progress    := Minimum(100,Int(100 * RelsTotal/Required));
 
-      PrettyInfo(2,["Complete factorizations over the factor base   : ",
-                    [RelsFB,8]]);
-      PrettyInfo(2,["Relations with a large prime factor            : ",
-                    [RelsLarge,8]]);
-      PrettyInfo(2,["Relations remaining to be found                : ",
-                    [Remaining,8]]);
-      PrettyInfo(2,["Total factorizations with a large prime factor : ",
-                    [Length(FactoredLarge),8]]);
-      PrettyInfo(2,["Used polynomials                               : ",
-                    [PolyCount,8]]);
-      PrettyInfo(3,["Efficiency 1                                   : ",
-                    [Efficiency1,8]," %"]);
-      PrettyInfo(3,["Efficiency 2                                   : ",
-                    [Efficiency2,8]," %"]);
-      PrettyInfo(2,["Elapsed runtime                                : ",
-                    [UsedTime,8]," sec."]);
-      PrettyInfo(2,["Progress (relations)                           : ",
-                    [Progress,8]," %"]);
+      Info(IntegerFactorizationInfo,2,
+           "Complete factorizations over the factor base   : ",
+           String(RelsFB,8));
+      Info(IntegerFactorizationInfo,2,
+           "Relations with a large prime factor            : ",
+           String(RelsLarge,8));
+      Info(IntegerFactorizationInfo,2,
+           "Relations remaining to be found                : ",
+           String(Remaining,8));
+      Info(IntegerFactorizationInfo,2,
+           "Total factorizations with a large prime factor : ",
+           String(Length(FactoredLarge),8));
+      Info(IntegerFactorizationInfo,2,
+           "Used polynomials                               : ",
+           String(PolyCount,8));
+      Info(IntegerFactorizationInfo,3,
+           "Efficiency 1                                   : ",
+           String(Efficiency1,8)," %");
+      Info(IntegerFactorizationInfo,3,
+           "Efficiency 2                                   : ",
+           String(Efficiency2,8)," %");
+      Info(IntegerFactorizationInfo,2,
+           "Elapsed runtime                                : ",
+           String(UsedTime,8)," sec.");
+      Info(IntegerFactorizationInfo,2,
+           "Progress (relations)                           : ",
+           String(Progress,8)," %");
       Info(IntegerFactorizationInfo,2,"");
       
       NextCollectionAt := NextCollectionAt + CollectingInterval;

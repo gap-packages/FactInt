@@ -252,9 +252,9 @@ BindGlobal("ECMSplit", function (n,Curve,Curves,Limit1,Limit2,Delta,deterministi
   p := 1;
 
   repeat
-    PrettyInfo(2,["Curve no. ",[Curve,6]," (",[Curves,6],")",
-                  ", Limit1 : ",[Limit1,7],
-                  ", Limit2 : ",[Limit2,8]]);
+    Info(IntegerFactorizationInfo,2,
+         "Curve no. ",String(Curve,6)," (",String(Curves,6),")",
+         ", Limit1 : ",String(Limit1,7),", Limit2 : ",String(Limit2,8));
 
     if   Limit2 > PrimeDiffLimit
     then InitPrimeDiffs(Maximum(2 * PrimeDiffLimit,Limit2)); fi;
