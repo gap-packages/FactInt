@@ -181,25 +181,33 @@ BindGlobal("CFRACSplit", function (n)
       Progress  := Minimum(100,Int(100 * RelsTotal/Required));
 
       if InfoLevel(IntegerFactorizationInfo) < 3 then
-        PrettyInfo(2,["Step ",[Step,9]," : Factored/FB.: ",[RelsFB,4],
-                      ", w. Large Fact.: ",[RelsLarge,4],
-                      ", Progress :",[Progress,3],"%"]);
+        Info(IntegerFactorizationInfo,2,
+             "Step ",String(Step,9)," : Factored/FB.: ",String(RelsFB,4),
+              ", w. Large Fact.: ",String(RelsLarge,4),
+              ", Progress :",String(Progress,3),"%");
       fi;  
 
-      PrettyInfo(3,["Steps                                          : ",
-                    [Step,10]]);
-      PrettyInfo(3,["Complete factorizations over the factor base   : ",
-                    [RelsFB,10]]);
-      PrettyInfo(3,["Total factorizations with a large prime factor : ",
-                    [Length(FactoredLarge),10]]);
-      PrettyInfo(3,["Relations with a large prime factor            : ",
-                    [RelsLarge,10]]);
-      PrettyInfo(3,["Relations remaining to be found                : ",
-                    [Remaining,10]]);
-      PrettyInfo(3,["Elapsed runtime                                : ",
-                    [UsedTime,10]," sec."]);
-      PrettyInfo(3,["Progress (relations)                           : ",
-                    [Progress,10]," %"]);
+      Info(IntegerFactorizationInfo,3,
+           "Steps                                          : ",
+           String(Steps,10));
+      Info(IntegerFactorizationInfo,3,
+           "Complete factorizations over the factor base   : ",
+           String(RelsFB,10));
+      Info(IntegerFactorizationInfo,3,
+           "Total factorizations with a large prime factor : ",
+           String(Length(FactoredLarge),10));
+      Info(IntegerFactorizationInfo,3,
+           "Relations with a large prime factor            : ",
+           String(RelsLarge,10));
+      Info(IntegerFactorizationInfo,3,
+           "Relations remaining to be found                : ",
+           String(Remaining,10));
+      Info(IntegerFactorizationInfo,3,
+           "Elapsed runtime                                : ",
+           String(UsedTime,10)," sec.");
+      Info(IntegerFactorizationInfo,3,
+           "Progress (relations)                           : ",
+           String(Progress,10)," %");
       Info(IntegerFactorizationInfo,3,"");
 
       NextCollectionAt := NextCollectionAt + CollectingInterval;

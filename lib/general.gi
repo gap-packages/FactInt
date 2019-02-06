@@ -39,23 +39,6 @@ InstallGlobalFunction( FactIntInfo,
                        end );
 
 
-# For pretty-printing info messages
-
-BindGlobal("PrettyInfo", function (lev,Args)
-
-  local InfoString,Arg;
-  
-  InfoString := "";
-  for Arg in Args do
-    if   IsString(Arg) 
-    then Append(InfoString,Arg);
-    else Append(InfoString,String(Arg[1],Arg[2]));
-    fi;
-  od;
-  Info(IntegerFactorizationInfo,lev,InfoString);
-end);
-
-
 # For converting a time in ms as given by Runtime() to a
 # printable string
 
