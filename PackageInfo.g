@@ -9,7 +9,8 @@ SetPackageInfo( rec(
 PackageName      := "FactInt",
 Subtitle         := "Advanced Methods for Factoring Integers", 
 Version          := "1.6.2",
-Date             := "18/02/2018",
+Date             := "18/02/2018", # dd/mm/yyyy format
+License          := "GPL-2.0-or-later",
 
 SourceRepository := rec(
     Type := "git",
