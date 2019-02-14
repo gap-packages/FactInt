@@ -189,7 +189,7 @@ BindGlobal("CFRACSplit", function (n)
 
       Info(IntegerFactorizationInfo,3,
            "Steps                                          : ",
-           String(Steps,10));
+           String(Step,10));
       Info(IntegerFactorizationInfo,3,
            "Complete factorizations over the factor base   : ",
            String(RelsFB,10));
