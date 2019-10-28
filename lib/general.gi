@@ -83,6 +83,15 @@ BindGlobal("FACTINT_SMALLINTCOUNT_THRESHOLD",2187);
 BindGlobal("FACTINT_CACHE",[]);
 BindGlobal("FACTINT_FACTORS_CACHE",[]);
 
+if IsHPCGAP then
+  MakeThreadLocal("FACTINT_SMALLINTCACHE_LIMIT");
+  MakeThreadLocal("FACTINT_SMALLINTCACHE");
+  MakeThreadLocal("FACTINT_SMALLINTCOUNT");
+  MakeThreadLocal("FACTINT_SMALLINTCOUNT_THRESHOLD");
+  MakeThreadLocal("FACTINT_CACHE");
+  MakeThreadLocal("FACTINT_FACTORS_CACHE");
+fi;
+
 
 # For writing the temporary factorization data of the MPQS
 # (relations over the factor base etc.) to a file which can
