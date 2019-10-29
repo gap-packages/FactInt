@@ -221,7 +221,7 @@ BindGlobal( "WriteBrentFactorsFiles",
     for i in [1..Length(bf)] do 
       if IsBound(bf[i]) then 
         PrintTo(Filename(dir, Concatenation("brfac", String(i))),
-                "BRENTFACTORS[",i,"]:=", bf[i], ";\n"); 
+                "BRENTFACTORS[",i,"]:=MakeImmutable(", bf[i], ");\n"); 
       fi;
     od;
   end );
@@ -240,8 +240,8 @@ InstallGlobalFunction( "FetchBrentFactors",
 
     str := "";
     get := OutputTextString(str, false);
-    comm := Concatenation("wget -q http://wwwmaths.anu.edu.au/~brent/ftp/",
-                          "factors/factors.gz -O - | gzip -dc ");
+    comm := Concatenation("curl -s https://maths-people.anu.edu.au/~brent/ftp/",
+                          "factors/factors.gz  | gzip -dc ");
     Process(DirectoryCurrent(), Filename(DirectoriesSystemPrograms(),"sh"),
             InputTextUser(), get, ["-c", comm]);
   
@@ -260,7 +260,7 @@ InstallGlobalFunction( "FetchBrentFactors",
       if not IsBound(BRENTFACTORS[b[1]][k]) then
         BRENTFACTORS[b[1]][k] := [b[3]];
       else
-        Add(BRENTFACTORS[b[1]][k], b[3]);
+        AddSet(BRENTFACTORS[b[1]][k], b[3]);
       fi;
     od;
     dir := GAPInfo.PackagesInfo.("factint")[1].InstallationPath;
