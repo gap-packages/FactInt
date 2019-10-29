@@ -113,6 +113,10 @@ end);
 BindGlobal("PrimeDiffs",[]);
 BindGlobal("PrimeDiffLimit",1000000);
 
+if IsHPCGAP then
+  MakeThreadLocal("PrimeDiffs");
+fi;
+
 BindGlobal("InitPrimeDiffs", function ( Limit )
 
   local  Sieve, SieveSegment, ChunkSize, p, Maxp, pos, incr,
@@ -174,8 +178,8 @@ end);
 # The code for accessing these factorization tables has been contributed
 # by Frank Lübeck.
 
-BindGlobal("BRENTFACTORS", []);
-BindGlobal("BRENTFACTORSAVAILABLE", BlistStringDecode(
+BindGlobal("BRENTFACTORS", AtomicList([]));
+BindGlobal("BRENTFACTORSAVAILABLE", MakeImmutable(BlistStringDecode(
 "6E7EFF5EEFFF7FFEFFFF7FFFEFFFFF76FFFEFFFFFF7FFFFFEFFFFEFF7FFFDFFEFFFFFFFF7FFFF\
 FFFEFFFFDFFFF7FFFFFFFFEFFFFFFFFFF7FFFFFFFFFEFFFFFFEFFFF7FFFFFFFFFFEFFFFFFFFFFF\
 F7FFFFFFFFFFFEFFFFFFFFFFFFF7FFFFFFFFFFFFEFFFFFFFFFFFFFF7FFFFFFFFFFFFFEFFFFFFFF\
@@ -208,7 +212,7 @@ FFFFFFF7FFFFFFFFE55DD6C77CF55F55F4945577DD35D5B71D515578531615D75D98889820A080\
 08020200000200208000208800208800808200220810820028000800008A00800020220008A080\
 00020800208200828028A00000A20820020800200800820220000000020009008220A002080080\
 00A00808000028008220800028008220020208008820020A0020022000820B820A008080002080\
-00004"));
+00004")));
 
 BindGlobal( "WriteBrentFactorsFiles",
 
@@ -431,11 +435,12 @@ end);
 # Initialize some lists of trial divisors
 
 BindGlobal("FIB_RES", # Fib(k) mod 13, 21, 34, 55, 89, 144.
+MakeImmutable(
 [ [ 0, 1, 2, 3, 5, 8, 10, 11, 12 ], [ 0, 1, 2, 3, 5, 8, 13, 18, 20 ],
   [ 0, 1, 2, 3, 5, 8, 13, 21, 26, 29, 31, 32, 33 ],
   [ 0, 1, 2, 3, 5, 8, 13, 21, 34, 47, 52, 54 ],
   [ 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 68, 76, 81, 84, 86, 87, 88 ],
-  [ 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 123, 136, 141, 143 ] ]);
+  [ 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 123, 136, 141, 143 ] ]));
 
 
 # Treat values of functions f such that a|b implies f(a)|f(b)
