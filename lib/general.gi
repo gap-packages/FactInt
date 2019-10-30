@@ -1039,13 +1039,17 @@ function ( n )
     return FactorsInt(n);
   fi;
 
-  pos := Position(List(FACTINT_CACHE,t->t[1]),n);
+  pos := Position(List(FACTINT_CACHE,t->t[1]),N);
   if IsInt(pos) then
     FACTINT_CACHE[pos][2] := 0;
     for i in [1..Length(FACTINT_CACHE)] do
       FACTINT_CACHE[i][2] := FACTINT_CACHE[i][2] + 1;
     od;
-    return ShallowCopy(FACTINT_CACHE[pos][3]);
+    result := ShallowCopy(FACTINT_CACHE[pos][3]);
+    if n < 0 then
+      result[1] := -result[1];
+    fi;
+    return result;
   fi;
 
   result := FactorsTDNC(N);
@@ -1054,10 +1058,10 @@ function ( n )
     return result[1];
   fi;
 
-  result := FactInt( n : FactIntPartial := false, cheap := false )[1];
+  result := FactInt( N : FactIntPartial := false, cheap := false )[1];
 
   if ForAny(result,p->p>1000000) or Number(result,p->p>10000) >= 2 then
-    Add(FACTINT_CACHE,[n,0,Immutable(result)]);
+    Add(FACTINT_CACHE,[N,0,Immutable(result)]);
     for i in [1..Length(FACTINT_CACHE)] do
       FACTINT_CACHE[i][2] := FACTINT_CACHE[i][2] + 1;
     od;
@@ -1075,6 +1079,9 @@ function ( n )
     MakeReadOnlyGlobal("FACTINT_FACTORS_CACHE");
   fi;
 
+  if n < 0 then
+    result[1] := -result[1];
+  fi;
   return result;
 end);
 
