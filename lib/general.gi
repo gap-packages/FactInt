@@ -1002,29 +1002,25 @@ InstallGlobalFunction( IntegerFactorization,
 
 function ( n )
 
-  local  result, new, pos, i;
+  local  result, new, pos, i, N;
 
-  if   not IsInt(n) 
-  then Error("Usage: IntegerFactorization( <n> ), ",
-             "where n has to be an integer"); fi;
-  if AbsInt(n) <= FACTINT_SMALLINTCACHE_LIMIT then
-    if   n > 0 then if   IsBound(FACTINT_SMALLINTCACHE[n])
-                    then result := ShallowCopy(FACTINT_SMALLINTCACHE[n]);
-                    else result := FactorsInt(n);
-                         FACTINT_SMALLINTCACHE[n] := ShallowCopy(result);
-                    fi;
-                    return result;
-    elif n < 0 then if   IsBound(FACTINT_SMALLINTCACHE[-n])
-                    then result := ShallowCopy(FACTINT_SMALLINTCACHE[-n]);
-                         result[1] := -result[1];
-                    else result := FactorsInt(n);
-                         FACTINT_SMALLINTCACHE[-n] := ShallowCopy(result);
-                         FACTINT_SMALLINTCACHE[-n][1] :=
-                        -FACTINT_SMALLINTCACHE[-n][1];
-                    fi;
-                    return result;
-    else return [0]; fi;
-  elif AbsInt(n) < 16 * FACTINT_SMALLINTCACHE_LIMIT then
+  if not IsInt(n) then
+    Error("Usage: IntegerFactorization( <n> ), where n has to be an integer");
+  fi;
+  if n = 0 then
+    return [0];
+  fi;
+  N := AbsInt(n);
+  if N <= FACTINT_SMALLINTCACHE_LIMIT then
+    if not IsBound(FACTINT_SMALLINTCACHE[N]) then
+      FACTINT_SMALLINTCACHE[N] := MakeImmutable(FactorsInt(N));
+    fi;
+    result := ShallowCopy(FACTINT_SMALLINTCACHE[N]);
+    if n < 0 then
+      result[1] := -result[1];
+    fi;
+    return result;
+  elif N < 16 * FACTINT_SMALLINTCACHE_LIMIT then
     MakeReadWriteGlobal("FACTINT_SMALLINTCOUNT");
     FACTINT_SMALLINTCOUNT := FACTINT_SMALLINTCOUNT + 1;
     MakeReadOnlyGlobal("FACTINT_SMALLINTCOUNT");
@@ -1039,20 +1035,20 @@ function ( n )
       MakeReadOnlyGlobal("FACTINT_SMALLINTCOUNT_THRESHOLD");
     fi;
     return FactorsInt(n);
-  elif AbsInt(n) <= 268435455 then return FactorsInt(n); fi;
+  elif N <= 268435455 then
+    return FactorsInt(n);
+  fi;
 
   pos := Position(List(FACTINT_CACHE,t->t[1]),n);
   if IsInt(pos) then
-    MakeReadWriteGlobal("FACTINT_CACHE");
     FACTINT_CACHE[pos][2] := 0;
     for i in [1..Length(FACTINT_CACHE)] do
       FACTINT_CACHE[i][2] := FACTINT_CACHE[i][2] + 1;
     od;
-    MakeReadOnlyGlobal("FACTINT_CACHE");
     return FACTINT_CACHE[pos][3];
   fi;
 
-  result := FactorsTDNC(AbsInt(n));
+  result := FactorsTDNC(N);
   if result[2] = [] then
     result[1][1] := result[1][1] * SignInt(n);
     return result[1];
@@ -1061,21 +1057,21 @@ function ( n )
   result := FactInt( n : FactIntPartial := false, cheap := false )[1];
 
   if ForAny(result,p->p>1000000) or Number(result,p->p>10000) >= 2 then
-    MakeReadWriteGlobal("FACTINT_CACHE");
     Add(FACTINT_CACHE,[n,0,result]);
     for i in [1..Length(FACTINT_CACHE)] do
       FACTINT_CACHE[i][2] := FACTINT_CACHE[i][2] + 1;
     od;
     Sort(FACTINT_CACHE,function(t1,t2) return t1[2] < t2[2]; end);
-    if   Length(FACTINT_CACHE) > 20
-    then FACTINT_CACHE := FACTINT_CACHE{[1..20]}; fi;
-    MakeReadOnlyGlobal("FACTINT_CACHE");
+    while Length(FACTINT_CACHE) > 20 do
+      Remove(FACTINT_CACHE);
+    od;
     MakeReadWriteGlobal("FACTINT_FACTORS_CACHE");
     new := Filtered(Set(result),
                     p -> p > 1000000000 and not p in FACTINT_FACTORS_CACHE);
     FACTINT_FACTORS_CACHE := Concatenation(new,FACTINT_FACTORS_CACHE);
-    if   Length(FACTINT_FACTORS_CACHE) > 200
-    then FACTINT_FACTORS_CACHE := FACTINT_FACTORS_CACHE{[1..200]}; fi;
+    if Length(FACTINT_FACTORS_CACHE) > 200 then
+      FACTINT_FACTORS_CACHE := FACTINT_FACTORS_CACHE{[1..200]};
+    fi;
     MakeReadOnlyGlobal("FACTINT_FACTORS_CACHE");
   fi;
 
