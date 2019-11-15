@@ -2,6 +2,14 @@
                      Version history of the FactInt package
                      ======================================
 
+Changes between FactInt 1.6.3 and FactInt 1.6.2 (November 15, 2019)
+
+ - FactInt is now compatible with HPC-GAP
+ - Added LICENSE file
+ - The internal function PrettyInfo was replaced by the GAP Info
+   instruction, which improves performance in some situations.
+ - Minor update of Brent's tables.
+
 Changes between FactInt 1.6.2 and FactInt 1.6.1 (February 17, 2018)
 
  - Rewritten `FactorsTDNC` to avoid recursion.
