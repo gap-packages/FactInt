@@ -1,6 +1,6 @@
 name: FactInt
-version: 1.6.2
-date: 2018-02-18
+version: 1.6.3
+date: 2019-11-15
 description: |
     Advanced Methods for Factoring Integers
 
@@ -27,7 +27,7 @@ packageinfo: https://gap-packages.github.io/FactInt/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/gap-packages/FactInt/releases/download/v1.6.2/FactInt-1.6.2.tar.gz
+      url: https://github.com/gap-packages/FactInt/releases/download/v1.6.3/FactInt-1.6.3.tar.gz
 
 abstract: |
     
