@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/gap-packages/FactInt.svg?branch=master)](https://travis-ci.org/gap-packages/FactInt)
+[![Build Status](https://travis-ci.com/gap-packages/FactInt.svg?branch=master)](https://travis-ci.com/gap-packages/FactInt)
 [![Code Coverage](https://codecov.io/github/gap-packages/FactInt/coverage.svg?branch=master&token=)](https://codecov.io/gh/gap-packages/FactInt)
 
 # GAP package FactInt -- Advanced Methods for [Fact]oring [Int]egers
