@@ -196,18 +196,33 @@ BindGlobal( "WriteBrentFactorsFiles",
 ##
 #F  FetchBrentFactors( ) . . get Brent's tables of factors of numbers b^k - 1
 ##
+##  This function can be used to update the data of known factors of numbers
+##  of the form b^k +/- 1.
+##  Arguments: url: URL of data file
+##             write: true/false, wether the local data files should 
+##                    be (re)written
+##  These data were for a long time provided by Richard Brent. Get his
+##  latest version with:
+##   FetchBrentFactors(
+##     "https://maths-people.anu.edu.au/~brent/ftp/factors/factors.gz",
+##     false);
+##  Newer and more factors are now collected by Jonathan Crombie, check 
+##  occasionally if updates are available and adjust date part of URL:
+##   FetchBrentFactors(
+##     "http://myfactorcollection.mooo.com:8090/brentdata/Aug4_2021/factors.gz",
+##     true);
+##  The two commands above can be used to update the data for the
+##  distribution of the FactInt package, or by users to get newer factors
+##  (they need write access to the FactInt directory and 'curl').
 InstallGlobalFunction( "FetchBrentFactors",
 
-  function ( )
+  function ( url, write )
 
     local  str, get, comm, rows, b, k, a, dir;
 
-    # Fetch the file from R. P. Brent's ftp site and gunzip it into 'str'.
-
     str := "";
     get := OutputTextString(str, false);
-    comm := Concatenation("curl -s https://maths-people.anu.edu.au/~brent/ftp/",
-                          "factors/factors.gz  | gzip -dc ");
+    comm := Concatenation("curl -s -k ", url, " | gzip -dc ");
     Process(DirectoryCurrent(), Filename(DirectoriesSystemPrograms(),"sh"),
             InputTextUser(), get, ["-c", comm]);
   
@@ -229,8 +244,10 @@ InstallGlobalFunction( "FetchBrentFactors",
         AddSet(BRENTFACTORS[b[1]][k], b[3]);
       fi;
     od;
-    dir := GAPInfo.PackagesInfo.("factint")[1].InstallationPath;
-    WriteBrentFactorsFiles(Concatenation(dir,"/tables/brent/"));
+    if write then
+      dir := GAPInfo.PackagesInfo.("factint")[1].InstallationPath;
+      WriteBrentFactorsFiles(Concatenation(dir,"/tables/brent/"));
+    fi;
   end );
 
 
