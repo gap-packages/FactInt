@@ -102,7 +102,7 @@ AutoDoc := rec(
 
       For a copy of the GNU General Public License, see
       the file <F>GPL</F> in the <F>etc</F> directory of the &GAP;
-      distribution or see <URL>http://www.gnu.org/licenses/gpl.html</URL>.
+      distribution or see <URL>https://www.gnu.org/licenses/gpl.html</URL>.
       """,
     Abstract := """<#Include SYSTEM "abstract.xml">""",
     Acknowledgements := """
