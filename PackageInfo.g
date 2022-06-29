@@ -66,7 +66,7 @@ It also provides access to Richard P. Brent's tables of factors of integers of t
 PackageDoc       := rec(
                          BookName         := "FactInt",
                          ArchiveURLSubset := ["doc"],
-                         HTMLStart        := "doc/chap0.html",
+                         HTMLStart        := "doc/chap0_mj.html",
                          PDFFile          := "doc/manual.pdf",
                          SixFile          := "doc/manual.six",
                          LongTitle        := "A GAP4 Package for FACToring INTegers",
