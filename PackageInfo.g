@@ -30,7 +30,7 @@ Persons          := [
                            FirstNames    := "Stefan",
                            IsAuthor      := true,
                            IsMaintainer  := true,
-                           Email         := "stefan@gap-system.org",
+                           Email         := "sk239@st-andrews.ac.uk",
                            WWWHome       := "https://stefan-kohl.github.io/"
                          ),
                       rec( LastName      := "Konovalov",

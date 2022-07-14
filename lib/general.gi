@@ -65,7 +65,7 @@ BindGlobal("FactorizationCheck", function (n,Result)
   if not ResultCorrect
   then Error("FactInt: Internal error, the result is incorrect !!!\n\n",
              "Please send e-mail to the author ",
-             "(stefan@gap-system.org)\n",
+             "(sk239@st-andrews.ac.uk)\n",
              "and mention the number to be factored: ",n,
              ",\nthe versions of FactInt and GAP you used ",
              "and the options you specified.",

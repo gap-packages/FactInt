@@ -49,5 +49,5 @@ If you have problems with this package, wish to make comments or suggestions,
 or if you find bugs, please use https://github.com/gap-packages/FactInt/issues
 or contact package maintainers by email.
  
-- Author and Maintainer:  Stefan Kohl, stefan@gap-system.org
+- Author and Maintainer:  Stefan Kohl, sk239@st-andrews.ac.uk
 - Maintainer: Alexander Konovalov, alexander.konovalov@st-andrews.ac.uk
