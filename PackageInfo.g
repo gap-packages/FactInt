@@ -34,11 +34,11 @@ Persons          := [
                            WWWHome       := "https://stefan-kohl.github.io/"
                          ),
                       rec( LastName      := "Konovalov",
-                           FirstNames    := "Alexander",
+                           FirstNames    := "Olexandr",
                            IsAuthor      := false,
                            IsMaintainer  := true,
-                           Email         := "alexander.konovalov@st-andrews.ac.uk",
-                           WWWHome       := "https://alexk.host.cs.st-andrews.ac.uk",
+                           Email         := "obk1@st-andrews.ac.uk",
+                           WWWHome       := "https://alex-konovalov.github.io/",
                            PostalAddress := Concatenation( [
                              "School of Computer Science\n",
                              "University of St Andrews\n",
@@ -66,14 +66,14 @@ It also provides access to Richard P. Brent's tables of factors of integers of t
 PackageDoc       := rec(
                          BookName         := "FactInt",
                          ArchiveURLSubset := ["doc"],
-                         HTMLStart        := "doc/chap0.html",
+                         HTMLStart        := "doc/chap0_mj.html",
                          PDFFile          := "doc/manual.pdf",
                          SixFile          := "doc/manual.six",
                          LongTitle        := "A GAP4 Package for FACToring INTegers",
                          Autoload         := true
                        ),
 Dependencies     := rec(
-                         GAP                    := ">=4.8.8",
+                         GAP                    := ">=4.9",
                          NeededOtherPackages    := [ ["GAPDoc",">=1.6"] ],
                          SuggestedOtherPackages := [ ],
                          ExternalConditions     := [ ]
@@ -102,7 +102,7 @@ AutoDoc := rec(
 
       For a copy of the GNU General Public License, see
       the file <F>GPL</F> in the <F>etc</F> directory of the &GAP;
-      distribution or see <URL>http://www.gnu.org/licenses/gpl.html</URL>.
+      distribution or see <URL>https://www.gnu.org/licenses/gpl.html</URL>.
       """,
     Abstract := """<#Include SYSTEM "abstract.xml">""",
     Acknowledgements := """

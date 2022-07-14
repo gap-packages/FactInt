@@ -50,4 +50,8 @@ or if you find bugs, please use https://github.com/gap-packages/FactInt/issues
 or contact package maintainers by email.
  
 - Author and Maintainer:  Stefan Kohl, sk239@st-andrews.ac.uk
+<<<<<<< HEAD
 - Maintainer: Alexander Konovalov, alexander.konovalov@st-andrews.ac.uk
+=======
+- Maintainer: Olexandr Konovalov, obk1@st-andrews.ac.uk
+>>>>>>> 8c6beb83581dfcfb7384bd448ff720436a14a498
