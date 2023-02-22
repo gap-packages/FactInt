@@ -38,7 +38,7 @@ Persons          := [
                            IsAuthor      := false,
                            IsMaintainer  := true,
                            Email         := "obk1@st-andrews.ac.uk",
-                           WWWHome       := "https://alex-konovalov.github.io/",
+                           WWWHome       := "https://olexandr-konovalov.github.io/",
                            PostalAddress := Concatenation( [
                              "School of Computer Science\n",
                              "University of St Andrews\n",
