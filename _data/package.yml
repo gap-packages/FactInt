@@ -1,5 +1,6 @@
 name: FactInt
-version: 1.6.3
+version: "1.6.3"
+license: "GPL-2.0-or-later"
 date: 2019-11-15
 description: |
     Advanced Methods for Factoring Integers
@@ -44,3 +45,35 @@ abstract: |
 status: accepted
 doc-html: doc/chap0.html
 doc-pdf: doc/manual.pdf
+keywords: |
+    Integer factorization, ECM, Elliptic Curves Method, MPQS, Multiple Polynomial Quadratic Sieve, CFRAC, Continued Fraction Algorithm, Pollard's p-1, Williams' p+1, Cunningham Tables, Richard P. Brent's Factor Tables.
+citeas: |
+    <p class='BibEntry'>
+    [<span class='BibKey'>KK19</span>]   <b class='BibAuthor'>Kohl, S. and Konovalov, A.</b>,
+     <i class='BibTitle'>FactInt, Advanced Methods for Factoring Integers,
+             Version 1.6.3</i>
+     (<span class='BibYear'>2019</span>)<br />
+    (<span class='BibNote'>Refereed GAP package</span>),
+    <span class='BibHowpublished'><a href="https://gap-packages.github.io/FactInt">https://gap-packages.github.io/FactInt</a></span>.
+    </p>
+    
+
+bibtex: |
+    @misc{ FactInt1.6.3,
+      author =           {Kohl, S. and Konovalov, A.},
+      title =            {{FactInt},  Advanced  Methods  for Factoring Integers,
+                          {V}ersion 1.6.3},
+      month =            {Nov},
+      year =             {2019},
+      note =             {Refereed GAP package},
+      howpublished =     {\href         {https://gap-packages.github.io/FactInt}
+                          {\texttt{https://gap-packages.github.io/}\discretionary
+                          {}{}{}\texttt{FactInt}}},
+      keywords =         {Integer  factorization;  ECM;  Elliptic Curves Method;
+                          MPQS;  Multiple  Polynomial  Quadratic  Sieve;  CFRAC;
+                          Continued Fraction Algorithm; Pollard's p-1; Williams'
+                          p+1;  Cunningham  Tables;  Richard  P.  Brent's Factor
+                          Tables},
+      printedkey =       {KK19}
+    }
+
