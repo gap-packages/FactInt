@@ -8,7 +8,7 @@ fi;
 AutoDoc(rec( scaffold := rec(
         includes := [ "preface.xml", "general.xml", "methods.xml", "timings.xml" ],
         bib := "factintbib.xml",
-        gapdoc_latex_options := rec( EarlyExtraPreamble := """
+        LaTeXOptions := rec( EarlyExtraPreamble := """
             \usepackage{amsfonts}
             \usepackage{amsxtra}
             """ ),
