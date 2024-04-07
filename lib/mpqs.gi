@@ -247,7 +247,15 @@ BindGlobal("MPQSSplit", function (n)
       if PolyCount > 0 then
         i := NraFactors;
         while   aFactorsSelectedPositions[i] 
-              = aFactorsPoolsize - (NraFactors - i) do i := i - 1; od;
+              = aFactorsPoolsize - (NraFactors - i)
+        do
+          i := i - 1;
+          if i = 0 then
+            Info(IntegerFactorizationInfo,2,
+                 "The MPQS ran out of polynomials, using CFRAC instead.");
+            return CFRACSplit(n/Multiplier);
+          fi; 
+        od;
         aFactorsSelectedPositions[i] := aFactorsSelectedPositions[i] + 1;
         for j in [i + 1..NraFactors] do
           aFactorsSelectedPositions[j] := 
