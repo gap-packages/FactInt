@@ -70,7 +70,6 @@ PackageDoc       := rec(
                          PDFFile          := "doc/manual.pdf",
                          SixFile          := "doc/manual.six",
                          LongTitle        := "A GAP4 Package for FACToring INTegers",
-                         Autoload         := true
                        ),
 Dependencies     := rec(
                          GAP                    := ">=4.9",
