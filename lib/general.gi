@@ -264,7 +264,7 @@ BindGlobal("GrabFactors", function ( file, mindigits, excludelast )
   for line in lines do
     num := List(SplitString(line,nondigits,nondigits),Int);
     if IsEmpty(num) then continue; fi;
-    if excludelast then Unbind(num[Length(num)]); fi;
+    if excludelast then Remove(num); fi;
     num := Filtered(num,n->LogInt(n,10)>=mindigits-1);
     num := Filtered(num,IsProbablyPrimeInt);
     nums := Concatenation(nums,num);
@@ -284,7 +284,7 @@ BindGlobal("CleanedFactorsList", function ( facts, f, max_k )
   result := List([1..max_k],k->facts{Filtered([1..Length(smldivpos)],
                                               i->smldivpos[i]=k)});;
   for i in [1..Length(result)] do
-    if result[i] <> [] then Unbind(result[i][Length(result[i])]); fi;
+    if result[i] <> [] then Remove(result[i]); fi;
   od;
   return Set(Flat(result));
 end);
