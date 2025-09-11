@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/gap-packages/FactInt/workflows/CI/badge.svg?branch=master)](https://github.com/gap-packages/FactInt/actions?query=workflow%3ACI+branch%3Amaster)
+[![CI](https://github.com/gap-packages/FactInt/actions/workflows/CI.yml/badge.svg)](https://github.com/gap-packages/FactInt/actions/workflows/CI.yml)
 [![Code Coverage](https://codecov.io/github/gap-packages/FactInt/coverage.svg?branch=master&token=)](https://codecov.io/gh/gap-packages/FactInt)
 
 # GAP package FactInt -- Advanced Methods for [Fact]oring [Int]egers
