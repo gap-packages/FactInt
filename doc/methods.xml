@@ -30,12 +30,10 @@ in the preface.
     This function tries to factor <A>n</A> by trial division.
     The optional argument <A>Divisors</A> is the list of trial divisors.
     If not given, it defaults to the list of primes <M>p &lt; 1000</M>.
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> FactorsTD(12^25+25^12);
 [ [ 13, 19, 727 ], [ 5312510324723614735153 ] ]
-]]>
-</Example>
+]]></Example>
   </Description>
 </ManSection>
 
@@ -80,8 +78,7 @@ gap> FactorsTD(12^25+25^12);
     and the second-largest one is not larger than <A>Limit1</A>.
     (Compare with <Ref Func="FactorsPplus1" Label="Williams' p+1"/>
     and&nbsp;<Ref Func="FactorsECM" Label="Elliptic Curves Method, ECM"/>.)
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> FactorsPminus1( Factorial(158) + 1, 100000, 1000000 );
 [ [ 2879, 5227, 1452486383317, 9561906969931, 18331561438319, 
       4837142997094837608115811103417329505064932181226548534006749213\
@@ -91,8 +88,7 @@ gap> FactorsPminus1( Factorial(158) + 1, 100000, 1000000 );
 gap> List( last[ 1 ]{[ 3, 4, 5 ]}, p -> Factors( p - 1 ) );
 [ [ 2, 2, 3, 3, 81937, 492413 ], [ 2, 3, 3, 3, 5, 7, 7, 1481, 488011 ]
     , [ 2, 3001, 7643, 399613 ] ]
-]]>
-</Example>
+]]></Example>
   </Description>
 </ManSection>
 
@@ -130,8 +126,7 @@ gap> List( last[ 1 ]{[ 3, 4, 5 ]}, p -> Factors( p - 1 ) );
     is not larger than <A>Limit1</A>.
     (Compare also with <Ref Func="FactorsECM"
                             Label="Elliptic Curves Method, ECM"/>.)
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> FactorsPplus1( Factorial(55) - 1, 10, 10000, 100000 );
 [ [ 73, 39619, 277914269, 148257413069 ], 
   [ 106543529120049954955085076634537262459718863957 ] ]
@@ -140,8 +135,7 @@ gap> List( last[ 1 ], p -> [ Factors( p - 1 ), Factors( p + 1 ) ] );
   [ [ 2, 3, 3, 31, 71 ], [ 2, 2, 5, 7, 283 ] ], 
   [ [ 2, 2, 2207, 31481 ], [ 2, 3, 5, 9263809 ] ], 
   [ [ 2, 2, 47, 788603261 ], [ 2, 3, 5, 13, 37, 67, 89, 1723 ] ] ]
-]]>
-</Example>
+]]></Example>
   </Description>
 </ManSection>
 
@@ -268,14 +262,12 @@ gap> List( last[ 1 ], p -> [ Factors( p - 1 ), Factors( p + 1 ) ] );
     The implementation follows the description of R. P. Brent given in
     <Cite Key="Brent96"/>, pp. 5 -- 8. In terms of this paper,
     for the second stage the <Q>improved standard continuation</Q> is used.
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> FactorsECM(2^256+1,100,10000,1000000,100);
 [ [ 1238926361552897, 
       93461639715357977769163558199606896584051237541638188580280321 ]
     , [  ] ]
-]]>
-</Example>
+]]></Example>
   </Description>
 </ManSection>
 
@@ -347,12 +339,10 @@ gap> FactorsECM(2^256+1,100,10000,1000000,100);
     approximately given by the size of the factor base. (Compare
     with&nbsp;<Ref Func="FactorsMPQS"
                    Label="Multiple Polynomial Quadratic Sieve, MPQS"/>.)
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> FactorsCFRAC( Factorial(34) - 1 );
 [ 10398560889846739639, 28391697867333973241 ]
-]]>
-</Example>
+]]></Example>
   </Description>
 </ManSection>
 
@@ -437,12 +427,10 @@ gap> FactorsCFRAC( Factorial(34) - 1 );
     The latter is approximately equal to the size of the factor base.
     (Compare with&nbsp;<Ref Func="FactorsCFRAC"
                             Label="Continued Fraction Algorithm, CFRAC"/>.)
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> FactorsMPQS( Factorial(38) + 1 );
 [ 14029308060317546154181, 37280713718589679646221 ]
-]]>
-</Example>
+]]></Example>
   </Description>
 </ManSection>
 

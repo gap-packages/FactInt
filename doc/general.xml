@@ -145,8 +145,7 @@ the &GAP; Library:
     option values that are not explicitly set by the user. The option values
     are also interpreted by the routines for the particular factorization
     methods described in the next chapter.
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> Factors( Factorial(44) + 1 );
 [ 694763, 9245226412016162109253, 413852053257739876455072359 ]
 gap> Factors( 2^997 - 1 );
@@ -155,8 +154,7 @@ gap> Factors( 2^997 - 1 );
 3002563860297371289151859287894468775962208410650878341385577817736702\
 2158878920741413700868182301410439178049533828082651513160945607018874\
 830040978453228378816647358334681553 ]
-]]>
-</Example>
+]]></Example>
   </Description>
 </ManSection>
 
@@ -185,8 +183,7 @@ which is the actual <Q>working horse</Q> of this package:
     <C>Factors(<A>n</A>)</C> is equivalent to
     <C>FactInt(<A>n</A>:<A>cheap</A>:=false,
                         <A>FactIntPartial</A>:=false)[1]</C>.
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> FactInt( Factorial(300) + 1 : cheap );
 [ [ 461, 259856122109, 995121825812791, 3909669044842609, 
       4220826953750952739, 14841043839896940772689086214475144339 ], 
@@ -198,8 +195,7 @@ gap> FactInt( Factorial(300) + 1 : cheap );
 9733563594352516014206081210368516157890709802912711149521530885498556\
 1244667790208245620301404499928532222524585946881528337257061789593197\
 99211283640357942345263781351 ] ]
-]]>
-</Example>
+]]></Example>
   </Description>
 </ManSection>
 
