@@ -21,6 +21,7 @@
 /doc/factintbib.xml.bib
 /doc/FactInt.xml
 /doc/title.xml
+/doc/_*.xml
 
 /gh-pages/
 /tmp/
