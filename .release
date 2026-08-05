@@ -1,0 +1,14 @@
+#!/bin/sh
+# This file is executed by the `release` script from
+# https://github.com/gap-system/ReleaseTools
+echo "Current data file disk space:"
+du -h tables/brent
+echo "Compressing data files..."
+for file in tables/brent/brfac*
+do
+    gzip -9 -n "$file"
+    printf .
+done
+echo
+echo "Done compressing data file, disk space:"
+du -h tables/brent
