@@ -41,6 +41,26 @@ the &GAP; Library:
     The code for accessing these tables has been contributed by Frank Lübeck.
     <P/>
 
+    <Index Key="Brent factor tables">Brent factor tables</Index>
+    These tables are nowadays maintained by Jonathan Crombie, and have grown
+    far too large to be distributed in full.
+    The subset shipped with &FactInt; is determined as follows: for a
+    base&nbsp;<M>b</M> and an exponent&nbsp;<M>k</M>, all currently known
+    factors of <M>b^k \pm 1</M> are included if <M>b \leq 100</M>, or if
+    <M>b</M> is a prime less than&nbsp;1000, or if the pair
+    <M>(b,k)</M> was already covered by the tables distributed with
+    &FactInt;&nbsp;1.6.3.
+    In particular, everything that was available in earlier versions of
+    &FactInt; is still available, in many cases with additional factors.
+    <P/>
+
+    Users who need factors beyond this range can replace the distributed
+    tables by the full collection using the undocumented function
+    <C>FetchBrentFactors</C>; see the comments in <F>lib/general.gi</F>.
+    This requires write access to the &FactInt; installation directory as
+    well as the external programs <C>curl</C> and <C>gzip</C>.
+    <P/>
+
     Then the method uses trial division and a number of cheap methods for
     various common special cases.
     After the small and other <Q>easy</Q> factors have been found this way,
