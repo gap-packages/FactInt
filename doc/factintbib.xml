@@ -53,19 +53,6 @@
   <mrnumber>1228206 (94i:11105)</mrnumber>
 </book></entry>
 
-<entry id="GAPDoc"><manual>
-  <author>
-    <name><first>Frank</first><last>Lübeck</last></name>
-    <name><first>Max</first><last>Neunhöffer</last></name>
-  </author>
-  <title><C>GAPDoc (Version 1.6)</C></title>
-  <organization>RWTH Aachen</organization>
-  <year>2017</year>
-  <other type="note">
-    GAP package, <URL>https://www.gap-system.org/Packages/gapdoc.html</URL>
-  </other>
-</manual></entry>
-
 </file>
 
 <!-- ########################################################################################### -->
