@@ -11,6 +11,10 @@ This file describes changes in the FactInt package.
     factors. Use `FetchBrentFactors` to install the full collection.
   - Compress the data files in `tables/brent` in the distribution archives,
     which halves their disk usage; GAP reads them transparently
+  - Raise the required GAP version to 4.10, the first release that reads
+    `.gz` files transparently using its built-in zlib; GAP 4.9 relied on an
+    external `gunzip` for this, and silently failed to read the compressed
+    data files if none was available
   - Drop the dependency on GAPDoc, which is not used at run time; it is still
     needed (together with AutoDoc) for building the documentation
 

@@ -21,7 +21,7 @@ It also contains code by Frank Lübeck for making use of Richard P.
 Brent's tables of factors of integers of the form <M>b^k \pm 1</M>.
 
 &FactInt; is completely written in the &GAP; language and contains /
-requires no external binaries. It needs &GAP;&nbsp;4.9 or higher.
+requires no external binaries. It needs &GAP;&nbsp;4.10 or higher.
 &FactInt; must be installed in the <File>pkg</File> subdirectory of
 the &GAP; distribution.
 

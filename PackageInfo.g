@@ -72,7 +72,7 @@ PackageDoc       := rec(
                          LongTitle        := "A GAP4 Package for FACToring INTegers",
                        ),
 Dependencies     := rec(
-                         GAP                    := ">=4.9",
+                         GAP                    := ">=4.10",
                          NeededOtherPackages    := [ ],
                          SuggestedOtherPackages := [ ],
                          ExternalConditions     := [ ]

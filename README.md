@@ -25,8 +25,8 @@ view  its  HTML  version  (chap0.html)  with  a browser,  or its  PDF version
 
 ## Requirements
 
-This version of FactInt needs at least GAP >=4.9.  It is completely written in
-the  GAP  language  and  neither contains nor requires external binaries.  For
+This version of FactInt needs at least GAP >=4.10.  It is completely written in
+the  GAP  language  and neither contains nor requires external binaries.   For
 building the documentation, the GAPDoc and AutoDoc packages are required.
 
 
