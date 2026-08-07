@@ -30,7 +30,8 @@ the &GAP; Library:
     an error is signalled.
     The same holds for all other factorization routines provided by this
     package.
-    It follows a rough description how the factorization method works: <P/>
+    The following is a rough description of how the factorization method
+    works: <P/>
 
     First of all, the method checks whether <M>n = b^k \pm 1</M> for some
     <M>b</M>, <M>k</M> and looks for factors corresponding to polynomial
@@ -179,7 +180,7 @@ gap> Factors( 2^997 - 1 );
 </ManSection>
 
 The above method for <C>Factors</C> calls the following function,
-which is the actual <Q>working horse</Q> of this package:
+which is the actual <Q>workhorse</Q> of this package:
 
 <ManSection>
   <Func Name="FactInt" Arg="n" Label="factorization of an integer"/>
@@ -239,8 +240,8 @@ the factorization process:
   <Func      Name="FactIntInfo" Arg="level"
              Label="setting the InfoLevel of InfoFactInt"/>
   <Description>
-    This Info class allows to monitor what happens during the factoring
-    process. <P/>
+    This Info class makes it possible to monitor what happens during the
+    factoring process. <P/>
 
     If <C>InfoLevel(InfoFactInt) = 1</C>, then basic information
     about the factoring techniques used is displayed. If this InfoLevel has
@@ -255,7 +256,7 @@ the factorization process:
     is equivalent to <C>SetInfoLevel(InfoFactInt,<A>level</A>);</C>. <P/>
 
     The informational output is usually not literally the same in
-    each factorization attempt to a given integer with given parameters.
+    each factorization attempt for a given integer with given parameters.
     For a description of the Info mechanism, see Section
     <E>Info Functions</E> in the &GAP; Reference Manual. 
   </Description>

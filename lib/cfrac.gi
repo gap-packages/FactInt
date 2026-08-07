@@ -76,7 +76,7 @@ BindGlobal("CFRACSplit", function (n)
   Step := 1;
 
   # Abort Trial Division after dividing Ci by the first <AbortingTime> 
-  # primes in the factor base if the the unfactored part after that
+  # primes in the factor base if the unfactored part after that
   # is larger than <abort>
 
   abort1        := RootInt(n,12)^5;

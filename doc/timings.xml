@@ -43,7 +43,7 @@ are only suitable for finding factors with certain properties and CFRAC
 is just a slower predecessor of the MPQS).
 All absolute timings are given for a Pentium&nbsp;200 under Windows
 as a reference machine (this was a fast machine at the time the first
-version of this package has been written).
+version of this package was written).
 
 </Section>
 
@@ -70,7 +70,7 @@ In general, ECM is superior to Pollard's Rho for finding factors with at
 least 10 decimal digits. In the same time needed by Pollard's Rho
 for finding a 13-digit factor one can reasonably expect to find a
 17-digit factor when using ECM, for which Pollard's Rho in turn would
-need  about 100 times as long as&nbsp;ECM.
+need about 100 times as long as&nbsp;ECM.
 For larger factors this difference grows rapidly.
 From theory it can be said that finding a 20-digit factor requires
 about 500 times as much work as finding a 10-digit factor,
@@ -84,7 +84,7 @@ most important range for the application of ECM. The function
 <C>FactorsECM</C> usually gives up when the input number&nbsp;<M>n</M>
 has two factors which are both larger than its third root.
 This is of course only a <Q>probabilistic</Q> statement. Sometimes --
-but seldom -- the remaining composite has 3&nbsp;factors, 4&nbsp;factors
+but seldom -- the remaining composite has 3&nbsp;factors; 4&nbsp;factors
 should occur (almost) never. <P/>
 
 The user can of course specify other parameters than the default ones,
@@ -98,7 +98,7 @@ certain bound. <P/>
 
 For benchmarking purposes, the amount of time needed for trying
 a single curve with given smoothness bounds for a number of given size
-is suited best.
+is the most suitable measure.
 A typical example is the following: one curve with
 (<A>Limit1</A>,<A>Limit2</A>) = (100000,10000000) applied to a 100-digit
 integer requires a total of 10&nbsp;min&nbsp;20&nbsp;s, where

@@ -18,7 +18,7 @@ with prime factors being far beyond the range where trial division is
 feasible. <P/>
 
 One important class of such methods is based on exponentiation in
-suitably chosen groups acting on subsets of the <M>k</M>-fold cartesian
+suitably chosen groups acting on subsets of the <M>k</M>-fold Cartesian
 product of the set of residue classes (mod <M>n</M>), where <M>n</M> denotes
 the number to be factored.
 Representatives of this class are the Elliptic Curves Method (ECM),
@@ -55,7 +55,7 @@ which is probably not within the feasible range of such a function
 implemented in&nbsp;&GAP;.
 The first two methods are implemented in this package. <P/>
 
-Except of the <Q>naive</Q> methods like trial division and some
+Except for the <Q>naive</Q> methods like trial division and some
 <Q>historical</Q> methods, the only method which I am aware of
 that does not fit into one of the two classes mentioned above is
 <Index Key="Pollard's Rho">Pollard's Rho</Index>
@@ -65,8 +65,8 @@ With respect to the current state-of-the-art in integer factorization,
 see the
 <Index Key="RSA Factoring Challenge">RSA Factoring Challenge</Index>
 <URL Text="Factoring Challenge">
-http://www.rsasecurity.com/rsalabs/node.asp?id=2093</URL>
-of the RSA Laboratories.
+https://en.wikipedia.org/wiki/RSA_Factoring_Challenge</URL>
+which was run by the RSA Laboratories until 2007.
 
 <!-- #################################################################### -->
 

@@ -25,8 +25,8 @@ view  its  HTML  version  (chap0.html)  with  a browser,  or its  PDF version
 
 ## Requirements
 
-This version of FactInt needs at least GAP >=4.10.  It is completely written in
-the  GAP  language  and neither contains nor requires external binaries.   For
+This version of FactInt needs at least GAP >=4.10.  It is completely written
+in the  GAP language  and neither contains nor requires external binaries. For
 building the documentation, the GAPDoc and AutoDoc packages are required.
 
 
@@ -41,7 +41,8 @@ means that it is loaded automatically when you start GAP.
 ## Distribution and Updates
 
 FactInt is distributed with the main GAP archive.  For package updates between
-GAP releases itself check its web page https://gap-packages.github.io/FactInt.
+releases of GAP itself, check its web page:
+https://gap-packages.github.io/FactInt
 
 ## Feedback
 
@@ -50,8 +51,4 @@ or if you find bugs, please use https://github.com/gap-packages/FactInt/issues
 or contact package maintainers by email.
  
 - Author and Maintainer:  Stefan Kohl, sk239@st-andrews.ac.uk
-<<<<<<< HEAD
-- Maintainer: Alexander Konovalov, alexander.konovalov@st-andrews.ac.uk
-=======
 - Maintainer: Olexandr Konovalov, obk1@st-andrews.ac.uk
->>>>>>> 8c6beb83581dfcfb7384bd448ff720436a14a498

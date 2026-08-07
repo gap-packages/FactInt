@@ -220,7 +220,7 @@ gap> List( last[ 1 ], p -> [ Factors( p - 1 ), Factors( p + 1 ) ] );
     <P/>
 
     The elements of the group <M>E(a,b)/n</M> are the points <M>(x,y)</M>
-    given by the solutions of <M>y^2 = x^3 + ax + by</M> in the residue
+    given by the solutions of <M>y^2 = x^3 + ax + b</M> in the residue
     class ring (mod&nbsp;<M>n</M>), and an additional point <M>\infty</M>
     at infinity, which serves as identity element.
     To turn this set into a group, define the product (although elliptic
@@ -247,14 +247,14 @@ gap> List( last[ 1 ], p -> [ Factors( p - 1 ), Factors( p + 1 ) ] );
     projective coordinates to have an explicit representation of the
     identity element and to avoid calculating inverses (mod&nbsp;<M>n</M>)
     for the group operation. Otherwise this would require using an
-    <M>O((log \ n)^3)</M>-algorithm, while multiplication (mod&nbsp;<M>n</M>)
-    is only <M>O((log \ n)^2)</M>. The corresponding equation is given by
+    <M>O((\log n)^3)</M>-algorithm, while multiplication (mod&nbsp;<M>n</M>)
+    is only <M>O((\log n)^2)</M>. The corresponding equation is given by
     <M>bY^2Z = X^3 + aX^2Z + XZ^2</M>. This form allows even more efficient
     computations than the
     <Index Key="Weierstrass model">Weierstrass model</Index>
     Weierstrass model <M>Y^2Z = X^3 + aXZ^2 + bZ^3</M>, which is the
     projective equivalent of the affine representation
-    <M>y^2 = x^3 + ax + by</M> mentioned above. The algorithm only keeps
+    <M>y^2 = x^3 + ax + b</M> mentioned above. The algorithm only keeps
     track of two of the three coordinates, namely <M>X</M> and&nbsp;<M>Z</M>.
     The curves are chosen in a way that ensures the order of the
     corresponding group to be divisible by&nbsp;12. This increases the chance
@@ -299,7 +299,7 @@ gap> FactorsECM(2^256+1,100,10000,1000000,100);
     of&nbsp;<A>n</A>, and not on the size of the factors.
     Thus if a small factor is not found during the preprocessing
     which is done before invoking the sieving process, the run time is
-    as long as if <A>n</A> would have two prime factors of roughly
+    as long as it would be if <A>n</A> had two prime factors of roughly
     equal size. <P/>
 
     The Continued Fraction Algorithm tries to find integers <M>x</M>
@@ -374,7 +374,7 @@ gap> FactorsCFRAC( Factorial(34) - 1 );
     of&nbsp;<A>n</A>, and not on the size of the factors.
     Thus if a small factor is not found during the preprocessing
     which is done before invoking the sieving process, the run time is
-    as long as if <A>n</A> would have two prime factors of roughly
+    as long as it would be if <A>n</A> had two prime factors of roughly
     equal size. <P/>
 
     The intermediate results of a computation can be saved by
