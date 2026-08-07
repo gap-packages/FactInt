@@ -1,6 +1,6 @@
 This file describes changes in the FactInt package.
 
-## 1.7.0 (unreleased)
+## 1.7.0 (2026-08-07)
 
   - Update Brent's tables of factors of `b^k +/- 1` from the collection now
     maintained by Jonathan Crombie. The full collection has grown to over
