@@ -1,5 +1,17 @@
 This file describes changes in the FactInt package.
 
+## 1.7.0 (unreleased)
+
+  - Update Brent's tables of factors of `b^k +/- 1` from the collection now
+    maintained by Jonathan Crombie. The full collection has grown to over
+    280 MB, which is too much to distribute; the tables shipped with FactInt
+    are therefore restricted to those `(b,k)` with `b <= 100`, or `b` a prime
+    below 1000, or `(b,k)` already covered by FactInt 1.6.3. This is a superset
+    of the data shipped with FactInt 1.6.3, adding roughly 670000 further
+    factors. Use `FetchBrentFactors` to install the full collection.
+  - Compress the data files in `tables/brent` in the distribution archives,
+    which halves their disk usage; GAP reads them transparently
+
 ## 1.6.3 (2019-11-15)
 
   - Make FactInt compatible with HPC-GAP
